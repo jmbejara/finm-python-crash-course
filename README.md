@@ -22,6 +22,7 @@ However, the first class will use [Google Colaboratory](https://colab.research.g
    The MiniConda version is nice, but I only recommend it for advanced users. Nice instructions for instlaling and using Anaconda can be found (here.)[https://datascience.quantecon.org/introduction/local_install.html]
  - The Visual Studio Code text editor
    - A good text editor is important for software development. Some of your classes will use a fully-fledged Integrated Development Environment (IDE) like PyCharm. For this review, I suggest Visual Studio Code. You can download it here: https://code.visualstudio.com/
+   - I recommend installing the Anaconda Extension Pack, [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter), and [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) VS Code extensions.
  - Git (optional, but recommended)
    - Although there are many different Git clients and Git GUI's that you could use,
    I prefer that you install GitKraken. GitKraken bundles a Git Client with its GUI, so you don't need to install multiple pieces of software. [GitKraken can be downloaded here.](https://www.gitkraken.com/)
