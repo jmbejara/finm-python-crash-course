@@ -28,6 +28,8 @@ However, the first class will use [Google Colaboratory](https://colab.research.g
    I prefer that you install GitKraken. GitKraken bundles a Git Client with its GUI, so you don't need to install multiple pieces of software. [GitKraken can be downloaded here.](https://www.gitkraken.com/)
    - Some classes will use GitHub. GitHub is a website that allows you to store, interactic with, and share your Git repositories online. [Please register an account with GitHub](https://github.com/) if you don't already have one.
 
+TEMP CHANGE
+
 
 **Helpful References**
 
