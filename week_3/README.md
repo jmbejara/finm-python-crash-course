@@ -14,3 +14,7 @@ Agenda
     - Compare Matplotlib to other plotting libraries: [./comparing_plotting_libraries.ipynb](./comparing_plotting_libraries.ipynb)
     - Introduction to [SciPy](https://python-programming.quantecon.org/scipy.html)
   - Homework for next time: See HW 2 folder. These are a series of short exercises to practice using NumPy and SciPy
+  
+  
+  
+  THIS IS A TEST CHANGE
