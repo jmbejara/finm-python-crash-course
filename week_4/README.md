@@ -19,8 +19,14 @@ Agenda
     - `03.01-Introducing-Pandas-Objects.ipynb`
     - `03.02-Data-Indexing-and-Selection.ipynb`
   - Now, let's briefly move away from notebooks and write `.py` files directly. We'll discuss the pros and cons of working with Notebooks vs `.py` files.
-    - To do this, complete the following in-class Pandas exercises within a `.py` file.
+    - To do this, complete the following in-class Pandas exercises within a `.py` file. Complete using the %% cells.
     - Break for an set of in-class exercises: [./occupations.ipynb](./occupations.ipynb)
+    - Once the assignment is complete, remove the %% cells for comparison.
+    - Show how to use the debugger.
+    - Show how to run the script from the command line. 
+      - Use the script to print to the command line.
+      - Use the script to save a figure.
+      - Write a shell script to run several Python scripts.
     - `03.03-Operations-in-Pandas.ipynb`
     - `03.04-Missing-Values.ipynb`
 
