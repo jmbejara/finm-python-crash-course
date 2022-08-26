@@ -15,6 +15,3 @@ Agenda
     - Introduction to [SciPy](https://python-programming.quantecon.org/scipy.html)
   - Homework for next time: See HW 2 folder. These are a series of short exercises to practice using NumPy and SciPy
   
-  
-  
-  THIS IS A TEST CHANGE
