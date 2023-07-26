@@ -3,31 +3,21 @@ FINM August Python Introduction and Review: Week 3
 
 Agenda
 
-  - Review HW 2 from last time.
-    - Who tried the HW? Any questions?
-    - Show location of solutions notebook.
-    - Demonstrate solution to BONUS question related to SVD and image compression. How might this be useful for finance?
-  - Skim over the [./Using_Interact.ipynb](./Using_Interact.ipynb)
-    - We're not going to cover it, but those that are interested can learn more about how to use it here.
+  - Today we move away from Jupyter notebooks entirely and focus on writing `.py` files directly. We'll focus on writing our own modules, discuss automating tasks by using the command line, we'll discuss task management software (Python's `doit` package and Makefiles), and discuss the importance of conda environments (and hint at Docker containers).
   - Give an overview of GitKraken and GitHub.
     - Create a new repository on GitHub and clone it in GitKraken.
     - Create a commit and push to GitHub
     - Make edits to code and view the diffs.
     - Discuss pull requests and the open source model (delegating oversight)
-  - Start with discussion of Pandas. Start going over the Pandas chapter from ["Python Data Science Handbook"](https://jakevdp.github.io/PythonDataScienceHandbook)
-    - `03.00-Introduction-to-Pandas.ipynb`
-    - `03.01-Introducing-Pandas-Objects.ipynb`
-    - `03.02-Data-Indexing-and-Selection.ipynb`
   - Now, let's briefly move away from notebooks and write `.py` files directly. We'll discuss the pros and cons of working with Notebooks vs `.py` files.
     - To do this, complete the following in-class Pandas exercises within a `.py` file. Complete using the %% cells.
-    - Break for an set of in-class exercises: [./occupations.ipynb](./occupations.ipynb)
     - Once the assignment is complete, remove the %% cells for comparison.
     - Show how to use the debugger.
     - Show how to run the script from the command line. 
       - Use the script to print to the command line.
       - Use the script to save a figure.
       - Write a shell script to run several Python scripts.
-    - `03.03-Operations-in-Pandas.ipynb`
-    - `03.04-Missing-Values.ipynb`
+  - Demonstrate my own, very simple module that I use, called `config`
+  - Write an end-to-end automatically fun program using a conda environment, the command line, and Python's `doit`. This should download data on it's own, store it somewhere as a cached data set, run the analysis, generate the charts, and insert the charts into a PDF document (do this using a Jupyter notebook).
 
       
