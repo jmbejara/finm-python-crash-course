@@ -10,10 +10,14 @@ Agenda
     - Custom notebook diffing: https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_custom-notebook-diffing
   - Demonstration of Git and GitHub
     - VS Code especially makes Git diffs of Jupyter notebooks easy. Demonstrate why they are otherwise difficult.
-  - Very quick review of Numpy, Matplotlib, and Scipy
+  - Finish discussion of Pandas from previous lecture:
+    - Set of in-class exercises: [./occupations.ipynb](./occupations.ipynb)
+    - `03.03-Operations-in-Pandas.ipynb`
+    - `03.04-Missing-Values.ipynb`
+  - Demonstrate Pandas in the context of factor analysis/principal components analysis of a panel
+  of economic and financial time series. [./factor_analysis_demo.ipynb]
+  - Very quick review of Numpy, Matplotlib, and Scipy, with emphasis on plotting
     - Introduction to [NumPy](https://python-programming.quantecon.org/numpy.html)
     - Introduction to [Matplotlib](https://python-programming.quantecon.org/matplotlib.html)
     - Compare Matplotlib to other plotting libraries: [./comparing_plotting_libraries.ipynb](./comparing_plotting_libraries.ipynb)
     - Introduction to [SciPy](https://python-programming.quantecon.org/scipy.html)
-  - Discussion of writing our own modules
-    - Start with a review of functions in Python: review the ["Functions"](https://datascience.quantecon.org/python_fundamentals/functions.html) chapter found here: [./functions.ipynb](./functions.ipynb)
