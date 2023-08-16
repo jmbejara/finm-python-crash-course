@@ -14,7 +14,7 @@ Agenda
     - Set of in-class exercises: [./occupations.ipynb](./occupations.ipynb)
     - `03.03-Operations-in-Pandas.ipynb`
     - `03.04-Missing-Values.ipynb`
-  - Demonstrate Pandas in the context of factor analysis/principal components analysis of a panel
+  - Demonstrate Pandas in the context of factor analysis/principal components analysis of a panel (Note from 2023. Ran out of time at the beginning of discussing this notebook.)
   of economic and financial time series. [./factor_analysis_demo.ipynb](./factor_analysis_demo.ipynb)
   - Very quick review of Numpy, Matplotlib, and Scipy, with emphasis on plotting
     - Introduction to [NumPy](https://python-programming.quantecon.org/numpy.html)
