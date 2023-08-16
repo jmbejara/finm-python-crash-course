@@ -10,7 +10,7 @@ Agenda
     - Make edits to code and view the diffs.
     - Discuss pull requests and the open source model (delegating oversight)
   - Now, let's briefly move away from notebooks and write `.py` files directly. We'll discuss the pros and cons of working with Notebooks vs `.py` files.
-    - To do this, complete the following in-class Pandas exercises within a `.py` file. Complete using the %% cells.
+    - To do this, complete again the `Occupations` exercises the following in-class Pandas exercises within a `.py` file. Complete using the %% cells.
     - Once the assignment is complete, remove the %% cells for comparison.
     - Show how to use the debugger.
     - Show how to run the script from the command line. 
@@ -20,7 +20,7 @@ Agenda
   - Discussion of writing our own modules
     - Start with a review of functions in Python: review the ["Functions"](https://datascience.quantecon.org/python_fundamentals/functions.html) chapter found here: [./functions.ipynb](./functions.ipynb)
     - Demonstrate my own, very simple module that I use, called `config`
-  - Write an end-to-end automatically fun program using a conda environment, the command line, and Python's `doit`. This should download data on it's own, store it somewhere as a cached data set, run the analysis, generate the charts, and insert the charts into a PDF document (do this using a Jupyter notebook).
-    - Do this using our factor analysis program from last time.
+  - Write an end-to-end automatically-run program using a conda environment, the command line, and Python's `doit`. This should download data on it's own, store it somewhere as a cached data set, run the analysis, generate the charts, and insert the charts into a PDF document (do this using a Jupyter notebook).
+    - Do this by looking at the structure of my `blank-project` repository.
 
       
