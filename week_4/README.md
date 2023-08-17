@@ -1,4 +1,4 @@
-FINM August Python Introduction and Review: Week 3
+FINM August Python Introduction and Review: Week 4
 ==================================================
 
 Agenda
