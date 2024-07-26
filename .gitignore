@@ -18,7 +18,7 @@
 # Other
 temp*.csv
 */_build/
-*/_notebook_build/
+docs_src/_notebook_build/
 drafts/draft_bp.pdf
 
 ##############
@@ -150,7 +150,6 @@ nosetests.xml
 coverage.xml
 
 # Sphinx documentation
-docs/
 /docs_src/apidocs
 
 
