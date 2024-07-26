@@ -184,11 +184,27 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
-    "01_example_notebook.ipynb": {
-        "file_dep": ["./src/load_fred.py"],
-        "targets": [Path(OUTPUT_DIR) / "GDP_graph.png"],
+    "01_python_by_example.ipynb": {
+        "file_dep": [],
+        "targets": [],
     },
-    "02_interactive_plot_example.ipynb": {
+    "02_Using_Interact.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "02_occupations.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "02_functions.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "03_factor_analysis_demo.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "03_comparing_plotting_libraries.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -257,22 +273,30 @@ sphinx_targets = [
     "./docs/html/index.html",
     "./docs/html/myst_markdown_demos.html",
     "./docs/html/apidocs/index.html",
+    "./docs/html/WRDS_intro_and_web_queries.html"
+]
+
+sphinx_file_dep = [
+    "./docs_src/conf.py",
+    "./docs_src/index.md",
+    "./docs_src/myst_markdown_demos.md",
+    "./docs_src/WRDS_intro_and_web_queries.md",
+    "./docs_src/01_setting_up_environment.md",
+    "./docs_src/discussion_01.md",
+    "./docs_src/discussion_02.md",
+    "./docs_src/discussion_03.md",
+    "./docs_src/discussion_04.md",
 ]
 
 def task_compile_sphinx_docs():
     """Compile Sphinx Docs"""
-    file_dep = [
-        "./docs_src/conf.py",
-        "./docs_src/index.md",
-        "./docs_src/myst_markdown_demos.md",
-        "./docs_src/notebooks.md",
-    ]
+
 
     return {
         "actions": ["sphinx-build -M html ./docs_src/ ./docs"], # Use docs as build destination
         # "actions": ["sphinx-build -M html ./docs/ ./docs/_build"], # Previous standard organization
         "targets": sphinx_targets,
-        "file_dep": file_dep,
+        "file_dep": sphinx_file_dep,
         "task_dep": ["run_notebooks"],
         "clean": True,
     }
@@ -337,6 +361,6 @@ def task_copy_built_docs_to_publishing_dir():
             copy_build_files_to_docs_publishing_dir,
         ],
         "targets": targets,
-        "file_dep": file_dep,
+        "file_dep": sphinx_file_dep,
         "clean": True,
     }

@@ -50,4 +50,5 @@ vega_datasets>=0.9.0
 wrds>=3.2.0
 xbbg>=0.7.7
 xlrd>=2.0.1
+yfinance
 zstandard>=0.22.0

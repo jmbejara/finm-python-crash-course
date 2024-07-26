@@ -19,7 +19,7 @@ import sys
 
 # -- Project information -----------------------------------------------------
 
-project = "Blank Project"
+project = "FINM August Review: Python"
 copyright = "2024, Jeremiah Bejarano"
 author = "Jeremiah Bejarano"
 
@@ -107,7 +107,7 @@ html_theme_options = {
         "colab_url": "",
     },
     "path_to_docs": "docs_src",
-    "repository_url": "https://github.com/jmbejara/blank_project",
+    "repository_url": "https://github.com/jmbejara/finm-python-crash-course",
     "repository_branch": "master",
     "extra_footer": "",
     "home_page_in_toc": True,
@@ -118,7 +118,7 @@ html_theme_options = {
     "use_issues_button": True,
 }
 html_logo = "../assets/logo.png"
-html_title = "Blank Project Template"
+html_title = "FINM August Review: Python"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
