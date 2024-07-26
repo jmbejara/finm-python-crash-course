@@ -1,0 +1,108 @@
+---
+title: "03_example_regressions"
+output: html_notebook
+---
+
+This is an example of an R notebook used in this PyDoit workflow.
+
+```{r}
+# install.packages("arrow")
+# install.packages("fixest")
+# install.packages("stargazer")
+
+```
+
+```{r}
+# Load necessary libraries
+library(arrow)
+library(fixest)
+library(ggplot2)
+library(tidyverse)
+library(zoo) # Ensure zoo is loaded for rollmean
+library(stargazer)
+```
+
+
+```{r}
+# Load data from FRED
+data <- read_parquet("../data/pulled/fred.parquet")
+
+# Ensure data is sorted by DATE
+data <- data %>% arrange(DATE)
+
+## Forward fill all columns except for 'DATE'
+#data_filled <- data %>% 
+#  fill(-c(DATE), .direction = "down")
+```
+
+```{r}
+data %>% drop_na() %>%  glimpse()
+```
+
+
+```{r}
+dff <- data %>%
+  select(DATE, GDP) %>%
+  drop_na()
+
+ggplot(dff, aes(x = DATE, y = GDP)) +
+  geom_line() + labs(title = "US GDP Over Time", x = "Date", y = "GDP (billions, $)")
+
+```
+
+```{r}
+# Calculate the percent change from a year ago for GDP
+dff <- data %>%
+  select(DATE, GDP) %>%
+  drop_na() %>%
+  arrange(DATE) %>%
+  mutate(GDP_Percent_Change = (GDP - lag(GDP, 12)) / lag(GDP, 12) * 100)
+
+# Plotting GDP percent change over time
+ggplot(dff, aes(x = DATE, y = GDP_Percent_Change)) +
+  geom_line() +
+  labs(title = "Year-over-Year Percent Change in GDP",
+       x = "Date", y = "Percent Change (%)")
+
+```
+
+
+```{r}
+
+# 1. Reshape the data to long format
+data_long <- pivot_longer(data, cols = c(CPIAUCNS, GDP, GDPC1), names_to = "Variable", values_to = "Value")
+
+# 2. Ensure data is sorted by DATE and grouped by Variable
+data_long <- data_long %>% arrange(DATE) %>% group_by(Variable)
+
+# 3. Calculate the change from one year prior
+# Assuming your data has daily frequency and leap years are not a major concern for the approximation
+data_long <- data_long %>% 
+  mutate(YearChange = (Value - lag(Value, 12))/lag(Value, 12) * 100) # Change from 365 days ago
+
+# 4. Calculate 12-month rolling mean of the year-over-year changes
+data_long <- data_long %>% 
+  mutate(RollingMean = rollapply(YearChange, width = 12, FUN = mean, fill = NA, align = "right"))
+
+# 5. Plot the 12-month rolling mean of year-over-year changes for each series
+ggplot(data_long, aes(x = DATE, y = RollingMean, color = Variable)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "12-month Rolling Mean of Year-Over-Year Changes for Each Series",
+       x = "DATE", y = "Percent", color = "Variable")
+
+
+```
+
+
+
+```{r}
+
+# Perform the regression using fixest
+# GDP ~ CPIAUCNS + GDPC1 with date as the fixed effect
+model <- feols(GDP ~ CPIAUCNS + GDPC1, data = data)
+
+# Print the results
+model
+
+```
