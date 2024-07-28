@@ -8,7 +8,7 @@
 - Demonstration of Git and GitHub
   - VS Code especially makes Git diffs of Jupyter notebooks easy. Demonstrate why they are otherwise difficult.
 - Finish discussion of Pandas from previous lecture:
-  - Set of in-class exercises: [./src/occupations.ipynb](./_02_occupations.ipynb)
+  - Set of in-class exercises: [./src/occupations.ipynb](./_01_occupations.ipynb)
   - `03.03-Operations-in-Pandas.ipynb`
   - `03.04-Missing-Values.ipynb`
 - Demonstrate Pandas in the context of factor analysis/principal components analysis of a panel (Note from 2023. Ran out of time at the beginning of discussing this notebook.)

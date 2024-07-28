@@ -69,6 +69,7 @@ discussion_01.md
 01_setting_up_environment.md
 _notebook_build/_01_python_jupyter_demo.ipynb
 _notebook_build/_01_python_by_example.ipynb
+_notebook_build/_01_occupations.ipynb
 ```
 
 ```{toctree}
@@ -77,7 +78,6 @@ _notebook_build/_01_python_by_example.ipynb
 discussion_02.md
 WRDS_intro_and_web_queries.md
 _notebook_build/_02_Using_Interact.ipynb
-_notebook_build/_02_occupations.ipynb
 ```
 
 ```{toctree}

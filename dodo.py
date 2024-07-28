@@ -192,7 +192,7 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
-    "02_occupations.ipynb": {
+    "01_occupations.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -286,6 +286,7 @@ sphinx_file_dep = [
     "./docs_src/discussion_02.md",
     "./docs_src/discussion_03.md",
     "./docs_src/discussion_04.md",
+    *[f"./src/{notebook}" for notebook in notebook_tasks.keys()],
 ]
 
 def task_compile_sphinx_docs():

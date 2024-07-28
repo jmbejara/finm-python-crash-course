@@ -41,7 +41,7 @@
     - `02_01-Introducing-Pandas-Objects.ipynb`
     - `02_02-Data-Indexing-and-Selection.ipynb`
     - Break for an set of in-class exercises:
-      [./src/02_occupations.ipynb](./_notebook_build/_02_occupations.ipynb)
+      [./src/01_occupations.ipynb](./_notebook_build/_01_occupations.ipynb)
     - `02_03-Operations-in-Pandas.ipynb`
     - `02_04-Missing-Values.ipynb`
 - Homework for next time: See HW 2 folder. These are a series of short exercises
