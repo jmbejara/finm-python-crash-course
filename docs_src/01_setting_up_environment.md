@@ -106,9 +106,27 @@ Let's pause here and make sure that everyone has Git installed and is able to do
 - Discuss: What is the difference between Git and GitHub?
 ```
 
+## Installing the Required Packages for this Course
 
+Now that we have cloned the repository for this course, let's install the required packages. 
+For the code that we use today, you should be fine with the packages that come with the Anaconda distribution. However, we will be using additional packages in future discussions. You can install these packages by running the following command in the terminal:
 
+```bash 
+pip install -r requirements.txt
+```
 
+You'll need to make sure that you navigate to the directory where you cloned the repository before running this command. You can do this by running the following command in the terminal:
+
+```bash
+cd path/to/finm-python-crash-course
+```
+
+Test that the packages are installed by running the following command in a Python interpreter:
+  
+```python
+import numpy as np
+import decouple
+``` 
 
 
 ## WRDS: How do I sign up?
