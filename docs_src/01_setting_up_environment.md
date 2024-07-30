@@ -97,7 +97,13 @@ The code for this course is available on GitHub. You can find the repository [he
 
 
 ```{note} 
-Let's pause here and make sure that everyone has Git installed and is able to download the 
+Let's pause here and make sure that everyone has Git installed and is able to download the code for the course.
+
+- First, let's make sure that everyone has an account on GitHub. If you don't have an account, please create one now.
+- Open a new Window in VS Code and choose the option to clone a repository. Clone the repository for this course: https://github.com/jmbejara/finm-python-crash-course . 
+- Be sure to choose a good place for your Git repositories. Try not to put them in a folder that is synced with a cloud service like Dropbox or Google Drive. Git is what we'll be using to sync files, not Dropbox or Googe Drive. Putting a Git repo in a Dropbox folder is like putting a Google Drive folder inside of Dropbox. It's redundant.
+- Open the Git tab in VS Code and see what happens when you make a change to a file in the repository. Notice how you can see the changes in the Git tab. You can stage the changes and commit them to the repository. For now, we won't worry about pushing the changes to GitHub. We'll do that in a later discussion.
+- Discuss: What is the difference between Git and GitHub?
 ```
 
 

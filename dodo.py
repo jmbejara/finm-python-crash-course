@@ -180,7 +180,7 @@ def task_pull_fred():
 
 
 notebook_tasks = {
-    "01_python_jupyter_demo.ipynb": {
+    "01_overview_of_pydata_stack.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -193,6 +193,14 @@ notebook_tasks = {
         "targets": [],
     },
     "01_occupations.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "HW1-numpy-scipy.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "HW1--with-solutions.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -281,8 +289,9 @@ sphinx_file_dep = [
     "./docs_src/index.md",
     "./docs_src/myst_markdown_demos.md",
     "./docs_src/WRDS_intro_and_web_queries.md",
-    "./docs_src/01_setting_up_environment.md",
     "./docs_src/discussion_01.md",
+    "./docs_src/01_setting_up_environment.md",
+    "./docs_src/01_methods_for_using_python.md",
     "./docs_src/discussion_02.md",
     "./docs_src/discussion_03.md",
     "./docs_src/discussion_04.md",

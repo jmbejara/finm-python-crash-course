@@ -67,9 +67,10 @@ A lot of my lecture material will use content from the following helpful books:
 :caption: Discussion 1
 discussion_01.md
 01_setting_up_environment.md
-_notebook_build/_01_python_jupyter_demo.ipynb
+01_methods_for_using_python.md
+_notebook_build/_01_overview_of_pydata_stack.ipynb
 _notebook_build/_01_python_by_example.ipynb
-_notebook_build/_01_occupations.ipynb
+_notebook_build/_HW1-numpy-scipy.ipynb
 ```
 
 ```{toctree}
@@ -78,6 +79,7 @@ _notebook_build/_01_occupations.ipynb
 discussion_02.md
 WRDS_intro_and_web_queries.md
 _notebook_build/_02_Using_Interact.ipynb
+_notebook_build/_01_occupations.ipynb
 ```
 
 ```{toctree}

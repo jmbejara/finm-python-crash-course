@@ -7,27 +7,20 @@
 - [**Set up Environment**](./01_setting_up_environment.md): Today we will make sure that everyone has their computational environment set
 up correctly. This includes Python (via the Anaconda distribution), Visual
 Studio Code, Git and GitHub, and a WRDS class count for this course.
-- **Various Method of Interacting with Python**: Throughout the course, we'll
+- [**Various Method of Interacting with Python**](./01_methods_for_using_python.md): Throughout the course, we'll
 discuss the various ways of interacting with Python: Google Collab, Jupyter
 Notebooks through the standard Jupyter server, Jupyter Notebooks in VS Code,
 using IPython in the command line, and running Python scripts directly from the
 command line (`.py` files).
-- Discuss assignment for next week (installing software). (Assignments are not
-  graded. This is an optional review.)
-    - List of software to install is on the main README:
-      https://github.com/jmbejara/finm-python-crash-course/blob/main/README.md
-    - Helpful text to understand the process of setting up your environment:
-      https://datascience.quantecon.org/introduction/local_install.html
-- [Run Python Demo Notebook in Google
-  Colab](https://colab.research.google.com/github/jmbejara/finm-python-crash-course/blob/main/week_1/Part_1_Python_Jupyter_demo.ipynb)
-- Start HW1 as a group. Discuss how the Jupyter notebook can be used for HW.
-  Formatting is important! [Work through problems together
-  here.](https://colab.research.google.com/github/jmbejara/finm-python-crash-course/blob/main/HW/HW-1-numpy-scipy/HW1.ipynb)
-- With the remaining time, we'll take a step back and go over some of the more
-  basic aspects of Python. We'll go through some simpler examples in the
-  following notebooks (which can be accessed in Google Colab).
-- [Python
-  Fundamentals](https://datascience.quantecon.org/python_fundamentals/index.html)
-    - [Basics](https://datascience.quantecon.org/python_fundamentals/basics.html)
-    - [Collections](https://datascience.quantecon.org/python_fundamentals/collections.html)
+- [**Overview of the PyData Stack**](./_notebook_build/_01_overview_of_pydata_stack.ipynb): We'll go over the
+various libraries that we'll be using in this course. This includes NumPy,
+SciPy, Pandas, Matplotlib, and Seaborn.
+- [**Python by Example**](./_notebook_build/_01_python_by_example.ipynb): We'll go through some examples of Python basics: basic control-flow, functions, and classes.
+- [**Homework 1**](./_notebook_build/_HW1-numpy-scipy.ipynb): We'll start working on Homework 1. This homework will be due before the next class. It will not be graded, but it will be a good way to get started with the material.
+
+
+After class, consider reading some of the following on your own:
+- [Python Fundamentals](https://datascience.quantecon.org/python_fundamentals/index.html)
+- [Basics](https://datascience.quantecon.org/python_fundamentals/basics.html)
+- [Collections](https://datascience.quantecon.org/python_fundamentals/collections.html)
 
