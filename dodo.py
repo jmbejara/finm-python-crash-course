@@ -204,10 +204,6 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
-    "02_functions.ipynb": {
-        "file_dep": [],
-        "targets": [],
-    },
     "03_01-Introducing-Pandas-Objects.ipynb": {
         "file_dep": [],
         "targets": [],
