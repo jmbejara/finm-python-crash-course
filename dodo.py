@@ -180,11 +180,11 @@ def task_pull_fred():
 
 
 notebook_tasks = {
-    "01_overview_of_pydata_stack.ipynb": {
+    "02_overview_of_pydata_stack.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "01_python_by_example.ipynb": {
+    "02_python_by_example.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -196,11 +196,11 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
-    "HW1-numpy-scipy.ipynb": {
+    "HW2-numpy-scipy.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "HW1--with-solutions.ipynb": {
+    "HW2--with-solutions.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -208,15 +208,32 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
+    "03_01-Introducing-Pandas-Objects.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "03_02-Data-Indexing-and-Selection.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "03_03-Operations-in-Pandas.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "03_04-Missing-Values.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
     "03_factor_analysis_demo.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "03_comparing_plotting_libraries.ipynb": {
+    "02_comparing_plotting_libraries.ipynb": {
         "file_dep": [],
         "targets": [],
     },
 }
+
 
 
 def task_convert_notebooks_to_scripts():
@@ -292,7 +309,9 @@ sphinx_file_dep = [
     "./docs_src/discussion_01.md",
     "./docs_src/01_setting_up_environment.md",
     "./docs_src/01_methods_for_using_python.md",
+    "./docs_src/HW1.md",
     "./docs_src/discussion_02.md",
+    "./docs_src/syncing_files_with_git_and_github.md",
     "./docs_src/discussion_03.md",
     "./docs_src/discussion_04.md",
     *[f"./src/{notebook}" for notebook in notebook_tasks.keys()],

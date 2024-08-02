@@ -5,23 +5,27 @@
 
 The FINM August Review is a series of lectures designed for incoming students to prepare for starting with the Financial Mathematics program. The Python Introduction and Review portion is designed to be a refresher or short introduction to the Python programming language. No prior experience is necessary. Even though some incoming students may have extensive prior experience with Python, this review is designed for those with little experience. The aim is to introduce you to what you need to know for the upcoming FINM program. The academic lectures of September Launch and autumn quarter will assume students have mastered the concepts covered throughout August Review, and so it’s critical that all students enter the year with a solid grasp of this material. 
 
+
+```{note}
+This class will be most useful to you if it is interactive. Please ask questions and participate in the discussion. 
+Furthermore, we will plan pauses in the middle of lectures to give time to help students one-on-one with their setup. Please plan to follow along with all of the steps as we go along, so we can troubleshoot the issues as they arise.
+```
+
 ```{attention} Pardon my dust! These notes will change frequently as I update it with new content before the course begins. 
 ```
 
 
 ## Course Info
 
-* **Class:** 
+- **Class:** 
  - Discussion 1: Tuesday, July 30: 6-9pm CT on Zoom
  - Discussion 2: Friday, August 2: 6-9pm CT on Zoom
  - Discussion 3: Tuesday, August 6: 6-9pm CT on Zoom
  - Discussion 4: Friday, August 9: 6-9pm CT on Zoom
-
-* **Lecturer:** Jeremy Bejarano, jeremiah.bejarano@gmail.com
-* **Website:** 
- - Canvas: https://canvas.uchicago.edu/courses/57668 will be used for grades. 
- - Lecture notes will be hosted here: https://jeremybejarano.com/finm-python-crash-course/
- - Code for the course will be hosted on GitHub: https://github.com/jmbejara/finm-python-crash-course 
+- **Lecturer:** Jeremy Bejarano, jeremiah.bejarano@gmail.com
+- **Notes:** https://jeremybejarano.com/finm-python-crash-course/
+- **Canvas:** https://canvas.uchicago.edu/courses/57668 will be used for grades. 
+- **Code Repository:** Code for the course will be hosted on GitHub: https://github.com/jmbejara/finm-python-crash-course 
 
 **Required Software**
 Each lecture after this will use the following software. Please make sure to install these before then. If you need help installing this software, please  ask for help in the discussion section on Canvas.
@@ -68,25 +72,31 @@ A lot of my lecture material will use content from the following helpful books:
 discussion_01.md
 01_setting_up_environment.md
 01_methods_for_using_python.md
-_notebook_build/_01_overview_of_pydata_stack.ipynb
-_notebook_build/_01_python_by_example.ipynb
-_notebook_build/_HW1-numpy-scipy.ipynb
+HW1.md
 ```
 
 ```{toctree}
 :maxdepth: 1
 :caption: Discussion 2
 discussion_02.md
-WRDS_intro_and_web_queries.md
+syncing_files_with_git_and_github.md
+_notebook_build/_02_overview_of_pydata_stack.ipynb
+_notebook_build/_02_comparing_plotting_libraries.ipynb
 _notebook_build/_02_Using_Interact.ipynb
-_notebook_build/_01_occupations.ipynb
+_notebook_build/_02_python_by_example.ipynb
+_notebook_build/_HW2-numpy-scipy.ipynb
 ```
 
 ```{toctree}
 :maxdepth: 1
 :caption: Discussion 3
 discussion_03.md
-_notebook_build/_03_comparing_plotting_libraries.ipynb
+_notebook_build/_03_01-Introducing-Pandas-Objects.ipynb
+_notebook_build/_03_02-Data-Indexing-and-Selection.ipynb
+_notebook_build/_03_03-Operations-in-Pandas.ipynb
+_notebook_build/_03_04-Missing-Values.ipynb
+_notebook_build/_03_factor_analysis_demo.ipynb
+WRDS_intro_and_web_queries.md
 ```
 
 ```{toctree}

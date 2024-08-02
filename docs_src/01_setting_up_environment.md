@@ -66,6 +66,8 @@ Visual Studio Code is a lightweight code editor that is great for Python develop
     - Visual Studio is a full-fledged Integrated Development Environment (IDE) that is used primarily for developing in C# and .NET. It is a very powerful IDE that has a lot of features.
     - Visual Studio Code (VS Code), on the other hand, is a lightweight code editor. Visual Studio Code has become a very popular editor for Python development and will be better suited for data science work than Visual Studio (the IDE).
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KMxo3T_MTvY?si=DIfqvwpEwJfQk2Dn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 ```{note} 
 Let's pause here and make sure that everyone has VS Code installed. We'll run a few test files and configure VS Code with some helpful defaults. Please raise your hand if any of these things is not working:

@@ -1,4 +1,4 @@
-# 2.1 Introduction to WRDS
+# 3.6 Introduction to WRDS
 
 ## A Platform For Financial Data
 
