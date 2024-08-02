@@ -105,10 +105,13 @@ def apply_delisting_returns(df):
     """
 
 
+    # If the first condition is satisfied, the value -0.3 is chosen.
+    # If the second condition is satisfied, the value -1 is chosen.
+    # If none of the conditions are satisfied, the value from the "dlret" column is chosen.
+    # See the docstring above.
     df["dlret"] = np.select(
         [
-            df["dlstcd"].isin([500, 520, 580, 584] + list(range(551, 575)))
-            & df["dlret"].isna(),
+            df["dlstcd"].isin([500, 520, 580, 584] + list(range(551, 575))) & df["dlret"].isna(),
             df["dlret"].isna() & df["dlstcd"].notna() & df["dlstcd"] >= 200,
             True,
         ],
@@ -116,6 +119,7 @@ def apply_delisting_returns(df):
         default=df["dlret"],
     )
 
+    # Same as above
     df["dlretx"] = np.select(
         [
             df["dlstcd"].isin([500, 520, 580, 584] + list(range(551, 575)))
@@ -126,13 +130,28 @@ def apply_delisting_returns(df):
         [-0.3, -1, df["dlretx"]],
         default=df["dlretx"],
     )
+    
+    # ## Note: Maybe the following occurs because the ret column
+    # # shows partial returns, if it continued trading for part of the month?
+    # # Show rows where both ret and dlret are not na
+    # # There are a lot of these, here 2858
+    # df.loc[df["ret"].notna() & df["dlret"].notna(), ["ret", "dlret"]]
+    # # There are only 4 rows where ret is na and dlret is not na
+    # df.loc[df["ret"].isna() & df["dlret"].notna(), ["ret", "dlret"]]
+    # # Obviously, more than 4 million of the below
+    # df.loc[df["ret"].notna() & df["dlret"].isna(), ["ret", "dlret"]]
 
-    df.loc[df["dlret"].notna(), "ret"] = df["dlret"]
-    df.loc[df["dlretx"].notna(), "retx"] = df["dlretx"]
+    df["ret"] = df["dlret"].fillna(df["ret"])
+    df["retx"] = df["dlretx"].fillna(df["retx"])
+
     return df
 
 
 def apply_delisting_returns_alt(df):
+    """This is an alternative method for incorporating delisting returns.
+    However, I recommend using the default method for handling delisting returns above,
+    since the one above seems to be more commonly used.
+    """
     df["dlret"] = df["dlret"].fillna(0)
     df["ret"] = df["ret"] + df["dlret"]
     df["ret"] = np.where(

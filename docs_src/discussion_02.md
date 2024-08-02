@@ -4,6 +4,10 @@
 
 - [**Sync Changes from GitHub and a Brief Overview of Git Concepts**](./syncing_files_with_git_and_github.md): We'll go over how to sync changes from GitHub and a brief overview of Git concepts.
 - **Install Necessary Python Packages**. If you haven't done so already, make sure to run the following command in your terminal to install the necessary packages for this course: `pip install -r requirements.txt`
+- While going through the following notebooks, be sure to demo the features of using the Python and Jupyter extensions within VS Code.
+    - Overview: https://code.visualstudio.com/docs/datascience/overview
+    - Variable explorer and data viewer: https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_variable-explorer-and-data-viewer
+    - Custom notebook diffing: https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_custom-notebook-diffing
 - [**Overview of the PyData Stack**](./_notebook_build/_02_overview_of_pydata_stack.ipynb): We'll go over the
 various libraries that we'll be using in this course. This includes NumPy,
 SciPy, Pandas, Matplotlib, and Seaborn.

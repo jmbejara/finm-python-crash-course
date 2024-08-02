@@ -642,7 +642,7 @@ def with_lagged_columns(
     # "D": Calendar day
     # "W": Weekly
     # "M": Month end
-    # "BM": Business month end
+    # "BME": Business month end
     # "MS": Month start
     # "BMS": Business month start
     # "Q": Quarter end
@@ -669,7 +669,7 @@ def with_lagged_columns(
         new_col = f"{prefix}{lags}_{column_to_lag}"
         df_resampled = df_wide.resample(freq).last()
         df_lagged = df_resampled.shift(lags)
-        df_lagged = df_lagged.stack(dropna=False).reset_index(name=new_col)
+        df_lagged = df_lagged.stack(future_stack=True).reset_index(name=new_col)
         df_lagged = df.merge(df_lagged, on=[date_col, id_column], how="right")
         df_lagged = df_lagged.dropna(subset=[column_to_lag, new_col], how="all")
         df_lagged = df_lagged.sort_values(by=[id_column, date_col])

@@ -69,8 +69,8 @@ DATA_DIR = if_relative_make_abs(config('DATA_DIR', default=Path('data'), cast=Pa
 OUTPUT_DIR = if_relative_make_abs(config('OUTPUT_DIR', default=Path('output'), cast=Path))
 DOCS_PUBLISH_DIR = if_relative_make_abs(config('DOCS_PUBLISH_DIR', default=Path('docs'), cast=Path))
 WRDS_USERNAME = config("WRDS_USERNAME", default="")
-START_DATE = config("START_DATE", default="1913-01-01", cast=pd.to_datetime)
-END_DATE = config("END_DATE", default="2023-10-01", cast=pd.to_datetime)
+START_DATE = config("START_DATE", default="1913-01-01", cast=str)
+END_DATE = config("END_DATE", default="2023-10-01", cast=str)
 # fmt: on
 
 

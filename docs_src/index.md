@@ -103,6 +103,14 @@ WRDS_intro_and_web_queries.md
 :maxdepth: 1
 :caption: Discussion 4️
 discussion_04.md
+_notebook_build/_04_wrds_python_package.ipynb
+_notebook_build/_04_CRSP_market_index.ipynb
+```
+
+
+```{toctree}
+:maxdepth: 1
+:caption: Appendix
 myst_markdown_demos.md
 apidocs/index
 ```

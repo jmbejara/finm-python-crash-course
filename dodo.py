@@ -102,6 +102,24 @@ def task_pull_fred():
     }
 
 
+def task_pull_CRSP():
+    """ """
+    file_dep = ["./src/load_CRSP_stock.py"]
+    targets = [
+        DATA_DIR / "pulled" / "CRSP_MSF_INDEX_INPUTS.parquet",
+        DATA_DIR / "pulled" / "CRSP_MSIX.parquet",
+        ]
+
+    return {
+        "actions": [
+            "ipython ./src/load_CRSP_stock.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": [],  # Don't clean these files by default.
+    }
+
+
 ##############################$
 ## Demo: Other misc. data pulls
 ##############################$
@@ -192,11 +210,11 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
-    "01_occupations.ipynb": {
+    "HW2-numpy-scipy.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "HW2-numpy-scipy.ipynb": {
+    "02_comparing_plotting_libraries.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -224,7 +242,17 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
-    "02_comparing_plotting_libraries.ipynb": {
+    "04_CRSP_market_index.ipynb": {
+        "file_dep": [
+            "src/calc_CRSP_indices.py",
+            "src/load_CRSP_stock.py",
+            "src/test_calc_CRSP_indices.py",
+            "src/misc_tools.py",
+            "src/test_misc_tools.py",
+            ],
+        "targets": [],
+    },
+    "04_wrds_python_package.ipynb": {
         "file_dep": [],
         "targets": [],
     },
