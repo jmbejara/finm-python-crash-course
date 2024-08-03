@@ -1,0 +1,1605 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4.2 Connecting to the WRDS Platform With Python &#8212; FINM August Review: Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_notebook_build/_04_wrds_python_package';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MyST Markdown Demos 💡" href="../myst_markdown_demos.html" />
+    <link rel="prev" title="4.1 Using CRSP Data" href="../using_CRSP_data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="FINM August Review: Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="FINM August Review: Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    FINM August Review: Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_01.html">1. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_setting_up_environment.html">1.1 Setting up your computing environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_methods_for_using_python.html">1.2 Ways to Interact with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_vscode_cursor.html">1.3 VS Code and Cursor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_environment_faq.html">1.4 Common Errors When Setting Up VS Code and Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HW1.html">Homework 1: Introduction to VS Code and Git</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_02.html">2. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syncing_files_with_git_and_github.html">2.1 Syncing Files with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../WRDS_intro_and_web_queries.html">2.2 Introduction to WRDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_01-Introducing-Pandas-Objects.html">2.3 Introducing Pandas Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_02-Data-Indexing-and-Selection.html">2.4 Data Indexing and Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_03-Operations-in-Pandas.html">2.5 Operating on Data in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_04-Missing-Values.html">2.6 Handling Missing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_CRSP_market_index.html">2.7 CRSP Market Returns Indices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_03.html">3. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_overview_of_pydata_stack.html">2.2 Overview of the PyData Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_comparing_plotting_libraries.html">2.3 Comparing Plotting Libraries and Declarative Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_Using_Interact.html">2.4 Using Interact (Optional)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_python_by_example.html">2.5 Python Basics: An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_HW2-numpy-scipy.html">Homework 2: Numpy, Scipy, and Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_factor_analysis_demo.html">3.5 Factor Analysis on Financial and Economic Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HW3.html">Homework 3: Introduction to WRDS and CRSP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 4️</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_04.html">4. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_CRSP_data.html">4.1 Using CRSP Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4.2 Connecting to the WRDS Platform With Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../myst_markdown_demos.html">MyST Markdown Demos 💡</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../apidocs/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../apidocs/misc_tools/misc_tools.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">misc_tools</span></code></a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course/issues/new?title=Issue%20on%20page%20%2F_notebook_build/_04_wrds_python_package.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_notebook_build/_04_wrds_python_package.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4.2 Connecting to the WRDS Platform With Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-and-establish-connection">Import and Establish Connection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-data">Exploring the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-wrds-data">Querying WRDS Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-get-table">Using <code class="docutils literal notranslate"><span class="pre">get_table</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-raw-sql">Using <code class="docutils literal notranslate"><span class="pre">raw_sql</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#misc">Misc</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="connecting-to-the-wrds-platform-with-python">
+<h1>4.2 Connecting to the WRDS Platform With Python<a class="headerlink" href="#connecting-to-the-wrds-platform-with-python" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">wrds</span></code> Python package is a tool designed to facilitate data retrieval from the Wharton Research Data Services (WRDS) database.</p>
+<ul class="simple">
+<li><p>It provides direct access to the WRDS database, allowing users to programmatically query and retrieve data.</p></li>
+<li><p>The package supports a simple Python API as well as the ability to send raw SQL queries.</p></li>
+<li><p>Retrieved data can be easily converted into Pandas DataFrames.</p></li>
+<li><p>Secure access to the WRDS database is managed through user authentication, ensuring data security and compliance with usage policies.</p></li>
+</ul>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>The package can be installed via pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">wrds</span>
+</pre></div>
+</div>
+<p>To use the package, one would typically import it in Python, authenticate with WRDS credentials, and then proceed with data queries and analysis. This notebook walks through some of these basic features.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<p>Here are some helpful links to learn how to use the <code class="docutils literal notranslate"><span class="pre">wrds</span></code> Python package:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/grid-items/using-python-wrds-platform/">Video: Using Python on the WRDS Platform</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/wrds/">PyPI Homepage for WRDS Python Package</a></p></li>
+<li><p><a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-python/querying-wrds-data-python/">WRDS Guide: Querying WRDS Data using Python</a></p></li>
+<li><p><a class="reference external" href="https://wrds-www.wharton.upenn.edu/documents/1443/wrds_connection.html">WRDS Python Package Demo Walkthrough</a></p></li>
+</ul>
+<section id="import-and-establish-connection">
+<h3>Import and Establish Connection<a class="headerlink" href="#import-and-establish-connection" title="Link to this heading">#</a></h3>
+<p>Establish connection with WRDS server.
+Log in using your WRDS username and password.
+Set up a <code class="docutils literal notranslate"><span class="pre">pgpass</span></code> file to store the info. This will allow you to access WRDS without supplying your password each time, as long as you supply your username (which we are doing below via environment variables). We want to be able to access WRDS without a password so that we can automate the query.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">OUTPUT_DIR</span><span class="p">)</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">DATA_DIR</span><span class="p">)</span>
+<span class="n">WRDS_USERNAME</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">WRDS_USERNAME</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">wrds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">wrds</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">wrds_username</span><span class="o">=</span><span class="n">WRDS_USERNAME</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading library list...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The `obs` keyword argument limits the number of rows returned.</span>
+<span class="c1"># You can omit it to get all rows.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="s1">&#39;crsp&#39;</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s1">&#39;msf&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cusip&#39;</span><span class="p">,</span> <span class="s1">&#39;permno&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;shrout&#39;</span><span class="p">,</span> <span class="s1">&#39;prc&#39;</span><span class="p">,</span> <span class="s1">&#39;ret&#39;</span><span class="p">,</span> <span class="s1">&#39;retx&#39;</span><span class="p">],</span> <span class="n">obs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cusip</th>
+      <th>permno</th>
+      <th>date</th>
+      <th>shrout</th>
+      <th>prc</th>
+      <th>ret</th>
+      <th>retx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1985-12-31</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-01-31</td>
+      <td>3680.0</td>
+      <td>-4.37500</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-02-28</td>
+      <td>3680.0</td>
+      <td>-3.25000</td>
+      <td>-0.257143</td>
+      <td>-0.257143</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-03-31</td>
+      <td>3680.0</td>
+      <td>-4.43750</td>
+      <td>0.365385</td>
+      <td>0.365385</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-04-30</td>
+      <td>3793.0</td>
+      <td>-4.00000</td>
+      <td>-0.098592</td>
+      <td>-0.098592</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-05-30</td>
+      <td>3793.0</td>
+      <td>-3.10938</td>
+      <td>-0.222656</td>
+      <td>-0.222656</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-06-30</td>
+      <td>3793.0</td>
+      <td>-3.09375</td>
+      <td>-0.005025</td>
+      <td>-0.005025</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-07-31</td>
+      <td>3793.0</td>
+      <td>-2.84375</td>
+      <td>-0.080808</td>
+      <td>-0.080808</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-08-29</td>
+      <td>3793.0</td>
+      <td>-1.09375</td>
+      <td>-0.615385</td>
+      <td>-0.615385</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-09-30</td>
+      <td>3793.0</td>
+      <td>-1.03125</td>
+      <td>-0.057143</td>
+      <td>-0.057143</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="exploring-the-data">
+<h2>Exploring the Data<a class="headerlink" href="#exploring-the-data" title="Link to this heading">#</a></h2>
+<p>As described <a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-python/querying-wrds-data-python/">here</a>,</p>
+<blockquote>
+<div><p>Data at WRDS is organized in a hierarchical manner by vendor (e.g. crsp), referred to at the top-level as libraries. Each library contains a number of component tables or datasets (e.g. dsf) which contain the actual data in tabular format, with column headers called variables (such as date, askhi, bidlo, etc).</p>
+<p>You can analyze the structure of the data through its metadata using the wrds module, as outlined in the following steps:</p>
+<ul class="simple">
+<li><p>List all available libraries at WRDS using list_libraries()</p></li>
+<li><p>Select a library to work with, and list all available datasets within that library using list_tables()</p></li>
+<li><p>Select a dataset, and list all available variables (column headers) within that dataset using describe_table()</p></li>
+</ul>
+<p><strong>NOTE:</strong> When referencing library and dataset names, you must use all lowercase.</p>
+<p>Alternatively, a comprehensive list of all WRDS libraries is available at the Dataset List. This resource provides a listing of each library, their component datasets and variables, as well as a tabular database preview feature, and is helpful in establishing the structure of the data you’re looking for in an easy manner from a Web browser.</p>
+<ol class="arabic simple">
+<li><p>Determine the libraries available at WRDS:</p></li>
+</ol>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">list_libraries</span><span class="p">())[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;aha_sample&#39;,
+ &#39;ahasamp&#39;,
+ &#39;audit&#39;,
+ &#39;audit_acct_os&#39;,
+ &#39;audit_audit_comp&#39;,
+ &#39;audit_common&#39;,
+ &#39;audit_corp_legal&#39;,
+ &#39;auditsmp&#39;,
+ &#39;auditsmp_all&#39;,
+ &#39;bank&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>This will list all libraries available at WRDS in alphabetical order. Though all libraries will be shown, you must have a valid, current subscription for a library in order to access it via Python, just as with SAS or any other supported programming language at WRDS. You will receive an error message indicating this if you attempt to query a table to which your institution does not have access.</p>
+<ol class="arabic simple" start="2">
+<li><p>To determine the datasets within a given library:</p></li>
+</ol>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">list_tables</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="s2">&quot;crsp&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;acti&#39;,
+ &#39;asia&#39;,
+ &#39;asib&#39;,
+ &#39;asic&#39;,
+ &#39;asio&#39;,
+ &#39;asix&#39;,
+ &#39;bmdebt&#39;,
+ &#39;bmheader&#39;,
+ &#39;bmpaymts&#39;,
+ &#39;bmquotes&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Where ‘library; is a dataset, such as crsp or comp, as returned from step 1 above.</p>
+<ol class="arabic simple" start="3">
+<li><p>To determine the column headers (variables) within a given dataset:</p></li>
+</ol>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">describe_table</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="s2">&quot;crsp&quot;</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;msf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Approximately 5153763 rows in crsp.msf.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>nullable</th>
+      <th>type</th>
+      <th>comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>cusip</td>
+      <td>True</td>
+      <td>VARCHAR(8)</td>
+      <td>CUSIP Header</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>permno</td>
+      <td>True</td>
+      <td>INTEGER</td>
+      <td>PERMNO</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>permco</td>
+      <td>True</td>
+      <td>INTEGER</td>
+      <td>PERMCO</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>issuno</td>
+      <td>True</td>
+      <td>INTEGER</td>
+      <td>Nasdaq Issue Number</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>hexcd</td>
+      <td>True</td>
+      <td>SMALLINT</td>
+      <td>Exchange Code Header</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>hsiccd</td>
+      <td>True</td>
+      <td>INTEGER</td>
+      <td>Standard Industrial Classification Code Header</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>date</td>
+      <td>True</td>
+      <td>DATE</td>
+      <td>Date of Observation</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>bidlo</td>
+      <td>True</td>
+      <td>NUMERIC(11, 5)</td>
+      <td>Bid or Low Price</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>askhi</td>
+      <td>True</td>
+      <td>NUMERIC(11, 5)</td>
+      <td>Ask or High Price</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>prc</td>
+      <td>True</td>
+      <td>NUMERIC(11, 5)</td>
+      <td>Price or Bid/Ask Average</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>vol</td>
+      <td>True</td>
+      <td>NUMERIC(10, 0)</td>
+      <td>Volume</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>ret</td>
+      <td>True</td>
+      <td>NUMERIC(10, 6)</td>
+      <td>Returns</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>bid</td>
+      <td>True</td>
+      <td>NUMERIC(11, 5)</td>
+      <td>Bid</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>ask</td>
+      <td>True</td>
+      <td>NUMERIC(11, 5)</td>
+      <td>Ask</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>shrout</td>
+      <td>True</td>
+      <td>DOUBLE PRECISION</td>
+      <td>Shares Outstanding</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>cfacpr</td>
+      <td>True</td>
+      <td>DOUBLE PRECISION</td>
+      <td>Cumulative Factor to Adjust Prices</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>cfacshr</td>
+      <td>True</td>
+      <td>DOUBLE PRECISION</td>
+      <td>Cumulative Factor to Adjust Shares/Vol</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>altprc</td>
+      <td>True</td>
+      <td>NUMERIC(11, 5)</td>
+      <td>Price Alternate</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>spread</td>
+      <td>True</td>
+      <td>NUMERIC(10, 5)</td>
+      <td>Spread Between Bid and Ask</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>altprcdt</td>
+      <td>True</td>
+      <td>DATE</td>
+      <td>Alternate Price Date</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>retx</td>
+      <td>True</td>
+      <td>NUMERIC(10, 6)</td>
+      <td>Returns without Dividends</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<blockquote>
+<div><p>Where ‘library’ is a dataset such as crsp as returned from #1 above and ‘table’ is a component database within that library, such as msf, as returned from query #2 above. Remember that both the library and the dataset are case-sensitive, and must be all-lowercase.</p>
+<p>Alternatively, a comprehensive list of all WRDS libraries is available via the WRDS Dataset List. This online resource provides a listing of each library, their component datasets and variables, as well as a tabular database preview feature, and is helpful in establishing the structure of the data you’re looking for in an easy, web-friendly manner.</p>
+<p>By examining the metadata available to us – the structure of the data – we’ve determined how to reference the data we’re researching, and what variables are available within that data. We can now perform our actual research, creating data queries, which are explored in depth in the next section.</p>
+</div></blockquote>
+</section>
+<section id="querying-wrds-data">
+<h2>Querying WRDS Data<a class="headerlink" href="#querying-wrds-data" title="Link to this heading">#</a></h2>
+<p>Continue the walkthrough provided here: <a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-python/querying-wrds-data-python/">https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-python/querying-wrds-data-python/</a></p>
+<section id="using-get-table">
+<h3>Using <code class="docutils literal notranslate"><span class="pre">get_table</span></code><a class="headerlink" href="#using-get-table" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The `obs` keyword argument limits the number of rows returned.</span>
+<span class="c1"># You can omit it to get all rows.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="s1">&#39;crsp&#39;</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s1">&#39;msf&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cusip&#39;</span><span class="p">,</span> <span class="s1">&#39;permno&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;shrout&#39;</span><span class="p">,</span> <span class="s1">&#39;prc&#39;</span><span class="p">,</span> <span class="s1">&#39;ret&#39;</span><span class="p">,</span> <span class="s1">&#39;retx&#39;</span><span class="p">],</span> <span class="n">obs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cusip</th>
+      <th>permno</th>
+      <th>date</th>
+      <th>shrout</th>
+      <th>prc</th>
+      <th>ret</th>
+      <th>retx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1985-12-31</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-01-31</td>
+      <td>3680.0</td>
+      <td>-4.37500</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-02-28</td>
+      <td>3680.0</td>
+      <td>-3.25000</td>
+      <td>-0.257143</td>
+      <td>-0.257143</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-03-31</td>
+      <td>3680.0</td>
+      <td>-4.43750</td>
+      <td>0.365385</td>
+      <td>0.365385</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-04-30</td>
+      <td>3793.0</td>
+      <td>-4.00000</td>
+      <td>-0.098592</td>
+      <td>-0.098592</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-05-30</td>
+      <td>3793.0</td>
+      <td>-3.10938</td>
+      <td>-0.222656</td>
+      <td>-0.222656</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-06-30</td>
+      <td>3793.0</td>
+      <td>-3.09375</td>
+      <td>-0.005025</td>
+      <td>-0.005025</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-07-31</td>
+      <td>3793.0</td>
+      <td>-2.84375</td>
+      <td>-0.080808</td>
+      <td>-0.080808</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-08-29</td>
+      <td>3793.0</td>
+      <td>-1.09375</td>
+      <td>-0.615385</td>
+      <td>-0.615385</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-09-30</td>
+      <td>3793.0</td>
+      <td>-1.03125</td>
+      <td>-0.057143</td>
+      <td>-0.057143</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="using-raw-sql">
+<h3>Using <code class="docutils literal notranslate"><span class="pre">raw_sql</span></code><a class="headerlink" href="#using-raw-sql" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SELECT</span>
+<span class="sd">        cusip, permno, date, shrout, prc, ret, retx</span>
+<span class="sd">    FROM </span>
+<span class="sd">        crsp.msf</span>
+<span class="sd">    LIMIT 10</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">date_cols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cusip</th>
+      <th>permno</th>
+      <th>date</th>
+      <th>shrout</th>
+      <th>prc</th>
+      <th>ret</th>
+      <th>retx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1985-12-31</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-01-31</td>
+      <td>3680.0</td>
+      <td>-4.37500</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-02-28</td>
+      <td>3680.0</td>
+      <td>-3.25000</td>
+      <td>-0.257143</td>
+      <td>-0.257143</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-03-31</td>
+      <td>3680.0</td>
+      <td>-4.43750</td>
+      <td>0.365385</td>
+      <td>0.365385</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-04-30</td>
+      <td>3793.0</td>
+      <td>-4.00000</td>
+      <td>-0.098592</td>
+      <td>-0.098592</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-05-30</td>
+      <td>3793.0</td>
+      <td>-3.10938</td>
+      <td>-0.222656</td>
+      <td>-0.222656</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-06-30</td>
+      <td>3793.0</td>
+      <td>-3.09375</td>
+      <td>-0.005025</td>
+      <td>-0.005025</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-07-31</td>
+      <td>3793.0</td>
+      <td>-2.84375</td>
+      <td>-0.080808</td>
+      <td>-0.080808</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-08-29</td>
+      <td>3793.0</td>
+      <td>-1.09375</td>
+      <td>-0.615385</td>
+      <td>-0.615385</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>68391610</td>
+      <td>10000</td>
+      <td>1986-09-30</td>
+      <td>3793.0</td>
+      <td>-1.03125</td>
+      <td>-0.057143</td>
+      <td>-0.057143</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SELECT </span>
+<span class="sd">        a.gvkey, a.datadate, a.tic, a.conm, a.at, a.lt, b.prccm, b.cshoq</span>
+<span class="sd">    FROM </span>
+<span class="sd">        comp.funda a</span>
+<span class="sd">    JOIN </span>
+<span class="sd">        comp.secm b ON a.gvkey = b.gvkey AND a.datadate = b.datadate</span>
+<span class="sd">    WHERE </span>
+<span class="sd">        a.tic = &#39;IBM&#39; AND </span>
+<span class="sd">        a.datafmt = &#39;STD&#39; AND </span>
+<span class="sd">        a.consol = &#39;C&#39; AND </span>
+<span class="sd">        a.indfmt = &#39;INDL&#39;</span>
+<span class="sd">    LIMIT 10</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gvkey</th>
+      <th>datadate</th>
+      <th>tic</th>
+      <th>conm</th>
+      <th>at</th>
+      <th>lt</th>
+      <th>prccm</th>
+      <th>cshoq</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>006066</td>
+      <td>1962-12-31</td>
+      <td>IBM</td>
+      <td>INTL BUSINESS MACHINES CORP</td>
+      <td>2112.301</td>
+      <td>731.700</td>
+      <td>389.9996</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>006066</td>
+      <td>1963-12-31</td>
+      <td>IBM</td>
+      <td>INTL BUSINESS MACHINES CORP</td>
+      <td>2373.857</td>
+      <td>782.119</td>
+      <td>506.9994</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>006066</td>
+      <td>1964-12-31</td>
+      <td>IBM</td>
+      <td>INTL BUSINESS MACHINES CORP</td>
+      <td>3309.152</td>
+      <td>1055.072</td>
+      <td>409.4995</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>006066</td>
+      <td>1965-12-31</td>
+      <td>IBM</td>
+      <td>INTL BUSINESS MACHINES CORP</td>
+      <td>3744.917</td>
+      <td>1166.771</td>
+      <td>498.9991</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>006066</td>
+      <td>1966-12-31</td>
+      <td>IBM</td>
+      <td>INTL BUSINESS MACHINES CORP</td>
+      <td>4660.777</td>
+      <td>1338.149</td>
+      <td>371.4997</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>006066</td>
+      <td>1967-12-31</td>
+      <td>IBM</td>
+      <td>INTL BUSINESS MACHINES CORP</td>
+      <td>5598.668</td>
+      <td>1767.067</td>
+      <td>626.9995</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>006066</td>
+      <td>1968-12-31</td>
+      <td>IBM</td>
+      <td>INTL BUSINESS MACHINES CORP</td>
+      <td>6743.430</td>
+      <td>2174.291</td>
+      <td>314.9998</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>006066</td>
+      <td>1969-12-31</td>
+      <td>IBM</td>
+      <td>INTL BUSINESS MACHINES CORP</td>
+      <td>7389.957</td>
+      <td>2112.967</td>
+      <td>364.4994</td>
+      <td>113.717</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>006066</td>
+      <td>1970-12-31</td>
+      <td>IBM</td>
+      <td>INTL BUSINESS MACHINES CORP</td>
+      <td>8539.047</td>
+      <td>2591.909</td>
+      <td>317.7496</td>
+      <td>114.587</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>006066</td>
+      <td>1971-12-31</td>
+      <td>IBM</td>
+      <td>INTL BUSINESS MACHINES CORP</td>
+      <td>9576.219</td>
+      <td>2933.837</td>
+      <td>336.4996</td>
+      <td>115.534</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;tickers&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;0015B&quot;</span><span class="p">,</span> <span class="s2">&quot;0030B&quot;</span><span class="p">,</span> <span class="s2">&quot;0032A&quot;</span><span class="p">,</span> <span class="s2">&quot;0033A&quot;</span><span class="p">,</span> <span class="s2">&quot;0038A&quot;</span><span class="p">)}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SELECT </span>
+<span class="sd">        datadate, gvkey, cusip </span>
+<span class="sd">    FROM comp.funda </span>
+<span class="sd">    WHERE </span>
+<span class="sd">        tic IN %(tickers)s</span>
+<span class="sd">    LIMIT 10</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>datadate</th>
+      <th>gvkey</th>
+      <th>cusip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1982-10-31</td>
+      <td>002484</td>
+      <td>121579932</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1983-10-31</td>
+      <td>002484</td>
+      <td>121579932</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1984-10-31</td>
+      <td>002484</td>
+      <td>121579932</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1985-10-31</td>
+      <td>002484</td>
+      <td>121579932</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1986-10-31</td>
+      <td>002484</td>
+      <td>121579932</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1987-10-31</td>
+      <td>002484</td>
+      <td>121579932</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1988-10-31</td>
+      <td>002484</td>
+      <td>121579932</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1989-06-30</td>
+      <td>002484</td>
+      <td>121579932</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1990-06-30</td>
+      <td>002484</td>
+      <td>121579932</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1991-06-30</td>
+      <td>002484</td>
+      <td>121579932</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="misc">
+<h3>Misc<a class="headerlink" href="#misc" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_row_count</span><span class="p">(</span><span class="s1">&#39;djones&#39;</span><span class="p">,</span> <span class="s1">&#39;djdaily&#39;</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28073
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../using_CRSP_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4.1 Using CRSP Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../myst_markdown_demos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MyST Markdown Demos 💡</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-and-establish-connection">Import and Establish Connection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-data">Exploring the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-wrds-data">Querying WRDS Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-get-table">Using <code class="docutils literal notranslate"><span class="pre">get_table</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-raw-sql">Using <code class="docutils literal notranslate"><span class="pre">raw_sql</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#misc">Misc</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremiah Bejarano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jeremiah Bejarano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

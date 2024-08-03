@@ -1,0 +1,1237 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.7 CRSP Market Returns Indices &#8212; FINM August Review: Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_notebook_build/_02_CRSP_market_index';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Agenda" href="../discussion_03.html" />
+    <link rel="prev" title="2.6 Handling Missing Data" href="_02_04-Missing-Values.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="FINM August Review: Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="FINM August Review: Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    FINM August Review: Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_01.html">1. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_setting_up_environment.html">1.1 Setting up your computing environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_methods_for_using_python.html">1.2 Ways to Interact with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_vscode_cursor.html">1.3 VS Code and Cursor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_environment_faq.html">1.4 Common Errors When Setting Up VS Code and Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HW1.html">Homework 1: Introduction to VS Code and Git</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_02.html">2. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syncing_files_with_git_and_github.html">2.1 Syncing Files with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../WRDS_intro_and_web_queries.html">2.2 Introduction to WRDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_01-Introducing-Pandas-Objects.html">2.3 Introducing Pandas Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_02-Data-Indexing-and-Selection.html">2.4 Data Indexing and Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_03-Operations-in-Pandas.html">2.5 Operating on Data in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_04-Missing-Values.html">2.6 Handling Missing Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.7 CRSP Market Returns Indices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_03.html">3. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_overview_of_pydata_stack.html">2.2 Overview of the PyData Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_comparing_plotting_libraries.html">2.3 Comparing Plotting Libraries and Declarative Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_Using_Interact.html">2.4 Using Interact (Optional)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_python_by_example.html">2.5 Python Basics: An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_HW2-numpy-scipy.html">Homework 2: Numpy, Scipy, and Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_factor_analysis_demo.html">3.5 Factor Analysis on Financial and Economic Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HW3.html">Homework 3: Introduction to WRDS and CRSP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 4️</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_04.html">4. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_CRSP_data.html">4.1 Using CRSP Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_04_wrds_python_package.html">4.2 Connecting to the WRDS Platform With Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../myst_markdown_demos.html">MyST Markdown Demos 💡</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../apidocs/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../apidocs/misc_tools/misc_tools.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">misc_tools</span></code></a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course/issues/new?title=Issue%20on%20page%20%2F_notebook_build/_02_CRSP_market_index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_notebook_build/_02_CRSP_market_index.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2.7 CRSP Market Returns Indices</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-into-the-crsp-market-index">Inclusion into the CRSP Market Index:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation-of-equal-weighted-returns-and-value-weighted-returns">Calculation of Equal-Weighted Returns and Value-Weighted Returns</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="crsp-market-returns-indices">
+<h1>2.7 CRSP Market Returns Indices<a class="headerlink" href="#crsp-market-returns-indices" title="Link to this heading">#</a></h1>
+<p>The CRSP (Center for Research in Security Prices) dataset provides two indices
+for market returns: an equal-weighted index and a value-weighted index (both provided
+in terms of returns with and without dividends). The equal-weighted index
+computes the simple average of returns across stocks. This series is available as <code class="docutils literal notranslate"><span class="pre">EWRETD</span></code> and <code class="docutils literal notranslate"><span class="pre">EWRETX</span></code>, (with and without dividends, respectively).
+The value-Weighted Returns index represents a stock market index that calculates the return on investment by considering both the price changes and dividends of each component security, weighted by its market capitalization. This means that larger companies have a greater impact on the index’s performance compared to smaller companies. The value-weighting approach aims to reflect the actual investment returns that an investor would achieve by holding a market portfolio, mirroring the performance of the overall market or specific market segments more accurately than equal-weighted indices. The CRSP indices are widely used in academic research and financial analysis to study market trends, evaluate investment strategies, and benchmark the performance of portfolios against the broader market. This series is available in the CRSP tables under the mnemonic <code class="docutils literal notranslate"><span class="pre">VWRETD</span></code> and <code class="docutils literal notranslate"><span class="pre">VWRETX</span></code> (with and without dividends, respectively).</p>
+<p>In this guide, we’ll discuss the construction of the equal- and value-weighted market return indices. To construct these indices, we’ll follow the suggestions here: <a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/support/support-articles/crsp/index-and-deciles/constructing-value-weighted-return-series-matches-vwretd-crsp-monthly-value-weighted-returns-includes-distributions/">https://wrds-www.wharton.upenn.edu/pages/support/support-articles/crsp/index-and-deciles/constructing-value-weighted-return-series-matches-vwretd-crsp-monthly-value-weighted-returns-includes-distributions/</a></p>
+<p>These suggestions boil down to the most important part: we must select the correct universe of stocks that comprise “the market”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Why might these commands be helpful?</span>
+<span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
+<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">load_CRSP_stock</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">calc_CRSP_indices</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">misc_tools</span>
+
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">DATA_DIR</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_msf</span> <span class="o">=</span> <span class="n">load_CRSP_stock</span><span class="o">.</span><span class="n">load_CRSP_monthly_file</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">)</span>
+<span class="n">df_msix</span> <span class="o">=</span> <span class="n">load_CRSP_stock</span><span class="o">.</span><span class="n">load_CRSP_index_files</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_msix</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 45 entries, 0 to 44
+Data columns (total 35 columns):
+ #   Column    Non-Null Count  Dtype         
+---  ------    --------------  -----         
+ 0   caldt     45 non-null     datetime64[ns]
+ 1   vwretd    45 non-null     float64       
+ 2   vwindd    45 non-null     float64       
+ 3   vwretx    45 non-null     float64       
+ 4   vwindx    45 non-null     float64       
+ 5   ewretd    45 non-null     float64       
+ 6   ewindd    45 non-null     float64       
+ 7   ewretx    45 non-null     float64       
+ 8   ewindx    45 non-null     float64       
+ 9   sprtrn    45 non-null     float64       
+ 10  spindx    45 non-null     float64       
+ 11  decret1   45 non-null     float64       
+ 12  decind1   45 non-null     float64       
+ 13  decret2   45 non-null     float64       
+ 14  decind2   45 non-null     float64       
+ 15  decret3   45 non-null     float64       
+ 16  decind3   45 non-null     float64       
+ 17  decret4   45 non-null     float64       
+ 18  decind4   45 non-null     float64       
+ 19  decret5   45 non-null     float64       
+ 20  decind5   45 non-null     float64       
+ 21  decret6   45 non-null     float64       
+ 22  decind6   45 non-null     float64       
+ 23  decret7   45 non-null     float64       
+ 24  decind7   45 non-null     float64       
+ 25  decret8   45 non-null     float64       
+ 26  decind8   45 non-null     float64       
+ 27  decret9   45 non-null     float64       
+ 28  decind9   45 non-null     float64       
+ 29  decret10  45 non-null     float64       
+ 30  decind10  45 non-null     float64       
+ 31  totval    45 non-null     float64       
+ 32  totcnt    45 non-null     int64         
+ 33  usdval    45 non-null     float64       
+ 34  usdcnt    45 non-null     int64         
+dtypes: datetime64[ns](1), float64(32), int64(2)
+memory usage: 12.4 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_msix</span><span class="p">[[</span>
+    <span class="s2">&quot;caldt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;vwretd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;vwretx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;vwindx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ewretd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ewretx&quot;</span><span class="p">,]]</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>caldt</th>
+      <th>vwretd</th>
+      <th>vwretx</th>
+      <th>vwindx</th>
+      <th>ewretd</th>
+      <th>ewretx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>40</th>
+      <td>2023-05-31</td>
+      <td>0.002027</td>
+      <td>0.000129</td>
+      <td>3222.766</td>
+      <td>-0.006612</td>
+      <td>-0.008389</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>2023-06-30</td>
+      <td>0.067582</td>
+      <td>0.066073</td>
+      <td>3435.703</td>
+      <td>0.054809</td>
+      <td>0.052556</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>2023-07-31</td>
+      <td>0.035842</td>
+      <td>0.034851</td>
+      <td>3555.441</td>
+      <td>0.046141</td>
+      <td>0.045216</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>2023-08-31</td>
+      <td>-0.020304</td>
+      <td>-0.022086</td>
+      <td>3476.917</td>
+      <td>-0.060090</td>
+      <td>-0.061725</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>2023-09-29</td>
+      <td>-0.048003</td>
+      <td>-0.049227</td>
+      <td>3305.760</td>
+      <td>-0.061929</td>
+      <td>-0.063713</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="inclusion-into-the-crsp-market-index">
+<h2>Inclusion into the CRSP Market Index:<a class="headerlink" href="#inclusion-into-the-crsp-market-index" title="Link to this heading">#</a></h2>
+<p>From  <a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/support/support-articles/crsp/index-and-deciles/constructing-value-weighted-return-series-matches-vwretd-crsp-monthly-value-weighted-returns-includes-distributions/">https://wrds-www.wharton.upenn.edu/pages/support/support-articles/crsp/index-and-deciles/constructing-value-weighted-return-series-matches-vwretd-crsp-monthly-value-weighted-returns-includes-distributions/</a> ,</p>
+<blockquote>
+<div><p>Our experiments with different VWRETD replication methods show that it is relatively easy to come close to this data series using PERMNO-based returns in the CRSP datasets, but exact matches to every data month is not possible because we do not know the exact sample set of PERMNOs used by CRSP.  Their criteria is listed in the CRSP manual and is roughly:</p>
+<p><strong>CRSP CAP-BASED PORTFOLIOS</strong> – The following types of securities, listed on NYSE, AMEX, and Nasdaq National Market, are eligible for inclusion in the Cap-Based Indices:</p>
+<ul class="simple">
+<li><p>Common Stocks</p></li>
+<li><p>Certificates</p></li>
+<li><p>Shares of Beneficial Interest</p></li>
+<li><p>Units (Depository Units, Units of Beneficial Interest, Units of Limited Partnership Interest, Depository Receipts, etc.)</p></li>
+</ul>
+<p>The following types of securities are NOT eligible for inclusion in the Cap-Based Indices:</p>
+<ul class="simple">
+<li><p>ADRs</p></li>
+<li><p>Closed-End Mutual Funds, WEBS Index Funds, Unit Investment Trusts</p></li>
+<li><p>All Common Stocks with non-US Incorporation</p></li>
+<li><p>Americus Trust Components</p></li>
+<li><p>HOLDRs Trusts</p></li>
+<li><p>REITs (Real Estate Investment Trusts)</p></li>
+<li><p>Rights and Warrants</p></li>
+<li><p>Preferred stock</p></li>
+<li><p>“Packaged” Units (Common Stocks Bundled with Rights or Warrants)</p></li>
+<li><p>Over-the-Counter Bulletin Board Issues</p></li>
+<li><p>N.B. The Cap-Based Indices do include returns from time ranges during which eligible securities trade on “leading prices” or “reorganization” when-issued status. The Cap-Based Indices do NOT include returns from time ranges during which eligible securities trade on “ex-distribution” or “additional” when-issued status.</p></li>
+</ul>
+<p>Note that VWRETD is not computed by WRDS but provided directly by CRSP along with the PERMNO based returns. For general SAS coding help for this problem see the WRDS Research Application: Portfolios by Size and Book-to-Market. This WRDS Support document provides examples of cap-based decile breakdowns, but the same general principles apply to the total market index.</p>
+</div></blockquote>
+<p>I’ve provided code for you that will take care of this subsetting in the function <code class="docutils literal notranslate"><span class="pre">pull_CRSP_monthly_file</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">SELECT</span> 
+        <span class="n">date</span><span class="p">,</span>
+        <span class="n">msf</span><span class="o">.</span><span class="n">permno</span><span class="p">,</span> <span class="n">msf</span><span class="o">.</span><span class="n">permco</span><span class="p">,</span> <span class="n">shrcd</span><span class="p">,</span> <span class="n">exchcd</span><span class="p">,</span> <span class="n">comnam</span><span class="p">,</span> <span class="n">shrcls</span><span class="p">,</span> 
+        <span class="n">ret</span><span class="p">,</span> <span class="n">retx</span><span class="p">,</span> <span class="n">dlret</span><span class="p">,</span> <span class="n">dlretx</span><span class="p">,</span> <span class="n">dlstcd</span><span class="p">,</span>
+        <span class="n">prc</span><span class="p">,</span> <span class="n">altprc</span><span class="p">,</span> <span class="n">vol</span><span class="p">,</span> <span class="n">shrout</span><span class="p">,</span> <span class="n">cfacshr</span><span class="p">,</span> <span class="n">cfacpr</span><span class="p">,</span>
+        <span class="n">naics</span><span class="p">,</span> <span class="n">siccd</span>
+    <span class="n">FROM</span> <span class="n">crsp</span><span class="o">.</span><span class="n">msf</span> <span class="n">AS</span> <span class="n">msf</span>
+    <span class="n">LEFT</span> <span class="n">JOIN</span> 
+        <span class="n">crsp</span><span class="o">.</span><span class="n">msenames</span> <span class="k">as</span> <span class="n">msenames</span>
+    <span class="n">ON</span> 
+        <span class="n">msf</span><span class="o">.</span><span class="n">permno</span> <span class="o">=</span> <span class="n">msenames</span><span class="o">.</span><span class="n">permno</span> <span class="n">AND</span>
+        <span class="n">msenames</span><span class="o">.</span><span class="n">namedt</span> <span class="o">&lt;=</span> <span class="n">msf</span><span class="o">.</span><span class="n">date</span> <span class="n">AND</span>
+        <span class="n">msf</span><span class="o">.</span><span class="n">date</span> <span class="o">&lt;=</span> <span class="n">msenames</span><span class="o">.</span><span class="n">nameendt</span>
+    <span class="n">LEFT</span> <span class="n">JOIN</span> 
+        <span class="n">crsp</span><span class="o">.</span><span class="n">msedelist</span> <span class="k">as</span> <span class="n">msedelist</span>
+    <span class="n">ON</span> 
+        <span class="n">msf</span><span class="o">.</span><span class="n">permno</span> <span class="o">=</span> <span class="n">msedelist</span><span class="o">.</span><span class="n">permno</span> <span class="n">AND</span>
+        <span class="n">date_trunc</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="n">msf</span><span class="o">.</span><span class="n">date</span><span class="p">)::</span><span class="n">date</span> <span class="o">=</span>
+        <span class="n">date_trunc</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="n">msedelist</span><span class="o">.</span><span class="n">dlstdt</span><span class="p">)::</span><span class="n">date</span>
+    <span class="n">WHERE</span> 
+        <span class="n">msf</span><span class="o">.</span><span class="n">date</span> <span class="n">BETWEEN</span> <span class="s1">&#39;</span><span class="si">{start_date}</span><span class="s1">&#39;</span> <span class="n">AND</span> <span class="s1">&#39;</span><span class="si">{end_date}</span><span class="s1">&#39;</span> <span class="n">AND</span> 
+        <span class="n">msenames</span><span class="o">.</span><span class="n">shrcd</span> <span class="n">IN</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">73</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To best understand this, please look up <code class="docutils literal notranslate"><span class="pre">shrcd</span></code> in the Data Manual here: <a class="reference external" href="https://wrds-www.wharton.upenn.edu/documents/396/CRSP_US_Stock_Indices_Data_Descriptions.pdf">https://wrds-www.wharton.upenn.edu/documents/396/CRSP_US_Stock_Indices_Data_Descriptions.pdf</a> . You’ll find the information on p. 81.</p>
+</section>
+<section id="calculation-of-equal-weighted-returns-and-value-weighted-returns">
+<h2>Calculation of Equal-Weighted Returns and Value-Weighted Returns<a class="headerlink" href="#calculation-of-equal-weighted-returns-and-value-weighted-returns" title="Link to this heading">#</a></h2>
+<p>With the proper universe of stocks in hand, all that is left is to group the returns by <code class="docutils literal notranslate"><span class="pre">permno</span></code> (the identifier of choice here) and average. However, the equal weighted average is a mere simple average. To calculate the value-weighted average, we need to calculate the <em>lagged</em> market cap of each stock <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>That is, the value-weighted return is given by the following formula:</p>
+<div class="math notranslate nohighlight">
+\[
+r_t = \frac{\sum_{i=1}^{N_t} w_{i,t-1} \, r_{i,t}}{\sum_{i=1}^{N_t} w_{i,t-1}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(w_{i,t-1}\)</span> is the market capitalization of stock <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t-1\)</span> and
+<span class="math notranslate nohighlight">\(r_t\)</span> can be the returns with dividends <code class="docutils literal notranslate"><span class="pre">ret</span></code> or the returns without dividends <code class="docutils literal notranslate"><span class="pre">retx</span></code>.
+The market capitalization of a stock is its price times the shares outstanding,
+$<span class="math notranslate nohighlight">\(
+w_{it} = \text{SHROUT}_{it} \times \text{PRC}_{it}.
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_eq_idx</span> <span class="o">=</span> <span class="n">calc_CRSP_indices</span><span class="o">.</span><span class="n">calc_equal_weighted_index</span><span class="p">(</span><span class="n">df_msf</span><span class="p">)</span>
+<span class="n">df_vw_idx</span> <span class="o">=</span> <span class="n">calc_CRSP_indices</span><span class="o">.</span><span class="n">calc_CRSP_value_weighted_index</span><span class="p">(</span><span class="n">df_msf</span><span class="p">)</span>
+<span class="n">df_idxs</span> <span class="o">=</span> <span class="n">calc_CRSP_indices</span><span class="o">.</span><span class="n">calc_CRSP_indices_merge</span><span class="p">(</span><span class="n">df_msf</span><span class="p">,</span> <span class="n">df_msix</span><span class="p">)</span>
+<span class="n">df_idxs</span><span class="p">[[</span> 
+    <span class="s1">&#39;vwretd&#39;</span><span class="p">,</span> <span class="s1">&#39;vwretx&#39;</span><span class="p">,</span> <span class="s1">&#39;ewretd&#39;</span><span class="p">,</span> <span class="s1">&#39;ewretx&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vwretd_manual&#39;</span><span class="p">,</span> <span class="s1">&#39;vwretx_manual&#39;</span><span class="p">,</span> <span class="s1">&#39;ewretd_manual&#39;</span><span class="p">,</span> <span class="s1">&#39;ewretx_manual&#39;</span><span class="p">,]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>vwretd</th>
+      <th>vwretx</th>
+      <th>ewretd</th>
+      <th>ewretx</th>
+      <th>vwretd_manual</th>
+      <th>vwretx_manual</th>
+      <th>ewretd_manual</th>
+      <th>ewretx_manual</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-31</th>
+      <td>-0.001066</td>
+      <td>-0.002282</td>
+      <td>-0.012758</td>
+      <td>-0.013789</td>
+      <td>-0.000969</td>
+      <td>-0.002041</td>
+      <td>-0.012839</td>
+      <td>-0.013397</td>
+    </tr>
+    <tr>
+      <th>2020-02-28</th>
+      <td>-0.078865</td>
+      <td>-0.080954</td>
+      <td>-0.073532</td>
+      <td>-0.075278</td>
+      <td>-0.078002</td>
+      <td>-0.079931</td>
+      <td>-0.066935</td>
+      <td>-0.068130</td>
+    </tr>
+    <tr>
+      <th>2020-03-31</th>
+      <td>-0.142565</td>
+      <td>-0.144375</td>
+      <td>-0.222260</td>
+      <td>-0.224499</td>
+      <td>-0.133252</td>
+      <td>-0.134928</td>
+      <td>-0.196380</td>
+      <td>-0.198010</td>
+    </tr>
+    <tr>
+      <th>2020-04-30</th>
+      <td>0.132193</td>
+      <td>0.130848</td>
+      <td>0.170388</td>
+      <td>0.168871</td>
+      <td>0.131776</td>
+      <td>0.130683</td>
+      <td>0.156935</td>
+      <td>0.156100</td>
+    </tr>
+    <tr>
+      <th>2020-05-29</th>
+      <td>0.054521</td>
+      <td>0.052321</td>
+      <td>0.069879</td>
+      <td>0.067784</td>
+      <td>0.054313</td>
+      <td>0.052316</td>
+      <td>0.066817</td>
+      <td>0.065509</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_idxs</span><span class="p">[[</span> 
+    <span class="s1">&#39;vwretd&#39;</span><span class="p">,</span> <span class="s1">&#39;vwretx&#39;</span><span class="p">,</span> <span class="s1">&#39;ewretd&#39;</span><span class="p">,</span> <span class="s1">&#39;ewretx&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vwretd_manual&#39;</span><span class="p">,</span> <span class="s1">&#39;vwretx_manual&#39;</span><span class="p">,</span> <span class="s1">&#39;ewretd_manual&#39;</span><span class="p">,</span> <span class="s1">&#39;ewretx_manual&#39;</span><span class="p">,]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>vwretd</th>
+      <th>vwretx</th>
+      <th>ewretd</th>
+      <th>ewretx</th>
+      <th>vwretd_manual</th>
+      <th>vwretx_manual</th>
+      <th>ewretd_manual</th>
+      <th>ewretx_manual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>vwretd</th>
+      <td>1.000000</td>
+      <td>0.999984</td>
+      <td>0.885229</td>
+      <td>0.885232</td>
+      <td>0.999610</td>
+      <td>0.999624</td>
+      <td>0.914890</td>
+      <td>0.915016</td>
+    </tr>
+    <tr>
+      <th>vwretx</th>
+      <td>0.999984</td>
+      <td>1.000000</td>
+      <td>0.885343</td>
+      <td>0.885372</td>
+      <td>0.999554</td>
+      <td>0.999601</td>
+      <td>0.914969</td>
+      <td>0.915119</td>
+    </tr>
+    <tr>
+      <th>ewretd</th>
+      <td>0.885229</td>
+      <td>0.885343</td>
+      <td>1.000000</td>
+      <td>0.999980</td>
+      <td>0.879454</td>
+      <td>0.879583</td>
+      <td>0.996821</td>
+      <td>0.996810</td>
+    </tr>
+    <tr>
+      <th>ewretx</th>
+      <td>0.885232</td>
+      <td>0.885372</td>
+      <td>0.999980</td>
+      <td>1.000000</td>
+      <td>0.879431</td>
+      <td>0.879592</td>
+      <td>0.996780</td>
+      <td>0.996826</td>
+    </tr>
+    <tr>
+      <th>vwretd_manual</th>
+      <td>0.999610</td>
+      <td>0.999554</td>
+      <td>0.879454</td>
+      <td>0.879431</td>
+      <td>1.000000</td>
+      <td>0.999981</td>
+      <td>0.910100</td>
+      <td>0.910221</td>
+    </tr>
+    <tr>
+      <th>vwretx_manual</th>
+      <td>0.999624</td>
+      <td>0.999601</td>
+      <td>0.879583</td>
+      <td>0.879592</td>
+      <td>0.999981</td>
+      <td>1.000000</td>
+      <td>0.910184</td>
+      <td>0.910347</td>
+    </tr>
+    <tr>
+      <th>ewretd_manual</th>
+      <td>0.914890</td>
+      <td>0.914969</td>
+      <td>0.996821</td>
+      <td>0.996780</td>
+      <td>0.910100</td>
+      <td>0.910184</td>
+      <td>1.000000</td>
+      <td>0.999945</td>
+    </tr>
+    <tr>
+      <th>ewretx_manual</th>
+      <td>0.915016</td>
+      <td>0.915119</td>
+      <td>0.996810</td>
+      <td>0.996826</td>
+      <td>0.910221</td>
+      <td>0.910347</td>
+      <td>0.999945</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As you can see above, our manually-created return index doesn’t match the CRSP index perfectly but is still very close. In this HW, you’ll be required to construct this index only approximately. A loose match, as seen here, will be fine.</p>
+<p>Note, a helpful tool to create the lagged time series for market capitalization is provided in <code class="docutils literal notranslate"><span class="pre">misc_tools</span></code>.
+Use the function <code class="docutils literal notranslate"><span class="pre">with_lagged_column</span></code>, which will create a lagged column that accounts for the fact that multiple stocks show up in a flat file. See the following example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;1990/1/1&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;1990/2/1&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;1990/3/1&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;1989/12/1&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;1990/1/1&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;1990/2/1&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;1990/3/1&#39;</span><span class="p">,</span><span class="mf">5.5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;1990/4/1&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;1990/6/1&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>date</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1990-01-01</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1990-02-01</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1990-03-01</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>1989-12-01</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>1990-01-01</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>1990-02-01</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2</td>
+      <td>1990-03-01</td>
+      <td>5.5</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2</td>
+      <td>1990-04-01</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2</td>
+      <td>1990-06-01</td>
+      <td>6.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_lag</span> <span class="o">=</span> <span class="n">misc_tools</span><span class="o">.</span><span class="n">with_lagged_columns</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">column_to_lag</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">id_column</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;BME&quot;</span><span class="p">)</span>
+<span class="n">data_lag</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>date</th>
+      <th>value</th>
+      <th>L1_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1990-02-28</td>
+      <td>NaN</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1</td>
+      <td>1990-03-30</td>
+      <td>NaN</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1</td>
+      <td>1990-04-30</td>
+      <td>NaN</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>1990-01-31</td>
+      <td>NaN</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>1990-02-28</td>
+      <td>NaN</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2</td>
+      <td>1990-03-30</td>
+      <td>NaN</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2</td>
+      <td>1990-04-30</td>
+      <td>NaN</td>
+      <td>5.5</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2</td>
+      <td>1990-05-31</td>
+      <td>NaN</td>
+      <td>5.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As you can see, naively using <code class="docutils literal notranslate"><span class="pre">shift</span></code> to create our lag would miss the fact that observation <code class="docutils literal notranslate"><span class="pre">1989-12-01</span></code> for stock <code class="docutils literal notranslate"><span class="pre">id=2</span></code> should have a missing lagged <code class="docutils literal notranslate"><span class="pre">value</span></code>. For example, the following would be incorrect:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    NaN
+1    1.0
+2    2.0
+3    3.0
+4    3.0
+5    3.0
+6    4.0
+7    5.5
+8    5.0
+Name: value, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="_02_04-Missing-Values.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2.6 Handling Missing Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../discussion_03.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3. Agenda</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-into-the-crsp-market-index">Inclusion into the CRSP Market Index:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation-of-equal-weighted-returns-and-value-weighted-returns">Calculation of Equal-Weighted Returns and Value-Weighted Returns</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremiah Bejarano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jeremiah Bejarano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

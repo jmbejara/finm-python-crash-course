@@ -1,0 +1,1385 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.6 Handling Missing Data &#8212; FINM August Review: Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_notebook_build/_02_04-Missing-Values';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.7 CRSP Market Returns Indices" href="_02_CRSP_market_index.html" />
+    <link rel="prev" title="2.5 Operating on Data in Pandas" href="_02_03-Operations-in-Pandas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="FINM August Review: Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="FINM August Review: Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    FINM August Review: Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_01.html">1. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_setting_up_environment.html">1.1 Setting up your computing environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_methods_for_using_python.html">1.2 Ways to Interact with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_vscode_cursor.html">1.3 VS Code and Cursor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_environment_faq.html">1.4 Common Errors When Setting Up VS Code and Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HW1.html">Homework 1: Introduction to VS Code and Git</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_02.html">2. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syncing_files_with_git_and_github.html">2.1 Syncing Files with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../WRDS_intro_and_web_queries.html">2.2 Introduction to WRDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_01-Introducing-Pandas-Objects.html">2.3 Introducing Pandas Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_02-Data-Indexing-and-Selection.html">2.4 Data Indexing and Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_03-Operations-in-Pandas.html">2.5 Operating on Data in Pandas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.6 Handling Missing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_CRSP_market_index.html">2.7 CRSP Market Returns Indices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_03.html">3. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_overview_of_pydata_stack.html">2.2 Overview of the PyData Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_comparing_plotting_libraries.html">2.3 Comparing Plotting Libraries and Declarative Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_Using_Interact.html">2.4 Using Interact (Optional)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_python_by_example.html">2.5 Python Basics: An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_HW2-numpy-scipy.html">Homework 2: Numpy, Scipy, and Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_factor_analysis_demo.html">3.5 Factor Analysis on Financial and Economic Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HW3.html">Homework 3: Introduction to WRDS and CRSP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 4️</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_04.html">4. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_CRSP_data.html">4.1 Using CRSP Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_04_wrds_python_package.html">4.2 Connecting to the WRDS Platform With Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../myst_markdown_demos.html">MyST Markdown Demos 💡</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../apidocs/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../apidocs/misc_tools/misc_tools.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">misc_tools</span></code></a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course/issues/new?title=Issue%20on%20page%20%2F_notebook_build/_02_04-Missing-Values.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_notebook_build/_02_04-Missing-Values.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2.6 Handling Missing Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trade-offs-in-missing-data-conventions">Trade-Offs in Missing Data Conventions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-data-in-pandas">Missing Data in Pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none-pythonic-missing-data"><code class="docutils literal notranslate"><span class="pre">None</span></code>: Pythonic missing data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nan-missing-numerical-data"><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: Missing numerical data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nan-and-none-in-pandas">NaN and None in Pandas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operating-on-null-values">Operating on Null Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detecting-null-values">Detecting null values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dropping-null-values">Dropping null values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-null-values">Filling null values</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!--BOOK_INFORMATION-->
+<img align="left" style="padding-right:10px;" src="https://jakevdp.github.io/PythonDataScienceHandbook/figures/PDSH-cover-small.png">
+*This notebook contains an excerpt from the [Python Data Science Handbook](http://shop.oreilly.com/product/0636920034919.do) by Jake VanderPlas; the content is available [on GitHub](https://github.com/jakevdp/PythonDataScienceHandbook).*
+<p><em>The text is released under the <a class="reference external" href="https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode">CC-BY-NC-ND license</a>, and code is released under the <a class="reference external" href="https://opensource.org/licenses/MIT">MIT license</a>. If you find this content useful, please consider supporting the work by <a class="reference external" href="http://shop.oreilly.com/product/0636920034919.do">buying the book</a>!</em></p>
+<section class="tex2jax_ignore mathjax_ignore" id="handling-missing-data">
+<h1>2.6 Handling Missing Data<a class="headerlink" href="#handling-missing-data" title="Link to this heading">#</a></h1>
+<p>The difference between data found in many tutorials and data in the real world is that real-world data is rarely clean and homogeneous.
+In particular, many interesting datasets will have some amount of data missing.
+To make matters even more complicated, different data sources may indicate missing data in different ways.</p>
+<p>In this section, we will discuss some general considerations for missing data, discuss how Pandas chooses to represent it, and demonstrate some built-in Pandas tools for handling missing data in Python.
+Here and throughout the book, we’ll refer to missing data in general as <em>null</em>, <em>NaN</em>, or <em>NA</em> values.</p>
+<section id="trade-offs-in-missing-data-conventions">
+<h2>Trade-Offs in Missing Data Conventions<a class="headerlink" href="#trade-offs-in-missing-data-conventions" title="Link to this heading">#</a></h2>
+<p>There are a number of schemes that have been developed to indicate the presence of missing data in a table or DataFrame.
+Generally, they revolve around one of two strategies: using a <em>mask</em> that globally indicates missing values, or choosing a <em>sentinel value</em> that indicates a missing entry.</p>
+<p>In the masking approach, the mask might be an entirely separate Boolean array, or it may involve appropriation of one bit in the data representation to locally indicate the null status of a value.</p>
+<p>In the sentinel approach, the sentinel value could be some data-specific convention, such as indicating a missing integer value with -9999 or some rare bit pattern, or it could be a more global convention, such as indicating a missing floating-point value with NaN (Not a Number), a special value which is part of the IEEE floating-point specification.</p>
+<p>None of these approaches is without trade-offs: use of a separate mask array requires allocation of an additional Boolean array, which adds overhead in both storage and computation. A sentinel value reduces the range of valid values that can be represented, and may require extra (often non-optimized) logic in CPU and GPU arithmetic. Common special values like NaN are not available for all data types.</p>
+<p>As in most cases where no universally optimal choice exists, different languages and systems use different conventions.
+For example, the R language uses reserved bit patterns within each data type as sentinel values indicating missing data, while the SciDB system uses an extra byte attached to every cell which indicates a NA state.</p>
+</section>
+<section id="missing-data-in-pandas">
+<h2>Missing Data in Pandas<a class="headerlink" href="#missing-data-in-pandas" title="Link to this heading">#</a></h2>
+<p>The way in which Pandas handles missing values is constrained by its reliance on the NumPy package, which does not have a built-in notion of NA values for non-floating-point data types.</p>
+<p>Pandas could have followed R’s lead in specifying bit patterns for each individual data type to indicate nullness, but this approach turns out to be rather unwieldy.
+While R contains four basic data types, NumPy supports <em>far</em> more than this: for example, while R has a single integer type, NumPy supports <em>fourteen</em> basic integer types once you account for available precisions, signedness, and endianness of the encoding.
+Reserving a specific bit pattern in all available NumPy types would lead to an unwieldy amount of overhead in special-casing various operations for various types, likely even requiring a new fork of the NumPy package. Further, for the smaller data types (such as 8-bit integers), sacrificing a bit to use as a mask will significantly reduce the range of values it can represent.</p>
+<p>NumPy does have support for masked arrays – that is, arrays that have a separate Boolean mask array attached for marking data as “good” or “bad.”
+Pandas could have derived from this, but the overhead in both storage, computation, and code maintenance makes that an unattractive choice.</p>
+<p>With these constraints in mind, Pandas chose to use sentinels for missing data, and further chose to use two already-existing Python null values: the special floating-point <code class="docutils literal notranslate"><span class="pre">NaN</span></code> value, and the Python <code class="docutils literal notranslate"><span class="pre">None</span></code> object.
+This choice has some side effects, as we will see, but in practice ends up being a good compromise in most cases of interest.</p>
+<section id="none-pythonic-missing-data">
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code>: Pythonic missing data<a class="headerlink" href="#none-pythonic-missing-data" title="Link to this heading">#</a></h3>
+<p>The first sentinel value used by Pandas is <code class="docutils literal notranslate"><span class="pre">None</span></code>, a Python singleton object that is often used for missing data in Python code.
+Because it is a Python object, <code class="docutils literal notranslate"><span class="pre">None</span></code> cannot be used in any arbitrary NumPy/Pandas array, but only in arrays with data type <code class="docutils literal notranslate"><span class="pre">'object'</span></code> (i.e., arrays of Python objects):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vals1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">vals1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, None, 3, 4], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">dtype=object</span></code> means that the best common type representation NumPy could infer for the contents of the array is that they are Python objects.
+While this kind of object array is useful for some purposes, any operations on the data will be done at the Python level, with much more overhead than the typically fast operations seen for arrays with native types:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dtype =&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+    <span class="o">%</span><span class="n">timeit</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1E6</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype = object
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24.2 ms ± 403 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+dtype = int
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>485 μs ± 3.14 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The use of Python objects in an array also means that if you perform aggregations like <code class="docutils literal notranslate"><span class="pre">sum()</span></code> or <code class="docutils literal notranslate"><span class="pre">min()</span></code> across an array with a <code class="docutils literal notranslate"><span class="pre">None</span></code> value, you will generally get an error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># vals1.sum()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This reflects the fact that addition between an integer and <code class="docutils literal notranslate"><span class="pre">None</span></code> is undefined.</p>
+</section>
+<section id="nan-missing-numerical-data">
+<h3><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: Missing numerical data<a class="headerlink" href="#nan-missing-numerical-data" title="Link to this heading">#</a></h3>
+<p>The other missing data representation, <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (acronym for <em>Not a Number</em>), is different; it is a special floating-point value recognized by all systems that use the standard IEEE floating-point representation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vals2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> 
+<span class="n">vals2</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;float64&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that NumPy chose a native floating-point type for this array: this means that unlike the object array from before, this array supports fast operations pushed into compiled code.
+You should be aware that <code class="docutils literal notranslate"><span class="pre">NaN</span></code> is a bit like a data virus–it infects any other object it touches.
+Regardless of the operation, the result of arithmetic with <code class="docutils literal notranslate"><span class="pre">NaN</span></code> will be another <code class="docutils literal notranslate"><span class="pre">NaN</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nan
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">*</span>  <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nan
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that this means that aggregates over the values are well defined (i.e., they don’t result in an error) but not always useful:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vals2</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">vals2</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">vals2</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(nan), np.float64(nan), np.float64(nan))
+</pre></div>
+</div>
+</div>
+</div>
+<p>NumPy does provide some special aggregations that will ignore these missing values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">vals2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">vals2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">vals2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(8.0), np.float64(1.0), np.float64(4.0))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Keep in mind that <code class="docutils literal notranslate"><span class="pre">NaN</span></code> is specifically a floating-point value; there is no equivalent NaN value for integers, strings, or other types.</p>
+</section>
+<section id="nan-and-none-in-pandas">
+<h3>NaN and None in Pandas<a class="headerlink" href="#nan-and-none-in-pandas" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> and <code class="docutils literal notranslate"><span class="pre">None</span></code> both have their place, and Pandas is built to handle the two of them nearly interchangeably, converting between them where appropriate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    1.0
+1    NaN
+2    2.0
+3    NaN
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>For types that don’t have an available sentinel value, Pandas automatically type-casts when NA values are present.
+For example, if we set a value in an integer array to <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>, it will automatically be upcast to a floating-point type to accommodate the NA:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0
+1    1
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    NaN
+1    1.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that in addition to casting the integer array to floating point, Pandas automatically converts the <code class="docutils literal notranslate"><span class="pre">None</span></code> to a <code class="docutils literal notranslate"><span class="pre">NaN</span></code> value.
+(Be aware that there is a proposal to add a native integer NA to Pandas in the future; as of this writing, it has not been included).</p>
+<p>While this type of magic may feel a bit hackish compared to the more unified approach to NA values in domain-specific languages like R, the Pandas sentinel/casting approach works quite well in practice and in my experience only rarely causes issues.</p>
+<p>The following table lists the upcasting conventions in Pandas when NA values are introduced:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Typeclass</p></th>
+<th class="head"><p>Conversion When Storing NAs</p></th>
+<th class="head"><p>NA Sentinel Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">floating</span></code></p></td>
+<td><p>No change</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p>No change</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code> or <code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>Cast to <code class="docutils literal notranslate"><span class="pre">float64</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p>Cast to <code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code> or <code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Keep in mind that in Pandas, string data is always stored with an <code class="docutils literal notranslate"><span class="pre">object</span></code> dtype.</p>
+</section>
+</section>
+<section id="operating-on-null-values">
+<h2>Operating on Null Values<a class="headerlink" href="#operating-on-null-values" title="Link to this heading">#</a></h2>
+<p>As we have seen, Pandas treats <code class="docutils literal notranslate"><span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">NaN</span></code> as essentially interchangeable for indicating missing or null values.
+To facilitate this convention, there are several useful methods for detecting, removing, and replacing null values in Pandas data structures.
+They are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">isnull()</span></code>: Generate a boolean mask indicating missing values</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">notnull()</span></code>: Opposite of <code class="docutils literal notranslate"><span class="pre">isnull()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropna()</span></code>: Return a filtered version of the data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fillna()</span></code>: Return a copy of the data with missing values filled or imputed</p></li>
+</ul>
+<p>We will conclude this section with a brief exploration and demonstration of these routines.</p>
+<section id="detecting-null-values">
+<h3>Detecting null values<a class="headerlink" href="#detecting-null-values" title="Link to this heading">#</a></h3>
+<p>Pandas data structures have two useful methods for detecting null data: <code class="docutils literal notranslate"><span class="pre">isnull()</span></code> and <code class="docutils literal notranslate"><span class="pre">notnull()</span></code>.
+Either one will return a Boolean mask over the data. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    False
+1     True
+2    False
+3     True
+dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned in <a class="reference internal" href="#03.02-Data-Indexing-and-Selection.ipynb"><span class="xref myst">Data Indexing and Selection</span></a>, Boolean masks can be used directly as a <code class="docutils literal notranslate"><span class="pre">Series</span></code> or <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> index:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0        1
+2    hello
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">isnull()</span></code> and <code class="docutils literal notranslate"><span class="pre">notnull()</span></code> methods produce similar Boolean results for <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s.</p>
+</section>
+<section id="dropping-null-values">
+<h3>Dropping null values<a class="headerlink" href="#dropping-null-values" title="Link to this heading">#</a></h3>
+<p>In addition to the masking used before, there are the convenience methods, <code class="docutils literal notranslate"><span class="pre">dropna()</span></code>
+(which removes NA values) and <code class="docutils literal notranslate"><span class="pre">fillna()</span></code> (which fills in NA values). For a <code class="docutils literal notranslate"><span class="pre">Series</span></code>,
+the result is straightforward:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0        1
+2    hello
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>For a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, there are more options.
+Consider the following <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>      <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">2</span><span class="p">,</span>      <span class="mi">3</span><span class="p">,</span>      <span class="mi">5</span><span class="p">],</span>
+                   <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>      <span class="mi">6</span><span class="p">]])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We cannot drop single values from a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>; we can only drop full rows or full columns.
+Depending on the application, you might want one or the other, so <code class="docutils literal notranslate"><span class="pre">dropna()</span></code> gives a number of options for a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">dropna()</span></code> will drop all rows in which <em>any</em> null value is present:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Alternatively, you can drop NA values along a different axis; <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> drops all columns containing a null value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>But this drops some good data as well; you might rather be interested in dropping rows or columns with <em>all</em> NA values, or a majority of NA values.
+This can be specified through the <code class="docutils literal notranslate"><span class="pre">how</span></code> or <code class="docutils literal notranslate"><span class="pre">thresh</span></code> parameters, which allow fine control of the number of nulls to allow through.</p>
+<p>The default is <code class="docutils literal notranslate"><span class="pre">how='any'</span></code>, such that any row or column (depending on the <code class="docutils literal notranslate"><span class="pre">axis</span></code> keyword) containing a null value will be dropped.
+You can also specify <code class="docutils literal notranslate"><span class="pre">how='all'</span></code>, which will only drop rows/columns that are <em>all</em> null values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>6</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>For finer-grained control, the <code class="docutils literal notranslate"><span class="pre">thresh</span></code> parameter lets you specify a minimum number of non-null values for the row/column to be kept:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;rows&#39;</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Here the first and last row have been dropped, because they contain only two non-null values.</p>
+</section>
+<section id="filling-null-values">
+<h3>Filling null values<a class="headerlink" href="#filling-null-values" title="Link to this heading">#</a></h3>
+<p>Sometimes rather than dropping NA values, you’d rather replace them with a valid value.
+This value might be a single number like zero, or it might be some sort of imputation or interpolation from the good values.
+You could do this in-place using the <code class="docutils literal notranslate"><span class="pre">isnull()</span></code> method as a mask, but because it is such a common operation Pandas provides the <code class="docutils literal notranslate"><span class="pre">fillna()</span></code> method, which returns a copy of the array with the null values replaced.</p>
+<p>Consider the following <code class="docutils literal notranslate"><span class="pre">Series</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">))</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a    1.0
+b    NaN
+c    2.0
+d    NaN
+e    3.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can fill NA entries with a single value, such as zero:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a    1.0
+b    0.0
+c    2.0
+d    0.0
+e    3.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can specify a forward-fill to propagate the previous value forward:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># forward-fill</span>
+<span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/l3/tj6vb0ld2ys1h939jz0qrfrh0000gn/T/ipykernel_70071/3316037056.py:2: FutureWarning: Series.fillna with &#39;method&#39; is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  data.fillna(method=&#39;ffill&#39;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a    1.0
+b    1.0
+c    2.0
+d    2.0
+e    3.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or we can specify a back-fill to propagate the next values backward:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># back-fill</span>
+<span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;bfill&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/l3/tj6vb0ld2ys1h939jz0qrfrh0000gn/T/ipykernel_70071/692461307.py:2: FutureWarning: Series.fillna with &#39;method&#39; is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  data.fillna(method=&#39;bfill&#39;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a    1.0
+b    2.0
+c    2.0
+d    3.0
+e    3.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s, the options are similar, but we can also specify an <code class="docutils literal notranslate"><span class="pre">axis</span></code> along which the fills take place:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>6</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/l3/tj6vb0ld2ys1h939jz0qrfrh0000gn/T/ipykernel_70071/901808322.py:1: FutureWarning: DataFrame.fillna with &#39;method&#39; is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df.fillna(method=&#39;ffill&#39;, axis=1)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>6.0</td>
+      <td>6.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Notice that if a previous value is not available during a forward fill, the NA value remains.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="_02_03-Operations-in-Pandas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2.5 Operating on Data in Pandas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="_02_CRSP_market_index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2.7 CRSP Market Returns Indices</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trade-offs-in-missing-data-conventions">Trade-Offs in Missing Data Conventions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-data-in-pandas">Missing Data in Pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none-pythonic-missing-data"><code class="docutils literal notranslate"><span class="pre">None</span></code>: Pythonic missing data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nan-missing-numerical-data"><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: Missing numerical data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nan-and-none-in-pandas">NaN and None in Pandas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operating-on-null-values">Operating on Null Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detecting-null-values">Detecting null values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dropping-null-values">Dropping null values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-null-values">Filling null values</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremiah Bejarano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jeremiah Bejarano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

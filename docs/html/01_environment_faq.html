@@ -1,0 +1,713 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1.4 Common Errors When Setting Up VS Code and Python &#8212; FINM August Review: Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_environment_faq';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Homework 1: Introduction to VS Code and Git" href="HW1.html" />
+    <link rel="prev" title="1.3 VS Code and Cursor" href="01_vscode_cursor.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="FINM August Review: Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="FINM August Review: Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    FINM August Review: Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 1</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="discussion_01.html">1. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_setting_up_environment.html">1.1 Setting up your computing environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_methods_for_using_python.html">1.2 Ways to Interact with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_vscode_cursor.html">1.3 VS Code and Cursor</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1.4 Common Errors When Setting Up VS Code and Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HW1.html">Homework 1: Introduction to VS Code and Git</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="discussion_02.html">2. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="syncing_files_with_git_and_github.html">2.1 Syncing Files with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WRDS_intro_and_web_queries.html">2.2 Introduction to WRDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_02_01-Introducing-Pandas-Objects.html">2.3 Introducing Pandas Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_02_02-Data-Indexing-and-Selection.html">2.4 Data Indexing and Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_02_03-Operations-in-Pandas.html">2.5 Operating on Data in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_02_04-Missing-Values.html">2.6 Handling Missing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_02_CRSP_market_index.html">2.7 CRSP Market Returns Indices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="discussion_03.html">3. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_03_overview_of_pydata_stack.html">2.2 Overview of the PyData Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_03_comparing_plotting_libraries.html">2.3 Comparing Plotting Libraries and Declarative Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_03_Using_Interact.html">2.4 Using Interact (Optional)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_03_python_by_example.html">2.5 Python Basics: An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_HW2-numpy-scipy.html">Homework 2: Numpy, Scipy, and Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_03_factor_analysis_demo.html">3.5 Factor Analysis on Financial and Economic Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HW3.html">Homework 3: Introduction to WRDS and CRSP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 4️</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="discussion_04.html">4. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_CRSP_data.html">4.1 Using CRSP Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_04_wrds_python_package.html">4.2 Connecting to the WRDS Platform With Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="myst_markdown_demos.html">MyST Markdown Demos 💡</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="apidocs/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="apidocs/misc_tools/misc_tools.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">misc_tools</span></code></a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course/issues/new?title=Issue%20on%20page%20%2F01_environment_faq.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01_environment_faq.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1.4 Common Errors When Setting Up VS Code and Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-1-different-python-environments-in-terminal-vs-jupyter">Error 1: Different Python Environments in Terminal vs Jupyter</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-happening">What’s happening</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnosing-the-issue">Diagnosing the issue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-install-jupyter-kernel-for-your-environment">Option 1: Install Jupyter kernel for your environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-use-vs-codes-python-selection">Option 2: Use VS Code’s Python selection</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-up-duplicate-kernels">Cleaning up duplicate kernels</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-2-wrong-decouple-package-installed">Error 2: Wrong <code class="docutils literal notranslate"><span class="pre">decouple</span></code> Package Installed</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">What’s happening</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Diagnosing the issue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note">Important note</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-3-to-be-added">Error 3: [To be added]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-4-to-be-added">Error 4: [To be added]</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="common-errors-when-setting-up-vs-code-and-python">
+<h1>1.4 Common Errors When Setting Up VS Code and Python<a class="headerlink" href="#common-errors-when-setting-up-vs-code-and-python" title="Link to this heading">#</a></h1>
+<p>This document contains solutions to frequently encountered errors when setting up VS Code with Python and Jupyter environments.</p>
+<hr class="docutils" />
+<section id="error-1-different-python-environments-in-terminal-vs-jupyter">
+<h2>Error 1: Different Python Environments in Terminal vs Jupyter<a class="headerlink" href="#error-1-different-python-environments-in-terminal-vs-jupyter" title="Link to this heading">#</a></h2>
+<section id="problem">
+<h3>Problem<a class="headerlink" href="#problem" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://xkcd.com/1987/"><img alt="XKCD Python Environment Comic" src="https://imgs.xkcd.com/comics/python_environment.png" /></a></p>
+<p>Your code works in the terminal but fails in Jupyter (or vice versa) with import errors, even though both claim to use the same environment (e.g., “base”).</p>
+</section>
+<section id="whats-happening">
+<h3>What’s happening<a class="headerlink" href="#whats-happening" title="Link to this heading">#</a></h3>
+<p>VS Code (and Jupyter) can have multiple Python interpreters installed:</p>
+<ul class="simple">
+<li><p>System Python (came with your OS)</p></li>
+<li><p>Anaconda Python (if you installed Anaconda)</p></li>
+<li><p><a class="reference external" href="http://Python.org">Python.org</a> Python (if you downloaded from <a class="reference external" href="http://python.org">python.org</a>)</p></li>
+<li><p>Virtual environment Python (if you created venvs)</p></li>
+</ul>
+<p>The terminal and Jupyter kernel might be using different Python installations, even if they have the same version number or environment name.</p>
+</section>
+<section id="diagnosing-the-issue">
+<h3>Diagnosing the issue<a class="headerlink" href="#diagnosing-the-issue" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Check Python location in Terminal:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which<span class="w"> </span>python
+<span class="c1"># or on Windows: where python</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Check Python location in Jupyter:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Compare installed packages:</strong>
+In Terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;package_name&gt;
+</pre></div>
+</div>
+<p>In Jupyter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">&lt;</span><span class="n">package_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>If the paths don’t match, you’re using different Python environments.</p>
+</section>
+<section id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h3>
+<section id="option-1-install-jupyter-kernel-for-your-environment">
+<h4>Option 1: Install Jupyter kernel for your environment<a class="headerlink" href="#option-1-install-jupyter-kernel-for-your-environment" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Activate your correct environment first</span>
+conda<span class="w"> </span>activate<span class="w"> </span>base<span class="w">  </span><span class="c1"># or your env name</span>
+
+<span class="c1"># Install ipykernel</span>
+pip<span class="w"> </span>install<span class="w"> </span>ipykernel
+
+<span class="c1"># Register the kernel</span>
+python<span class="w"> </span>-m<span class="w"> </span>ipykernel<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--name<span class="w"> </span>myenv<span class="w"> </span>--display-name<span class="w"> </span><span class="s2">&quot;Python (myenv)&quot;</span>
+</pre></div>
+</div>
+<p>Then in VS Code/Jupyter, select this kernel from the kernel picker.</p>
+</section>
+<section id="option-2-use-vs-codes-python-selection">
+<h4>Option 2: Use VS Code’s Python selection<a class="headerlink" href="#option-2-use-vs-codes-python-selection" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Open Command Palette (Cmd/Ctrl + Shift + P)</p></li>
+<li><p>Type “Python: Select Interpreter”</p></li>
+<li><p>Choose the same Python that your terminal uses</p></li>
+<li><p>Restart Jupyter kernel</p></li>
+</ol>
+</section>
+</section>
+<section id="cleaning-up-duplicate-kernels">
+<h3>Cleaning up duplicate kernels<a class="headerlink" href="#cleaning-up-duplicate-kernels" title="Link to this heading">#</a></h3>
+<p>List all kernels:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>kernelspec<span class="w"> </span>list
+</pre></div>
+</div>
+<p>Remove unwanted ones:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>kernelspec<span class="w"> </span>remove<span class="w"> </span>&lt;kernel_name&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="error-2-wrong-decouple-package-installed">
+<h2>Error 2: Wrong <code class="docutils literal notranslate"><span class="pre">decouple</span></code> Package Installed<a class="headerlink" href="#error-2-wrong-decouple-package-installed" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Problem<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p><img alt="Can't import decouple error in Jupyter" src="_images/cant_import_decouple.jpeg" /></p>
+<p>You get this error when trying to import decouple:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">decouple</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="c1"># ModuleNotFoundError: No module named &#39;decouple&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>What’s happening<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>There are TWO different packages with similar names:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">decouple</span></code> - This is the wrong package (it’s a different library)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python-decouple</span></code> - This is the correct package that we need</p></li>
+</ul>
+<p>If you accidentally installed <code class="docutils literal notranslate"><span class="pre">decouple</span></code> first, then trying to install <code class="docutils literal notranslate"><span class="pre">python-decouple</span></code> won’t work properly because pip thinks “decouple” is already installed, even though they’re completely different packages.</p>
+</section>
+<section id="id3">
+<h3>Diagnosing the issue<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Check which package is installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>show<span class="w"> </span>decouple
+pip<span class="w"> </span>show<span class="w"> </span>python-decouple
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">decouple</span></code> shows up but <code class="docutils literal notranslate"><span class="pre">python-decouple</span></code> doesn’t, you have the wrong package.</p>
+</section>
+<section id="id4">
+<h3>Solution<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Uninstall the wrong package:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>decouple<span class="w"> </span>-y
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install the correct package:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>python-decouple
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify it worked:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">decouple</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>  <span class="c1"># This should work now</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="important-note">
+<h3>Important note<a class="headerlink" href="#important-note" title="Link to this heading">#</a></h3>
+<p>Always install <code class="docutils literal notranslate"><span class="pre">python-decouple</span></code>, not <code class="docutils literal notranslate"><span class="pre">decouple</span></code>. Despite their similar names, they are completely different packages.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="error-3-to-be-added">
+<h2>Error 3: [To be added]<a class="headerlink" href="#error-3-to-be-added" title="Link to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="error-4-to-be-added">
+<h2>Error 4: [To be added]<a class="headerlink" href="#error-4-to-be-added" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_vscode_cursor.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1.3 VS Code and Cursor</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="HW1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 1: Introduction to VS Code and Git</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-1-different-python-environments-in-terminal-vs-jupyter">Error 1: Different Python Environments in Terminal vs Jupyter</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-happening">What’s happening</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnosing-the-issue">Diagnosing the issue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-install-jupyter-kernel-for-your-environment">Option 1: Install Jupyter kernel for your environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-use-vs-codes-python-selection">Option 2: Use VS Code’s Python selection</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-up-duplicate-kernels">Cleaning up duplicate kernels</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-2-wrong-decouple-package-installed">Error 2: Wrong <code class="docutils literal notranslate"><span class="pre">decouple</span></code> Package Installed</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">What’s happening</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Diagnosing the issue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note">Important note</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-3-to-be-added">Error 3: [To be added]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-4-to-be-added">Error 4: [To be added]</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremiah Bejarano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jeremiah Bejarano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

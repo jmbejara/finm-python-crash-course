@@ -1,0 +1,2225 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.5 Factor Analysis on Financial and Economic Time Series &#8212; FINM August Review: Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_notebook_build/_03_factor_analysis_demo';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Homework 3: Introduction to WRDS and CRSP" href="../HW3.html" />
+    <link rel="prev" title="Homework 2: Numpy, Scipy, and Matplotlib" href="_HW2-numpy-scipy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="FINM August Review: Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="FINM August Review: Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    FINM August Review: Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_01.html">1. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_setting_up_environment.html">1.1 Setting up your computing environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_methods_for_using_python.html">1.2 Ways to Interact with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_vscode_cursor.html">1.3 VS Code and Cursor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_environment_faq.html">1.4 Common Errors When Setting Up VS Code and Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HW1.html">Homework 1: Introduction to VS Code and Git</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_02.html">2. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syncing_files_with_git_and_github.html">2.1 Syncing Files with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../WRDS_intro_and_web_queries.html">2.2 Introduction to WRDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_01-Introducing-Pandas-Objects.html">2.3 Introducing Pandas Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_02-Data-Indexing-and-Selection.html">2.4 Data Indexing and Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_03-Operations-in-Pandas.html">2.5 Operating on Data in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_04-Missing-Values.html">2.6 Handling Missing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_02_CRSP_market_index.html">2.7 CRSP Market Returns Indices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 3</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_03.html">3. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_overview_of_pydata_stack.html">2.2 Overview of the PyData Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_comparing_plotting_libraries.html">2.3 Comparing Plotting Libraries and Declarative Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_Using_Interact.html">2.4 Using Interact (Optional)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_03_python_by_example.html">2.5 Python Basics: An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_HW2-numpy-scipy.html">Homework 2: Numpy, Scipy, and Matplotlib</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3.5 Factor Analysis on Financial and Economic Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HW3.html">Homework 3: Introduction to WRDS and CRSP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 4️</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../discussion_04.html">4. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_CRSP_data.html">4.1 Using CRSP Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_04_wrds_python_package.html">4.2 Connecting to the WRDS Platform With Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../myst_markdown_demos.html">MyST Markdown Demos 💡</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../apidocs/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../apidocs/misc_tools/misc_tools.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">misc_tools</span></code></a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course/issues/new?title=Issue%20on%20page%20%2F_notebook_build/_03_factor_analysis_demo.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_notebook_build/_03_factor_analysis_demo.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3.5 Factor Analysis on Financial and Economic Time Series</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-macroeconomic-and-financial-data-from-fred">Downloading macroeconomic and financial data from FRED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-data">Cleaning Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-and-normalizing-the-data">Transforming and Normalizing the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-analysis-of-a-panel-of-stock-returns">Factor Analysis of a Panel of Stock Returns?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="factor-analysis-on-financial-and-economic-time-series">
+<h1>3.5 Factor Analysis on Financial and Economic Time Series<a class="headerlink" href="#factor-analysis-on-financial-and-economic-time-series" title="Link to this heading">#</a></h1>
+<p>Factor Analysis and Principal Component Analysis on Financial and Economic Time Series</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you&#39;re running this on Colab, make sure to install the following packages using pip.</span>
+<span class="c1"># On you&#39;re own computer, I recommend using conda or mamba.</span>
+
+<span class="c1"># !pip install pandas-datareader</span>
+<span class="c1"># !pip install yfinance</span>
+
+<span class="c1"># !conda install pandas-datareader</span>
+<span class="c1"># !conda install yfinance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">yfinance</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">yf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas_datareader</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pdr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sklearn.decomposition</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.multivariate.pca</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">DATA_DIR</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="downloading-macroeconomic-and-financial-data-from-fred">
+<h2>Downloading macroeconomic and financial data from FRED<a class="headerlink" href="#downloading-macroeconomic-and-financial-data-from-fred" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fred_series_long_names</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;BAMLH0A0HYM2&#39;</span><span class="p">:</span> <span class="s1">&#39;ICE BofA US High Yield Index Option-Adjusted Spread&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;NASDAQCOM&#39;</span><span class="p">:</span> <span class="s1">&#39;NASDAQ Composite Index&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;RIFSPPFAAD90NB&#39;</span><span class="p">:</span> <span class="s1">&#39;90-Day AA Financial Commercial Paper Interest Rate&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TB3MS&#39;</span><span class="p">:</span> <span class="s1">&#39;3-Month Treasury Bill Secondary Market Rate&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DGS10&#39;</span><span class="p">:</span> <span class="s1">&#39;Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VIXCLS&#39;</span><span class="p">:</span> <span class="s1">&#39;CBOE Volatility Index: VIX&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fred_series_short_names</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;BAMLH0A0HYM2&#39;</span><span class="p">:</span> <span class="s1">&#39;High Yield Index OAS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;NASDAQCOM&#39;</span><span class="p">:</span> <span class="s1">&#39;NASDAQ&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;RIFSPPFAAD90NB&#39;</span><span class="p">:</span> <span class="s1">&#39;90-Day AA Fin CP&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TB3MS&#39;</span><span class="p">:</span> <span class="s1">&#39;3-Month T-Bill&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DGS10&#39;</span><span class="p">:</span> <span class="s1">&#39;10-Year Treasury&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VIXCLS&#39;</span><span class="p">:</span> <span class="s1">&#39;VIX&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;1980-01-01&#39;</span><span class="p">)</span> 
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;today&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="n">fred_series_short_names</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, an aside about reading and writing data to disk.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s1">&#39;fred_panel.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s1">&#39;fred_panel.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dff</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 12145 entries, 0 to 12144
+Data columns (total 7 columns):
+ #   Column          Non-Null Count  Dtype  
+---  ------          --------------  -----  
+ 0   DATE            12145 non-null  object 
+ 1   BAMLH0A0HYM2    7462 non-null   float64
+ 2   NASDAQCOM       11490 non-null  float64
+ 3   RIFSPPFAAD90NB  6599 non-null   float64
+ 4   TB3MS           547 non-null    float64
+ 5   DGS10           11396 non-null  float64
+ 6   VIXCLS          8984 non-null   float64
+dtypes: float64(6), object(1)
+memory usage: 664.3+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s1">&#39;fred_panel.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dff</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 12145 entries, 0 to 12144
+Data columns (total 7 columns):
+ #   Column          Non-Null Count  Dtype         
+---  ------          --------------  -----         
+ 0   DATE            12145 non-null  datetime64[ns]
+ 1   BAMLH0A0HYM2    7462 non-null   float64       
+ 2   NASDAQCOM       11490 non-null  float64       
+ 3   RIFSPPFAAD90NB  6599 non-null   float64       
+ 4   TB3MS           547 non-null    float64       
+ 5   DGS10           11396 non-null  float64       
+ 6   VIXCLS          8984 non-null   float64       
+dtypes: datetime64[ns](1), float64(6)
+memory usage: 664.3 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dff</span> <span class="o">=</span> <span class="n">dff</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;DATE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s1">&#39;fred_panel.parquet&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s1">&#39;fred_panel.parquet&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 12145 entries, 1980-01-01 to 2025-07-31
+Data columns (total 6 columns):
+ #   Column          Non-Null Count  Dtype  
+---  ------          --------------  -----  
+ 0   BAMLH0A0HYM2    7462 non-null   float64
+ 1   NASDAQCOM       11490 non-null  float64
+ 2   RIFSPPFAAD90NB  6599 non-null   float64
+ 3   TB3MS           547 non-null    float64
+ 4   DGS10           11396 non-null  float64
+ 5   VIXCLS          8984 non-null   float64
+dtypes: float64(6)
+memory usage: 664.2 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BAMLH0A0HYM2</th>
+      <th>NASDAQCOM</th>
+      <th>RIFSPPFAAD90NB</th>
+      <th>TB3MS</th>
+      <th>DGS10</th>
+      <th>VIXCLS</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1980-01-01</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-02</th>
+      <td>NaN</td>
+      <td>148.17</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.50</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-03</th>
+      <td>NaN</td>
+      <td>145.97</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.60</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-04</th>
+      <td>NaN</td>
+      <td>148.02</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.66</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-07</th>
+      <td>NaN</td>
+      <td>148.62</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.63</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2025-07-25</th>
+      <td>2.84</td>
+      <td>21108.32</td>
+      <td>4.26</td>
+      <td>NaN</td>
+      <td>4.40</td>
+      <td>14.93</td>
+    </tr>
+    <tr>
+      <th>2025-07-28</th>
+      <td>2.82</td>
+      <td>21178.58</td>
+      <td>4.26</td>
+      <td>NaN</td>
+      <td>4.42</td>
+      <td>15.03</td>
+    </tr>
+    <tr>
+      <th>2025-07-29</th>
+      <td>2.86</td>
+      <td>21098.29</td>
+      <td>4.32</td>
+      <td>NaN</td>
+      <td>4.34</td>
+      <td>15.98</td>
+    </tr>
+    <tr>
+      <th>2025-07-30</th>
+      <td>2.89</td>
+      <td>21129.67</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.38</td>
+      <td>15.48</td>
+    </tr>
+    <tr>
+      <th>2025-07-31</th>
+      <td>2.86</td>
+      <td>21122.45</td>
+      <td>4.25</td>
+      <td>NaN</td>
+      <td>4.37</td>
+      <td>16.72</td>
+    </tr>
+  </tbody>
+</table>
+<p>12145 rows × 6 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="cleaning-data">
+<h2>Cleaning Data<a class="headerlink" href="#cleaning-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">dff</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">fred_series_short_names</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>High Yield Index OAS</th>
+      <th>NASDAQ</th>
+      <th>90-Day AA Fin CP</th>
+      <th>3-Month T-Bill</th>
+      <th>10-Year Treasury</th>
+      <th>VIX</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1980-01-01</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-02</th>
+      <td>NaN</td>
+      <td>148.17</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.50</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-03</th>
+      <td>NaN</td>
+      <td>145.97</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.60</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-04</th>
+      <td>NaN</td>
+      <td>148.02</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.66</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-07</th>
+      <td>NaN</td>
+      <td>148.62</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.63</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2025-07-25</th>
+      <td>2.84</td>
+      <td>21108.32</td>
+      <td>4.26</td>
+      <td>NaN</td>
+      <td>4.40</td>
+      <td>14.93</td>
+    </tr>
+    <tr>
+      <th>2025-07-28</th>
+      <td>2.82</td>
+      <td>21178.58</td>
+      <td>4.26</td>
+      <td>NaN</td>
+      <td>4.42</td>
+      <td>15.03</td>
+    </tr>
+    <tr>
+      <th>2025-07-29</th>
+      <td>2.86</td>
+      <td>21098.29</td>
+      <td>4.32</td>
+      <td>NaN</td>
+      <td>4.34</td>
+      <td>15.98</td>
+    </tr>
+    <tr>
+      <th>2025-07-30</th>
+      <td>2.89</td>
+      <td>21129.67</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.38</td>
+      <td>15.48</td>
+    </tr>
+    <tr>
+      <th>2025-07-31</th>
+      <td>2.86</td>
+      <td>21122.45</td>
+      <td>4.25</td>
+      <td>NaN</td>
+      <td>4.37</td>
+      <td>16.72</td>
+    </tr>
+  </tbody>
+</table>
+<p>12145 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p>Balanced panel? Mixed frequencies?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;3-Month T-Bill&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATE
+1980-01-01    12.00
+1980-02-01    12.86
+1980-03-01    15.20
+1980-04-01    13.20
+1980-05-01     8.58
+              ...  
+2025-03-01     4.20
+2025-04-01     4.21
+2025-05-01     4.25
+2025-06-01     4.23
+2025-07-01     4.25
+Name: 3-Month T-Bill, Length: 547, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Find a daily version of this series. See here: <a class="reference external" href="https://fred.stlouisfed.org/categories/22">https://fred.stlouisfed.org/categories/22</a></p>
+<p>We will end up using this series: <a class="reference external" href="https://fred.stlouisfed.org/series/DTB3">https://fred.stlouisfed.org/series/DTB3</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fred_series_short_names</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;BAMLH0A0HYM2&#39;</span><span class="p">:</span> <span class="s1">&#39;High Yield Index OAS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;NASDAQCOM&#39;</span><span class="p">:</span> <span class="s1">&#39;NASDAQ&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;RIFSPPFAAD90NB&#39;</span><span class="p">:</span> <span class="s1">&#39;90-Day AA Fin CP&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DTB3&#39;</span><span class="p">:</span> <span class="s1">&#39;3-Month T-Bill&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DGS10&#39;</span><span class="p">:</span> <span class="s1">&#39;10-Year Treasury&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VIXCLS&#39;</span><span class="p">:</span> <span class="s1">&#39;VIX&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="n">fred_series_short_names</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">fred_series_short_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>High Yield Index OAS</th>
+      <th>NASDAQ</th>
+      <th>90-Day AA Fin CP</th>
+      <th>3-Month T-Bill</th>
+      <th>10-Year Treasury</th>
+      <th>VIX</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1980-01-01</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-02</th>
+      <td>NaN</td>
+      <td>148.17</td>
+      <td>NaN</td>
+      <td>12.17</td>
+      <td>10.50</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-03</th>
+      <td>NaN</td>
+      <td>145.97</td>
+      <td>NaN</td>
+      <td>12.10</td>
+      <td>10.60</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-04</th>
+      <td>NaN</td>
+      <td>148.02</td>
+      <td>NaN</td>
+      <td>12.10</td>
+      <td>10.66</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-07</th>
+      <td>NaN</td>
+      <td>148.62</td>
+      <td>NaN</td>
+      <td>11.86</td>
+      <td>10.63</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2025-07-25</th>
+      <td>2.84</td>
+      <td>21108.32</td>
+      <td>4.26</td>
+      <td>4.25</td>
+      <td>4.40</td>
+      <td>14.93</td>
+    </tr>
+    <tr>
+      <th>2025-07-28</th>
+      <td>2.82</td>
+      <td>21178.58</td>
+      <td>4.26</td>
+      <td>4.24</td>
+      <td>4.42</td>
+      <td>15.03</td>
+    </tr>
+    <tr>
+      <th>2025-07-29</th>
+      <td>2.86</td>
+      <td>21098.29</td>
+      <td>4.32</td>
+      <td>4.24</td>
+      <td>4.34</td>
+      <td>15.98</td>
+    </tr>
+    <tr>
+      <th>2025-07-30</th>
+      <td>2.89</td>
+      <td>21129.67</td>
+      <td>NaN</td>
+      <td>4.25</td>
+      <td>4.38</td>
+      <td>15.48</td>
+    </tr>
+    <tr>
+      <th>2025-07-31</th>
+      <td>2.86</td>
+      <td>21122.45</td>
+      <td>4.25</td>
+      <td>4.24</td>
+      <td>4.37</td>
+      <td>16.72</td>
+    </tr>
+  </tbody>
+</table>
+<p>11989 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>High Yield Index OAS</th>
+      <th>NASDAQ</th>
+      <th>90-Day AA Fin CP</th>
+      <th>3-Month T-Bill</th>
+      <th>10-Year Treasury</th>
+      <th>VIX</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1997-01-02</th>
+      <td>3.06</td>
+      <td>1280.70</td>
+      <td>5.35</td>
+      <td>5.05</td>
+      <td>6.54</td>
+      <td>21.14</td>
+    </tr>
+    <tr>
+      <th>1997-01-03</th>
+      <td>3.09</td>
+      <td>1310.68</td>
+      <td>5.35</td>
+      <td>5.04</td>
+      <td>6.52</td>
+      <td>19.13</td>
+    </tr>
+    <tr>
+      <th>1997-01-06</th>
+      <td>3.10</td>
+      <td>1316.40</td>
+      <td>5.34</td>
+      <td>5.05</td>
+      <td>6.54</td>
+      <td>19.89</td>
+    </tr>
+    <tr>
+      <th>1997-01-07</th>
+      <td>3.10</td>
+      <td>1327.73</td>
+      <td>5.33</td>
+      <td>5.02</td>
+      <td>6.57</td>
+      <td>19.35</td>
+    </tr>
+    <tr>
+      <th>1997-01-08</th>
+      <td>3.07</td>
+      <td>1320.35</td>
+      <td>5.31</td>
+      <td>5.02</td>
+      <td>6.60</td>
+      <td>20.24</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2025-07-24</th>
+      <td>2.82</td>
+      <td>21057.96</td>
+      <td>4.26</td>
+      <td>4.25</td>
+      <td>4.43</td>
+      <td>15.39</td>
+    </tr>
+    <tr>
+      <th>2025-07-25</th>
+      <td>2.84</td>
+      <td>21108.32</td>
+      <td>4.26</td>
+      <td>4.25</td>
+      <td>4.40</td>
+      <td>14.93</td>
+    </tr>
+    <tr>
+      <th>2025-07-28</th>
+      <td>2.82</td>
+      <td>21178.58</td>
+      <td>4.26</td>
+      <td>4.24</td>
+      <td>4.42</td>
+      <td>15.03</td>
+    </tr>
+    <tr>
+      <th>2025-07-29</th>
+      <td>2.86</td>
+      <td>21098.29</td>
+      <td>4.32</td>
+      <td>4.24</td>
+      <td>4.34</td>
+      <td>15.98</td>
+    </tr>
+    <tr>
+      <th>2025-07-31</th>
+      <td>2.86</td>
+      <td>21122.45</td>
+      <td>4.25</td>
+      <td>4.24</td>
+      <td>4.37</td>
+      <td>16.72</td>
+    </tr>
+  </tbody>
+</table>
+<p>6579 rows × 6 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="transforming-and-normalizing-the-data">
+<h2>Transforming and Normalizing the data<a class="headerlink" href="#transforming-and-normalizing-the-data" title="Link to this heading">#</a></h2>
+<p>What is transformation and normalization? Are these different things?</p>
+<ul class="simple">
+<li><p>Why would one transform data? What is feature engineering?</p></li>
+<li><p>What is normalization?</p></li>
+</ul>
+<p>What does stationarity mean? See the the following plots. Some of these variable are stationary. Other are not? Why is this a problem?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;DATE&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/7d9f960410f43c3c7f4b665332f6a0cdc3f132d14a13d499f3e2cdcbd6b14e04.png" src="../_images/7d9f960410f43c3c7f4b665332f6a0cdc3f132d14a13d499f3e2cdcbd6b14e04.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 11989 entries, 1980-01-01 to 2025-07-31
+Data columns (total 6 columns):
+ #   Column                Non-Null Count  Dtype  
+---  ------                --------------  -----  
+ 0   High Yield Index OAS  7462 non-null   float64
+ 1   NASDAQ                11490 non-null  float64
+ 2   90-Day AA Fin CP      6599 non-null   float64
+ 3   3-Month T-Bill        11396 non-null  float64
+ 4   10-Year Treasury      11396 non-null  float64
+ 5   VIX                   8984 non-null   float64
+dtypes: float64(6)
+memory usage: 655.6 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NASDAQ&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;DATE&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/dce739f7d3c2c357ecf87ea6f403d1d5941010c62f1d8a1e3bd32086f73353da.png" src="../_images/dce739f7d3c2c357ecf87ea6f403d1d5941010c62f1d8a1e3bd32086f73353da.png" />
+</div>
+</div>
+<p>Let’s try some transformations like those used in the OFR Financial Stress Index: <a class="reference external" href="https://www.financialresearch.gov/financial-stress-index/files/indicators/index.html">https://www.financialresearch.gov/financial-stress-index/files/indicators/index.html</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dfn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span><span class="o">.</span><span class="n">reindex_like</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">dfn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>High Yield Index OAS</th>
+      <th>NASDAQ</th>
+      <th>90-Day AA Fin CP</th>
+      <th>3-Month T-Bill</th>
+      <th>10-Year Treasury</th>
+      <th>VIX</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1980-01-01</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-02</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-03</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-04</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1980-01-07</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2025-07-25</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-07-28</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-07-29</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-07-30</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-07-31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>11989 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NASDAQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATE
+1980-01-01   NaN
+1980-01-02   NaN
+1980-01-03   NaN
+1980-01-04   NaN
+1980-01-07   NaN
+              ..
+2025-07-25   NaN
+2025-07-28   NaN
+2025-07-29   NaN
+2025-07-30   NaN
+2025-07-31   NaN
+Name: NASDAQ, Length: 11989, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NASDAQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATE
+1997-01-02            NaN
+1997-01-03            NaN
+1997-01-06            NaN
+1997-01-07            NaN
+1997-01-08            NaN
+                 ...     
+2025-07-24    17079.93916
+2025-07-25    17108.53356
+2025-07-28    17137.33940
+2025-07-29    17166.91224
+2025-07-31    17196.51792
+Name: NASDAQ, Length: 6579, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># &#39;High Yield Index OAS&#39;: Leave as is</span>
+<span class="n">dfn</span><span class="p">[</span><span class="s1">&#39;High Yield Index OAS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;High Yield Index OAS&#39;</span><span class="p">]</span>
+<span class="n">dfn</span><span class="p">[</span><span class="s1">&#39;CP - Treasury Spread, 3m&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;90-Day AA Fin CP&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;3-Month T-Bill&#39;</span><span class="p">]</span>
+<span class="c1"># &#39;NASDAQ&#39;:  # We&#39;re using something different, but still apply rolling mean transformation</span>
+<span class="n">dfn</span><span class="p">[</span><span class="s1">&#39;NASDAQ&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NASDAQ&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NASDAQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">dfn</span><span class="p">[</span><span class="s1">&#39;10-Year Treasury&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;10-Year Treasury&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;10-Year Treasury&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="c1"># &#39;VIX&#39;: Leave as is</span>
+<span class="n">dfn</span><span class="p">[</span><span class="s1">&#39;VIX&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;VIX&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dfn</span> <span class="o">=</span> <span class="n">dfn</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;90-Day AA Fin CP&#39;</span><span class="p">,</span> <span class="s1">&#39;3-Month T-Bill&#39;</span><span class="p">])</span>
+<span class="n">dfn</span> <span class="o">=</span> <span class="n">dfn</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dfn</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 6330 entries, 1998-01-05 to 2025-07-31
+Data columns (total 5 columns):
+ #   Column                    Non-Null Count  Dtype  
+---  ------                    --------------  -----  
+ 0   High Yield Index OAS      6330 non-null   float64
+ 1   NASDAQ                    6330 non-null   float64
+ 2   10-Year Treasury          6330 non-null   float64
+ 3   VIX                       6330 non-null   float64
+ 4   CP - Treasury Spread, 3m  6330 non-null   float64
+dtypes: float64(5)
+memory usage: 296.7 KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>We finished with our transformations. Now, let’s normalize. First, why is it important?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dfn</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;DATE&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/a407578e40c37082fbf1324029ced3670f696d7e2708edf439b9cd0fd529a884.png" src="../_images/a407578e40c37082fbf1324029ced3670f696d7e2708edf439b9cd0fd529a884.png" />
+</div>
+</div>
+<p>Now, normalize each column,
+$<span class="math notranslate nohighlight">\(
+z = \frac{x - \bar x}{\text{std}(x)}
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dfn</span> <span class="o">=</span> <span class="p">(</span><span class="n">dfn</span> <span class="o">-</span> <span class="n">dfn</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">dfn</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dfn</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;DATE&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/ec9781308f8aea0ff71334250d8eae0654857d364a22ed98fcc35192c8dfc4aa.png" src="../_images/ec9781308f8aea0ff71334250d8eae0654857d364a22ed98fcc35192c8dfc4aa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pca</span><span class="p">(</span><span class="n">dfn</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="s1">&#39;scikitlearn&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;statsmodels&#39;</span><span class="p">:</span>
+        <span class="n">_pc1</span><span class="p">,</span> <span class="n">_loadings</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">rsquare</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">statsmodels</span><span class="o">.</span><span class="n">multivariate</span><span class="o">.</span><span class="n">pca</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">dfn</span><span class="p">,</span>
+            <span class="n">ncomp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">demean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gls</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;svd&#39;</span><span class="p">)</span>
+        <span class="n">_loadings</span> <span class="o">=</span> <span class="n">_loadings</span><span class="p">[</span><span class="s1">&#39;comp_0&#39;</span><span class="p">]</span>
+        <span class="n">loadings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">_pc1</span><span class="p">)</span> <span class="o">*</span> <span class="n">_loadings</span>
+        <span class="n">pc1</span> <span class="o">=</span> <span class="n">_pc1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">_pc1</span><span class="p">)</span>
+        <span class="n">pc1</span> <span class="o">=</span> <span class="n">pc1</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;comp_0&#39;</span><span class="p">:</span><span class="s1">&#39;PC1&#39;</span><span class="p">})[</span><span class="s1">&#39;PC1&#39;</span><span class="p">]</span>
+
+    <span class="k">elif</span> <span class="n">module</span> <span class="o">==</span> <span class="s1">&#39;scikitlearn&#39;</span><span class="p">:</span>
+        <span class="n">pca</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">decomposition</span><span class="o">.</span><span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">_pc1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">dfn</span><span class="p">)[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">dfn</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;PC1&#39;</span><span class="p">)</span>
+        <span class="n">_loadings</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_</span><span class="p">)</span>
+        <span class="n">_loadings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">_loadings</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">dfn</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+        <span class="n">loadings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">_pc1</span><span class="p">)</span> <span class="o">*</span> <span class="n">_loadings</span>
+        <span class="n">pc1</span> <span class="o">=</span> <span class="n">_pc1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">_pc1</span><span class="p">)</span>
+        <span class="n">pc1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;PC1&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span>
+
+
+
+    <span class="n">loadings</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;loadings&quot;</span>
+
+    <span class="k">return</span> <span class="n">pc1</span><span class="p">,</span> <span class="n">loadings</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">stacked_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    df=category_contributions</span>
+<span class="sd">    # category_contributions.sum(axis=1).plot()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">df_pos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">df_neg</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">.3</span>
+    <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">.5</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">df_pos</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">area</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">pc1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">pc1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;pc1&#39;</span>
+    <span class="n">pc1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;Black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;pc1&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_prop_cycle</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">df_neg</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">area</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    <span class="c1"># recompute the ax.dataLim</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">relim</span><span class="p">()</span>
+    <span class="c1"># update ax.viewLim using the new dataLim</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">()</span>
+    <span class="c1"># ax.set_ylabel(&#39;Standard Deviations&#39;)</span>
+    <span class="c1"># ax.set_ylim(-3,4)</span>
+    <span class="c1"># ax.set_ylim(-30,30)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">figure</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span> <span class="c1"># get current figure</span>
+        <span class="n">figure</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pc1</span><span class="p">,</span> <span class="n">loadings</span> <span class="o">=</span> <span class="n">pca</span><span class="p">(</span><span class="n">dfn</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="s1">&#39;scikitlearn&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pc1</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;DATE&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/03fa818149488855d841864f6397d66b39f34ba1538dc0954c2f5bfbeefd0c1a.png" src="../_images/03fa818149488855d841864f6397d66b39f34ba1538dc0954c2f5bfbeefd0c1a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stacked_plot</span><span class="p">(</span><span class="n">dfn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fd6616eef0bf72f398d5468ef994b691dae8c24ef060edd1ea78857001b068cc.png" src="../_images/fd6616eef0bf72f398d5468ef994b691dae8c24ef060edd1ea78857001b068cc.png" />
+</div>
+</div>
+<p>Let’s compare solutions from two different packages</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">root_mean_squared_error</span><span class="p">(</span><span class="n">sa</span><span class="p">,</span> <span class="n">sb</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">sa</span> <span class="o">-</span> <span class="n">sb</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">pc1_sk</span><span class="p">,</span> <span class="n">loadings_sk</span> <span class="o">=</span> <span class="n">pca</span><span class="p">(</span><span class="n">dfn</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="s1">&#39;scikitlearn&#39;</span><span class="p">)</span>
+<span class="n">pc1_sm</span><span class="p">,</span> <span class="n">loadings_sm</span> <span class="o">=</span> <span class="n">pca</span><span class="p">(</span><span class="n">dfn</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="s1">&#39;statsmodels&#39;</span><span class="p">)</span>
+<span class="n">root_mean_squared_error</span><span class="p">(</span><span class="n">pc1_sm</span><span class="p">,</span> <span class="n">pc1_sk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/homebrew/Caskroom/mambaforge/base/lib/python3.10/site-packages/numpy/_core/fromnumeric.py:4109: FutureWarning: The behavior of DataFrame.std with axis=None is deprecated, in a future version this will reduce over both axes and return a scalar. To retain the old behavior, pass axis=0 (or do not pass axis)
+  return std(axis=axis, dtype=dtype, out=out, ddof=ddof, **kwargs)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.4870223507834375e-15)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="factor-analysis-of-a-panel-of-stock-returns">
+<h2>Factor Analysis of a Panel of Stock Returns?<a class="headerlink" href="#factor-analysis-of-a-panel-of-stock-returns" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download sample data for multiple tickers</span>
+<span class="c1"># Note: yfinance may return different structures depending on version and number of tickers</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;SPY AAPL MSFT&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2017-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2017-04-30&quot;</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 Failed downloads:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MSFT&#39;, &#39;SPY&#39;, &#39;AAPL&#39;]: JSONDecodeError(&#39;Expecting value: line 1 column 1 (char 0)&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s examine the structure of the downloaded data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sample columns:&quot;</span><span class="p">,</span> <span class="n">sample</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;No columns attribute&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sample shape:&quot;</span><span class="p">,</span> <span class="n">sample</span><span class="o">.</span><span class="n">shape</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="s1">&#39;shape&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;No shape attribute&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Column levels:&quot;</span><span class="p">,</span> <span class="n">sample</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">levels</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First level values:&quot;</span><span class="p">,</span> <span class="n">sample</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample columns: [(&#39;Adj Close&#39;, &#39;AAPL&#39;), (&#39;Adj Close&#39;, &#39;MSFT&#39;), (&#39;Adj Close&#39;, &#39;SPY&#39;), (&#39;Close&#39;, &#39;AAPL&#39;), (&#39;Close&#39;, &#39;MSFT&#39;), (&#39;Close&#39;, &#39;SPY&#39;), (&#39;High&#39;, &#39;AAPL&#39;), (&#39;High&#39;, &#39;MSFT&#39;), (&#39;High&#39;, &#39;SPY&#39;), (&#39;Low&#39;, &#39;AAPL&#39;), (&#39;Low&#39;, &#39;MSFT&#39;), (&#39;Low&#39;, &#39;SPY&#39;), (&#39;Open&#39;, &#39;AAPL&#39;), (&#39;Open&#39;, &#39;MSFT&#39;), (&#39;Open&#39;, &#39;SPY&#39;), (&#39;Volume&#39;, &#39;AAPL&#39;), (&#39;Volume&#39;, &#39;MSFT&#39;), (&#39;Volume&#39;, &#39;SPY&#39;)]
+Sample shape: (0, 18)
+Column levels: [[&#39;Adj Close&#39;, &#39;Close&#39;, &#39;High&#39;, &#39;Low&#39;, &#39;Open&#39;, &#39;Volume&#39;], [&#39;AAPL&#39;, &#39;MSFT&#39;, &#39;SPY&#39;]]
+First level values: [&#39;Adj Close&#39;, &#39;Close&#39;, &#39;High&#39;, &#39;Low&#39;, &#39;Open&#39;, &#39;Volume&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>Price</th>
+      <th colspan="3" halign="left">Adj Close</th>
+      <th colspan="3" halign="left">Close</th>
+      <th colspan="3" halign="left">High</th>
+      <th colspan="3" halign="left">Low</th>
+      <th colspan="3" halign="left">Open</th>
+      <th colspan="3" halign="left">Volume</th>
+    </tr>
+    <tr>
+      <th>Ticker</th>
+      <th>AAPL</th>
+      <th>MSFT</th>
+      <th>SPY</th>
+      <th>AAPL</th>
+      <th>MSFT</th>
+      <th>SPY</th>
+      <th>AAPL</th>
+      <th>MSFT</th>
+      <th>SPY</th>
+      <th>AAPL</th>
+      <th>MSFT</th>
+      <th>SPY</th>
+      <th>AAPL</th>
+      <th>MSFT</th>
+      <th>SPY</th>
+      <th>AAPL</th>
+      <th>MSFT</th>
+      <th>SPY</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># When downloading multiple tickers, yfinance returns a DataFrame with MultiIndex columns</span>
+<span class="c1"># The first level is the data type (e.g., &#39;Adj Close&#39;), the second level is the ticker</span>
+<span class="c1"># Display the adjusted close prices for all tickers</span>
+<span class="n">adj_close_data</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;Adj Close&#39;</span> <span class="ow">in</span> <span class="n">sample</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">sample</span>
+<span class="n">adj_close_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Ticker</th>
+      <th>AAPL</th>
+      <th>MSFT</th>
+      <th>SPY</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tickers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;AAPL&#39;</span><span class="p">,</span><span class="s1">&#39;ABBV&#39;</span><span class="p">,</span><span class="s1">&#39;ABT&#39;</span><span class="p">,</span><span class="s1">&#39;ACN&#39;</span><span class="p">,</span><span class="s1">&#39;ADP&#39;</span><span class="p">,</span><span class="s1">&#39;ADSK&#39;</span><span class="p">,</span><span class="s1">&#39;AES&#39;</span><span class="p">,</span><span class="s1">&#39;AET&#39;</span><span class="p">,</span><span class="s1">&#39;AFL&#39;</span><span class="p">,</span><span class="s1">&#39;AMAT&#39;</span><span class="p">,</span><span class="s1">&#39;AMGN&#39;</span><span class="p">,</span><span class="s1">&#39;AMZN&#39;</span><span class="p">,</span><span class="s1">&#39;APA&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;APHA&#39;</span><span class="p">,</span><span class="s1">&#39;APD&#39;</span><span class="p">,</span><span class="s1">&#39;APTV&#39;</span><span class="p">,</span><span class="s1">&#39;ARE&#39;</span><span class="p">,</span><span class="s1">&#39;ASML&#39;</span><span class="p">,</span><span class="s1">&#39;ATVI&#39;</span><span class="p">,</span><span class="s1">&#39;AXP&#39;</span><span class="p">,</span><span class="s1">&#39;BA&#39;</span><span class="p">,</span><span class="s1">&#39;BAC&#39;</span><span class="p">,</span><span class="s1">&#39;BAX&#39;</span><span class="p">,</span><span class="s1">&#39;BDX&#39;</span><span class="p">,</span><span class="s1">&#39;BIIB&#39;</span><span class="p">,</span><span class="s1">&#39;BK&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;BKNG&#39;</span><span class="p">,</span><span class="s1">&#39;BMY&#39;</span><span class="p">,</span><span class="s1">&#39;BRKB&#39;</span><span class="p">,</span><span class="s1">&#39;BRK.A&#39;</span><span class="p">,</span><span class="s1">&#39;COG&#39;</span><span class="p">,</span><span class="s1">&#39;COST&#39;</span><span class="p">,</span><span class="s1">&#39;CPB&#39;</span><span class="p">,</span><span class="s1">&#39;CRM&#39;</span><span class="p">,</span><span class="s1">&#39;CSCO&#39;</span><span class="p">,</span><span class="s1">&#39;CVS&#39;</span><span class="p">,</span><span class="s1">&#39;DAL&#39;</span><span class="p">,</span><span class="s1">&#39;DD&#39;</span><span class="p">,</span><span class="s1">&#39;DHR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DIS&#39;</span><span class="p">,</span><span class="s1">&#39;DOW&#39;</span><span class="p">,</span><span class="s1">&#39;DUK&#39;</span><span class="p">,</span><span class="s1">&#39;EMR&#39;</span><span class="p">,</span><span class="s1">&#39;EPD&#39;</span><span class="p">,</span><span class="s1">&#39;EQT&#39;</span><span class="p">,</span><span class="s1">&#39;ESRT&#39;</span><span class="p">,</span><span class="s1">&#39;EXPD&#39;</span><span class="p">,</span><span class="s1">&#39;FFIV&#39;</span><span class="p">,</span><span class="s1">&#39;FLS&#39;</span><span class="p">,</span><span class="s1">&#39;FLT&#39;</span><span class="p">,</span><span class="s1">&#39;FRT&#39;</span><span class="p">,</span><span class="s1">&#39;GE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;GILD&#39;</span><span class="p">,</span><span class="s1">&#39;GOOGL&#39;</span><span class="p">,</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;GS&#39;</span><span class="p">,</span><span class="s1">&#39;HAL&#39;</span><span class="p">,</span><span class="s1">&#39;HD&#39;</span><span class="p">,</span><span class="s1">&#39;HON&#39;</span><span class="p">,</span><span class="s1">&#39;IBM&#39;</span><span class="p">,</span><span class="s1">&#39;INTC&#39;</span><span class="p">,</span><span class="s1">&#39;IP&#39;</span><span class="p">,</span><span class="s1">&#39;JNJ&#39;</span><span class="p">,</span><span class="s1">&#39;JPM&#39;</span><span class="p">,</span><span class="s1">&#39;KEY&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;KHC&#39;</span><span class="p">,</span><span class="s1">&#39;KIM&#39;</span><span class="p">,</span><span class="s1">&#39;KO&#39;</span><span class="p">,</span><span class="s1">&#39;LLY&#39;</span><span class="p">,</span><span class="s1">&#39;LMT&#39;</span><span class="p">,</span><span class="s1">&#39;LOW&#39;</span><span class="p">,</span><span class="s1">&#39;MCD&#39;</span><span class="p">,</span><span class="s1">&#39;MCHP&#39;</span><span class="p">,</span><span class="s1">&#39;MDT&#39;</span><span class="p">,</span><span class="s1">&#39;MMM&#39;</span><span class="p">,</span><span class="s1">&#39;MO&#39;</span><span class="p">,</span><span class="s1">&#39;MRK&#39;</span><span class="p">,</span><span class="s1">&#39;MSFT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;MTD&#39;</span><span class="p">,</span><span class="s1">&#39;NEE&#39;</span><span class="p">,</span><span class="s1">&#39;NFLX&#39;</span><span class="p">,</span><span class="s1">&#39;NKE&#39;</span><span class="p">,</span><span class="s1">&#39;NOV&#39;</span><span class="p">,</span><span class="s1">&#39;ORCL&#39;</span><span class="p">,</span><span class="s1">&#39;OXY&#39;</span><span class="p">,</span><span class="s1">&#39;PEP&#39;</span><span class="p">,</span><span class="s1">&#39;PFE&#39;</span><span class="p">,</span><span class="s1">&#39;PG&#39;</span><span class="p">,</span><span class="s1">&#39;RTN&#39;</span><span class="p">,</span><span class="s1">&#39;RTX&#39;</span><span class="p">,</span><span class="s1">&#39;SBUX&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SHW&#39;</span><span class="p">,</span><span class="s1">&#39;SLB&#39;</span><span class="p">,</span><span class="s1">&#39;SO&#39;</span><span class="p">,</span><span class="s1">&#39;SPG&#39;</span><span class="p">,</span><span class="s1">&#39;STT&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">,</span><span class="s1">&#39;TGT&#39;</span><span class="p">,</span><span class="s1">&#39;TXN&#39;</span><span class="p">,</span><span class="s1">&#39;UNH&#39;</span><span class="p">,</span><span class="s1">&#39;UPS&#39;</span><span class="p">,</span><span class="s1">&#39;USB&#39;</span><span class="p">,</span><span class="s1">&#39;UTX&#39;</span><span class="p">,</span><span class="s1">&#39;V&#39;</span><span class="p">,</span><span class="s1">&#39;VZ&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;WMT&#39;</span><span class="p">,</span><span class="s1">&#39;XOM&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tickers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;AAPL ABBV ABT ACN ADP ADSK AES AET AFL AMAT AMGN AMZN APA APHA APD APTV ARE ASML ATVI AXP BA BAC BAX BDX BIIB BK BKNG BMY BRKB BRK.A COG COST CPB CRM CSCO CVS DAL DD DHR DIS DOW DUK EMR EPD EQT ESRT EXPD FFIV FLS FLT FRT GE GILD GOOGL GOOG GS HAL HD HON IBM INTC IP JNJ JPM KEY KHC KIM KO LLY LMT LOW MCD MCHP MDT MMM MO MRK MSFT MTD NEE NFLX NKE NOV ORCL OXY PEP PFE PG RTN RTX SBUX SHW SLB SO SPG STT T TGT TXN UNH UPS USB UTX V VZ WMT XOM&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tickers</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;1980-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;today&#39;</span><span class="p">),</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to get ticker &#39;BRKB&#39; reason: Expecting value: line 1 column 1 (char 0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to get ticker &#39;FLT&#39; reason: Expecting value: line 1 column 1 (char 0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to get ticker &#39;UTX&#39; reason: Expecting value: line 1 column 1 (char 0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to get ticker &#39;APHA&#39; reason: Expecting value: line 1 column 1 (char 0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to get ticker &#39;RTN&#39; reason: Expecting value: line 1 column 1 (char 0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to get ticker &#39;BRK.A&#39; reason: Expecting value: line 1 column 1 (char 0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to get ticker &#39;ATVI&#39; reason: Expecting value: line 1 column 1 (char 0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to get ticker &#39;COG&#39; reason: Expecting value: line 1 column 1 (char 0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>107 Failed downloads:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;UPS&#39;, &#39;VZ&#39;, &#39;TXN&#39;, &#39;EPD&#39;, &#39;NFLX&#39;, &#39;ABT&#39;, &#39;BMY&#39;, &#39;INTC&#39;, &#39;V&#39;, &#39;BIIB&#39;, &#39;NKE&#39;, &#39;JPM&#39;, &#39;SPG&#39;, &#39;ESRT&#39;, &#39;BK&#39;, &#39;MO&#39;, &#39;MCD&#39;, &#39;COST&#39;, &#39;ARE&#39;, &#39;EQT&#39;, &#39;PFE&#39;, &#39;CVS&#39;, &#39;LLY&#39;, &#39;DIS&#39;, &#39;USB&#39;, &#39;EXPD&#39;, &#39;CSCO&#39;, &#39;SLB&#39;, &#39;AFL&#39;, &#39;BAC&#39;, &#39;MMM&#39;, &#39;DHR&#39;, &#39;APTV&#39;, &#39;HON&#39;, &#39;DD&#39;, &#39;FRT&#39;, &#39;DAL&#39;, &#39;ASML&#39;, &#39;AET&#39;, &#39;GOOG&#39;, &#39;GE&#39;, &#39;WMT&#39;, &#39;T&#39;, &#39;AMZN&#39;, &#39;ORCL&#39;, &#39;ADP&#39;, &#39;MTD&#39;, &#39;APD&#39;, &#39;ABBV&#39;, &#39;PEP&#39;, &#39;OXY&#39;, &#39;AAPL&#39;, &#39;LOW&#39;, &#39;JNJ&#39;, &#39;APA&#39;, &#39;CRM&#39;, &#39;HAL&#39;, &#39;DOW&#39;, &#39;KEY&#39;, &#39;SBUX&#39;, &#39;KO&#39;, &#39;MDT&#39;, &#39;NOV&#39;, &#39;AMAT&#39;, &#39;EMR&#39;, &#39;FFIV&#39;, &#39;BA&#39;, &#39;BDX&#39;, &#39;STT&#39;, &#39;AES&#39;, &#39;SHW&#39;, &#39;UNH&#39;, &#39;GOOGL&#39;, &#39;AMGN&#39;, &#39;NEE&#39;, &#39;PG&#39;, &#39;ACN&#39;, &#39;RTX&#39;, &#39;ADSK&#39;, &#39;AXP&#39;, &#39;MSFT&#39;, &#39;IBM&#39;, &#39;FLS&#39;, &#39;HD&#39;, &#39;GS&#39;, &#39;TGT&#39;, &#39;MCHP&#39;, &#39;MRK&#39;, &#39;DUK&#39;, &#39;XOM&#39;, &#39;IP&#39;, &#39;CPB&#39;, &#39;BKNG&#39;, &#39;BAX&#39;, &#39;LMT&#39;, &#39;GILD&#39;, &#39;KIM&#39;, &#39;KHC&#39;]: JSONDecodeError(&#39;Expecting value: line 1 column 1 (char 0)&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;BRKB&#39;, &#39;FLT&#39;, &#39;UTX&#39;, &#39;APHA&#39;, &#39;RTN&#39;, &#39;BRK.A&#39;, &#39;ATVI&#39;, &#39;COG&#39;]: YFTzMissingError(&#39;$%ticker%: possibly delisted; no timezone found&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;SO&#39;]: J%ticker%NDecodeError(&#39;Expecting value: line 1 column 1 (char 0)&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">][</span><span class="s1">&#39;AAPL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/f425526e6230fcd21ec99edd215a34cada5e3eb872bbf119693b6f80eddd9b99.png" src="../_images/f425526e6230fcd21ec99edd215a34cada5e3eb872bbf119693b6f80eddd9b99.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cols_with_many_nas</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;BRK.A&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;APHA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UTX&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RTN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;COG&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BRKB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ATVI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FLT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DOW&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;KHC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;V&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;APTV&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ABBV&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ESRT&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial shape: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols_with_many_nas</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;After dropping columns: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;After first dropna: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;After pct_change: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final shape: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># If DataFrame is empty, use a smaller date range or fewer tickers</span>
+<span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DataFrame is empty! Trying with fewer tickers and recent data...&quot;</span><span class="p">)</span>
+    <span class="n">simple_tickers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AAPL&#39;</span><span class="p">,</span> <span class="s1">&#39;MSFT&#39;</span><span class="p">,</span> <span class="s1">&#39;GOOGL&#39;</span><span class="p">,</span> <span class="s1">&#39;AMZN&#39;</span><span class="p">,</span> <span class="s1">&#39;TSLA&#39;</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">simple_tickers</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;today&#39;</span><span class="p">),</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;New shape with simple tickers: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initial shape: (0, 107)
+After dropping columns: (0, 93)
+After first dropna: (0, 93)
+After pct_change: (0, 93)
+Final shape: (0, 93)
+DataFrame is empty! Trying with fewer tickers and recent data...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to get ticker &#39;TSLA&#39; reason: Expecting value: line 1 column 1 (char 0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 Failed downloads:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;AAPL&#39;, &#39;AMZN&#39;, &#39;MSFT&#39;, &#39;GOOGL&#39;]: JSONDecodeError(&#39;Expecting value: line 1 column 1 (char 0)&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;TSLA&#39;]: YFTzMissingError(&#39;$%ticker%: possibly delisted; no timezone found&#39;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New shape with simple tickers: (0, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;AAPL&#39;, &#39;AMZN&#39;, &#39;GOOGL&#39;, &#39;MSFT&#39;, &#39;TSLA&#39;], dtype=&#39;object&#39;, name=&#39;Ticker&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;AAPL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/f425526e6230fcd21ec99edd215a34cada5e3eb872bbf119693b6f80eddd9b99.png" src="../_images/f425526e6230fcd21ec99edd215a34cada5e3eb872bbf119693b6f80eddd9b99.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="n">pc1</span><span class="p">,</span> <span class="n">loadings</span> <span class="o">=</span> <span class="n">pca</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="s1">&#39;scikitlearn&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PCA completed successfully. PC1 shape: </span><span class="si">{</span><span class="n">pc1</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cannot run PCA on empty DataFrame!&quot;</span><span class="p">)</span>
+    <span class="n">pc1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">loadings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cannot run PCA on empty DataFrame!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">pc1</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="n">pc1</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No data to plot for PC1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No data to plot for PC1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">pc1</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="n">pc1</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No data to plot for cumulative PC1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No data to plot for cumulative PC1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="_HW2-numpy-scipy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Homework 2: Numpy, Scipy, and Matplotlib</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../HW3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 3: Introduction to WRDS and CRSP</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-macroeconomic-and-financial-data-from-fred">Downloading macroeconomic and financial data from FRED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-data">Cleaning Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-and-normalizing-the-data">Transforming and Normalizing the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-analysis-of-a-panel-of-stock-returns">Factor Analysis of a Panel of Stock Returns?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremiah Bejarano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jeremiah Bejarano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

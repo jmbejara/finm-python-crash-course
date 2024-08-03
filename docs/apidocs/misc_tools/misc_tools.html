@@ -1,0 +1,1133 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>misc_tools &#8212; FINM August Review: Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apidocs/misc_tools/misc_tools';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="API Reference" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="FINM August Review: Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="FINM August Review: Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    FINM August Review: Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../discussion_01.html">1. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_setting_up_environment.html">1.1 Setting up your computing environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_methods_for_using_python.html">1.2 Ways to Interact with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_vscode_cursor.html">1.3 VS Code and Cursor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_environment_faq.html">1.4 Common Errors When Setting Up VS Code and Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../HW1.html">Homework 1: Introduction to VS Code and Git</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../discussion_02.html">2. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../syncing_files_with_git_and_github.html">2.1 Syncing Files with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../WRDS_intro_and_web_queries.html">2.2 Introduction to WRDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_02_01-Introducing-Pandas-Objects.html">2.3 Introducing Pandas Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_02_02-Data-Indexing-and-Selection.html">2.4 Data Indexing and Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_02_03-Operations-in-Pandas.html">2.5 Operating on Data in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_02_04-Missing-Values.html">2.6 Handling Missing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_02_CRSP_market_index.html">2.7 CRSP Market Returns Indices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../discussion_03.html">3. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_03_overview_of_pydata_stack.html">2.2 Overview of the PyData Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_03_comparing_plotting_libraries.html">2.3 Comparing Plotting Libraries and Declarative Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_03_Using_Interact.html">2.4 Using Interact (Optional)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_03_python_by_example.html">2.5 Python Basics: An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_HW2-numpy-scipy.html">Homework 2: Numpy, Scipy, and Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_03_factor_analysis_demo.html">3.5 Factor Analysis on Financial and Economic Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../HW3.html">Homework 3: Introduction to WRDS and CRSP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 4️</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../discussion_04.html">4. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_CRSP_data.html">4.1 Using CRSP Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_notebook_build/_04_wrds_python_package.html">4.2 Connecting to the WRDS Platform With Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../myst_markdown_demos.html">MyST Markdown Demos 💡</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">misc_tools</span></code></a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course/issues/new?title=Issue%20on%20page%20%2Fapidocs/misc_tools/misc_tools.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apidocs/misc_tools/misc_tools.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>misc_tools</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.merge_stats"><code class="docutils literal notranslate"><span class="pre">merge_stats()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.dataframe_set_difference"><code class="docutils literal notranslate"><span class="pre">dataframe_set_difference()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.freq_counts"><code class="docutils literal notranslate"><span class="pre">freq_counts()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.move_column_inplace"><code class="docutils literal notranslate"><span class="pre">move_column_inplace()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.move_columns_to_front"><code class="docutils literal notranslate"><span class="pre">move_columns_to_front()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.weighted_average"><code class="docutils literal notranslate"><span class="pre">weighted_average()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.groupby_weighted_average"><code class="docutils literal notranslate"><span class="pre">groupby_weighted_average()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.groupby_weighted_std"><code class="docutils literal notranslate"><span class="pre">groupby_weighted_std()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.weighted_quantile"><code class="docutils literal notranslate"><span class="pre">weighted_quantile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.groupby_weighted_quantile"><code class="docutils literal notranslate"><span class="pre">groupby_weighted_quantile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.load_date_mapping"><code class="docutils literal notranslate"><span class="pre">load_date_mapping()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools._alphabet"><code class="docutils literal notranslate"><span class="pre">_alphabet</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.calc_check_digit"><code class="docutils literal notranslate"><span class="pre">calc_check_digit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.convert_cusips_from_8_to_9_digit"><code class="docutils literal notranslate"><span class="pre">convert_cusips_from_8_to_9_digit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools._with_lagged_column_no_resample"><code class="docutils literal notranslate"><span class="pre">_with_lagged_column_no_resample()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.with_lagged_columns"><code class="docutils literal notranslate"><span class="pre">with_lagged_columns()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.leave_one_out_sums"><code class="docutils literal notranslate"><span class="pre">leave_one_out_sums()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.get_most_recent_quarter_end"><code class="docutils literal notranslate"><span class="pre">get_most_recent_quarter_end()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.get_next_quarter_start"><code class="docutils literal notranslate"><span class="pre">get_next_quarter_start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.get_end_of_current_month"><code class="docutils literal notranslate"><span class="pre">get_end_of_current_month()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.get_end_of_current_quarter"><code class="docutils literal notranslate"><span class="pre">get_end_of_current_quarter()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.add_vertical_lines_to_plot"><code class="docutils literal notranslate"><span class="pre">add_vertical_lines_to_plot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.plot_weighted_median_with_distribution_bars"><code class="docutils literal notranslate"><span class="pre">plot_weighted_median_with_distribution_bars()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools._demo"><code class="docutils literal notranslate"><span class="pre">_demo()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="module-misc_tools">
+<span id="misc-tools"></span><h1><a class="reference internal" href="#module-misc_tools" title="misc_tools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">misc_tools</span></code></a><a class="headerlink" href="#module-misc_tools" title="Link to this heading">#</a></h1>
+<p>Collection of miscelaneous tools useful in a variety of situations
+(not specific to the current project)</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table table-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.merge_stats" title="misc_tools.merge_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_stats</span></code></a></p></td>
+<td><p>Provide statistics to assess the completeness of the merge.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools.dataframe_set_difference" title="misc_tools.dataframe_set_difference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dataframe_set_difference</span></code></a></p></td>
+<td><p>Gives the rows that appear in dff but not in df</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.freq_counts" title="misc_tools.freq_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freq_counts</span></code></a></p></td>
+<td><p>Like value_counts, but normalizes to give frequency
+Polars function
+df is a polars dataframe</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools.move_column_inplace" title="misc_tools.move_column_inplace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">move_column_inplace</span></code></a></p></td>
+<td><p><a class="reference external" href="https://stackoverflow.com/a/58686641">https://stackoverflow.com/a/58686641</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.move_columns_to_front" title="misc_tools.move_columns_to_front"><code class="xref py py-obj docutils literal notranslate"><span class="pre">move_columns_to_front</span></code></a></p></td>
+<td><p>Move a list of columns <code class="docutils literal notranslate"><span class="pre">cols</span></code> so that they appear first</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools.weighted_average" title="misc_tools.weighted_average"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weighted_average</span></code></a></p></td>
+<td><p>Simple calculation of weighted average.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.groupby_weighted_average" title="misc_tools.groupby_weighted_average"><code class="xref py py-obj docutils literal notranslate"><span class="pre">groupby_weighted_average</span></code></a></p></td>
+<td><p>Faster method for calculating grouped weighted average.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools.groupby_weighted_std" title="misc_tools.groupby_weighted_std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">groupby_weighted_std</span></code></a></p></td>
+<td><p>Method for calculating grouped weighted standard devation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.weighted_quantile" title="misc_tools.weighted_quantile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weighted_quantile</span></code></a></p></td>
+<td><p>Very close to numpy.percentile, but supports weights.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools.groupby_weighted_quantile" title="misc_tools.groupby_weighted_quantile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">groupby_weighted_quantile</span></code></a></p></td>
+<td><p>This can already be accomplished with weighted_quantile, as demonstrated above.
+This function is for convenience.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.load_date_mapping" title="misc_tools.load_date_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_date_mapping</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools.calc_check_digit" title="misc_tools.calc_check_digit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calc_check_digit</span></code></a></p></td>
+<td><p>Calculate the check digits for the 8-digit cusip.
+This function is taken from
+<a class="github reference external" href="https://github.com/arthurdejong/python-stdnum/blob/master/stdnum/cusip.py">arthurdejong/python-stdnum</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.convert_cusips_from_8_to_9_digit" title="misc_tools.convert_cusips_from_8_to_9_digit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_cusips_from_8_to_9_digit</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools._with_lagged_column_no_resample" title="misc_tools._with_lagged_column_no_resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_with_lagged_column_no_resample</span></code></a></p></td>
+<td><p>This can be easily accomplished with the shift method. For example,</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.with_lagged_columns" title="misc_tools.with_lagged_columns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_lagged_columns</span></code></a></p></td>
+<td><p>Add lagged columns to a dataframe, respecting frequency of the data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools.leave_one_out_sums" title="misc_tools.leave_one_out_sums"><code class="xref py py-obj docutils literal notranslate"><span class="pre">leave_one_out_sums</span></code></a></p></td>
+<td><p>Compute leave-one-out sums,</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.get_most_recent_quarter_end" title="misc_tools.get_most_recent_quarter_end"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_most_recent_quarter_end</span></code></a></p></td>
+<td><p>Take a datetime and find the most recent quarter end date</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools.get_next_quarter_start" title="misc_tools.get_next_quarter_start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_next_quarter_start</span></code></a></p></td>
+<td><p>Take a datetime and find the start date of the next quarter</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.get_end_of_current_month" title="misc_tools.get_end_of_current_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_of_current_month</span></code></a></p></td>
+<td><p>Take a datetime and find the last date of the current month
+and also reset time to zero.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools.get_end_of_current_quarter" title="misc_tools.get_end_of_current_quarter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_of_current_quarter</span></code></a></p></td>
+<td><p>Take a datetime and find the last date of the current quarter
+and also reset time to zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools.add_vertical_lines_to_plot" title="misc_tools.add_vertical_lines_to_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_vertical_lines_to_plot</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#misc_tools.plot_weighted_median_with_distribution_bars" title="misc_tools.plot_weighted_median_with_distribution_bars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_weighted_median_with_distribution_bars</span></code></a></p></td>
+<td><p>Plot the weighted median of a variable over time. Optionally, plot the 25th and 75th percentiles</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools._demo" title="misc_tools._demo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_demo</span></code></a></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table table-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#misc_tools._alphabet" title="misc_tools._alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_alphabet</span></code></a></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="api">
+<h3>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.merge_stats">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">merge_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.merge_stats" title="Link to this definition">#</a></dt>
+<dd><p>Provide statistics to assess the completeness of the merge.</p>
+<p>To assess the completeness of the merge, this function counts the number of unique
+elements in the index of the left and right dataframes. It produces the following:</p>
+<p>(First, ensure that the index of left and right are sets of unique elements.)</p>
+<p>‘union’: num of elements in union of indices.
+‘intersection’: num of elements in intersection of indices
+‘union-intersection’: difference between union and intersection (unmatched symmetric)
+‘intersection/union’: percentage of symmetric matched
+‘left’: num of elements in left index
+‘right’: num of elements in in right index
+‘left-intersection’: number of excess elements in left index
+‘right-intersection’: number of excess elements in right index
+‘intersection/left’: percentage of matched based on total in left index
+‘intersection/right’: percentage of matched based on total in right index</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.dataframe_set_difference">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">dataframe_set_difference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">library</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pandas'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rows_and_numbers'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.dataframe_set_difference" title="Link to this definition">#</a></dt>
+<dd><p>Gives the rows that appear in dff but not in df</p>
+<h2 class="rubric" id="id6">Example</h2>
+<p>rows = data_frame_set_difference(dff, df)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.freq_counts">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">freq_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cum_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.freq_counts" title="Link to this definition">#</a></dt>
+<dd><p>Like value_counts, but normalizes to give frequency
+Polars function
+df is a polars dataframe</p>
+<h2 class="rubric" id="id7">Example</h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;fdate&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;bus_dt&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;fdate&quot;</span><span class="p">))</span> 
+<span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">freq_counts</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;bus_tenor_bin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.move_column_inplace">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">move_column_inplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.move_column_inplace" title="Link to this definition">#</a></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/a/58686641">https://stackoverflow.com/a/58686641</a></p>
+<p>Use pos=0 to move to the front</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.move_columns_to_front">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">move_columns_to_front</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.move_columns_to_front" title="Link to this definition">#</a></dt>
+<dd><p>Move a list of columns <code class="docutils literal notranslate"><span class="pre">cols</span></code> so that they appear first</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.weighted_average">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">weighted_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.weighted_average" title="Link to this definition">#</a></dt>
+<dd><p>Simple calculation of weighted average.</p>
+<h2 class="rubric" id="id8">Examples</h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df_nccb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;start_leg_amount&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">]},</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">weighted_average</span><span class="p">(</span><span class="n">data_col</span><span class="o">=</span><span class="s1">&#39;rate&#39;</span><span class="p">,</span> <span class="n">weight_col</span><span class="o">=</span><span class="s1">&#39;start_leg_amount&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_nccb</span><span class="p">)</span>
+<span class="go">2.5</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.groupby_weighted_average">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">groupby_weighted_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_column_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.groupby_weighted_average" title="Link to this definition">#</a></dt>
+<dd><p>Faster method for calculating grouped weighted average.</p>
+<p>From:
+<a class="reference external" href="https://stackoverflow.com/a/44683506">https://stackoverflow.com/a/44683506</a></p>
+<h2 class="rubric" id="id9">Examples</h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df_nccb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;trade_direction&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;RECEIVED&#39;</span><span class="p">,</span> <span class="s1">&#39;RECEIVED&#39;</span><span class="p">,</span> <span class="s1">&#39;DELIVERED&#39;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;start_leg_amount&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">]},</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">groupby_weighted_average</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_nccb</span><span class="p">,</span> <span class="n">data_col</span><span class="o">=</span><span class="s1">&#39;rate&#39;</span><span class="p">,</span> <span class="n">weight_col</span><span class="o">=</span><span class="s1">&#39;start_leg_amount&#39;</span><span class="p">,</span> <span class="n">by_col</span><span class="o">=</span><span class="s1">&#39;trade_direction&#39;</span><span class="p">)</span>
+<span class="go">trade_direction</span>
+<span class="go">DELIVERED   2.00</span>
+<span class="go">RECEIVED    2.67</span>
+<span class="go">dtype: float64</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.groupby_weighted_std">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">groupby_weighted_std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.groupby_weighted_std" title="Link to this definition">#</a></dt>
+<dd><p>Method for calculating grouped weighted standard devation.</p>
+<p>From:
+<a class="reference external" href="https://stackoverflow.com/a/72915123">https://stackoverflow.com/a/72915123</a></p>
+<h2 class="rubric" id="id10">Examples</h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df_nccb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;trade_direction&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;RECEIVED&#39;</span><span class="p">,</span> <span class="s1">&#39;RECEIVED&#39;</span><span class="p">,</span> <span class="s1">&#39;RECEIVED&#39;</span><span class="p">,</span> <span class="s1">&#39;RECEIVED&#39;</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="s1">&#39;DELIVERED&#39;</span><span class="p">,</span> <span class="s1">&#39;DELIVERED&#39;</span><span class="p">,</span> <span class="s1">&#39;DELIVERED&#39;</span><span class="p">,</span> <span class="s1">&#39;DELIVERED&#39;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;start_leg_amount&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]},</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">groupby_weighted_std</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_nccb</span><span class="p">,</span> <span class="n">data_col</span><span class="o">=</span><span class="s1">&#39;rate&#39;</span><span class="p">,</span> <span class="n">weight_col</span><span class="o">=</span><span class="s1">&#39;start_leg_amount&#39;</span><span class="p">,</span> <span class="n">by_col</span><span class="o">=</span><span class="s1">&#39;trade_direction&#39;</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">trade_direction</span>
+<span class="go">DELIVERED   0.50</span>
+<span class="go">RECEIVED    0.00</span>
+<span class="go">dtype: float64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">groupby_weighted_std</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_nccb</span><span class="p">,</span> <span class="n">data_col</span><span class="o">=</span><span class="s1">&#39;rate&#39;</span><span class="p">,</span> <span class="n">weight_col</span><span class="o">=</span><span class="s1">&#39;start_leg_amount&#39;</span><span class="p">,</span> <span class="n">by_col</span><span class="o">=</span><span class="s1">&#39;trade_direction&#39;</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">trade_direction</span>
+<span class="go">DELIVERED   0.43</span>
+<span class="go">RECEIVED    0.00</span>
+<span class="go">dtype: float64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">0.4330127018922193</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">0.0</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.weighted_quantile">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">weighted_quantile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values_sorted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.weighted_quantile" title="Link to this definition">#</a></dt>
+<dd><p>Very close to numpy.percentile, but supports weights.</p>
+<h2 class="rubric" id="id11">Parameters</h2>
+<p>values:
+numpy.array with data
+quantiles :
+array-like with many quantiles needed
+sample_weight :
+array-like of the same length as <code class="docutils literal notranslate"><span class="pre">array</span></code>
+values_sorted : bool, Default False
+if True, then will avoid sorting of initial array
+old_style:
+if True, will correct output to be consistent with numpy.percentile.</p>
+<h2 class="rubric" id="id12">Returns</h2>
+<p>numpy.array
+with computed quantiles.</p>
+<h2 class="rubric" id="id13">Notes</h2>
+<p>quantiles should be in [0, 1]!</p>
+<p>FROM: <a class="reference external" href="https://stackoverflow.com/a/29677616">https://stackoverflow.com/a/29677616</a></p>
+<p>NOTE: that a groupby weighted quantile can look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">median_SD_spread</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">weighted_quantile</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;rate_SD_spread&#39;</span><span class="p">],</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;Volume&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.groupby_weighted_quantile">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">groupby_weighted_quantile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_column_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.groupby_weighted_quantile" title="Link to this definition">#</a></dt>
+<dd><p>This can already be accomplished with weighted_quantile, as demonstrated above.
+This function is for convenience.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.load_date_mapping">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">load_date_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_remaining_days_in_year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_estimated_historical_days</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">historical_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2016-01-01'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_estimated_future_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">future_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2092-01-01'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.load_date_mapping" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="misc_tools._alphabet">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">_alphabet</span></span><a class="headerlink" href="#misc_tools._alphabet" title="Link to this definition">#</a></dt>
+<dd><p>‘0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ*&#64;#’</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.calc_check_digit">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">calc_check_digit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.calc_check_digit" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the check digits for the 8-digit cusip.
+This function is taken from
+<a class="github reference external" href="https://github.com/arthurdejong/python-stdnum/blob/master/stdnum/cusip.py">arthurdejong/python-stdnum</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.convert_cusips_from_8_to_9_digit">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">convert_cusips_from_8_to_9_digit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cusip_8dig_series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.convert_cusips_from_8_to_9_digit" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools._with_lagged_column_no_resample">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">_with_lagged_column_no_resample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns_to_lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'date'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'L'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools._with_lagged_column_no_resample" title="Link to this definition">#</a></dt>
+<dd><p>This can be easily accomplished with the shift method. For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function is
+to remind myself of this older method.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.with_lagged_columns">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">with_lagged_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_to_lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'date'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'L'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.with_lagged_columns" title="Link to this definition">#</a></dt>
+<dd><p>Add lagged columns to a dataframe, respecting frequency of the data.</p>
+<h2 class="rubric" id="id14">Examples</h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="p">[</span>
+<span class="gp">... </span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s1">&#39;1990/1/1&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s1">&#39;1990/2/1&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s1">&#39;1990/3/1&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s1">&#39;1989/12/1&#39;</span><span class="p">,</span><span class="mi">12</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s1">&#39;1990/1/1&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s1">&#39;1990/2/1&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s1">&#39;1990/3/1&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s1">&#39;1990/4/1&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s1">&#39;1990/6/1&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">  id       date  value</span>
+<span class="go">0  A 1990-01-01      1</span>
+<span class="go">1  A 1990-02-01      2</span>
+<span class="go">2  A 1990-03-01      3</span>
+<span class="go">3  B 1989-12-01     12</span>
+<span class="go">4  B 1990-01-01      1</span>
+<span class="go">5  B 1990-02-01      2</span>
+<span class="go">6  B 1990-03-01      3</span>
+<span class="go">7  B 1990-04-01      4</span>
+<span class="go">8  B 1990-06-01      6</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_lag</span> <span class="o">=</span> <span class="n">_with_lagged_column_no_resample</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">columns_to_lag</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="n">id_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">lags</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_lag</span>
+<span class="go">  id       date  value  L1_value</span>
+<span class="go">0  A 1990-01-01      1       NaN</span>
+<span class="go">1  A 1990-02-01      2      1.00</span>
+<span class="go">2  A 1990-03-01      3      2.00</span>
+<span class="go">3  B 1989-12-01     12       NaN</span>
+<span class="go">4  B 1990-01-01      1     12.00</span>
+<span class="go">5  B 1990-02-01      2      1.00</span>
+<span class="go">6  B 1990-03-01      3      2.00</span>
+<span class="go">7  B 1990-04-01      4      3.00</span>
+<span class="go">8  B 1990-06-01      6      4.00</span>
+
+<span class="go">The issue with leaving out the resample is that the lagged value</span>
+<span class="go">for 1990-06-01 is 4.0, but it should be NaN. This is because the</span>
+<span class="go">the value for group B in 1990-05-01 is missing.</span>
+
+<span class="go">Rather, it should look like this:</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_lag</span> <span class="o">=</span> <span class="n">with_lagged_columns</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">column_to_lag</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">id_column</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;MS&quot;</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_lag</span>
+<span class="go">   id       date  value  L1_value</span>
+<span class="go">2   A 1990-01-01   1.00       NaN</span>
+<span class="go">4   A 1990-02-01   2.00      1.00</span>
+<span class="go">6   A 1990-03-01   3.00      2.00</span>
+<span class="go">8   A 1990-04-01    NaN      3.00</span>
+<span class="go">1   B 1989-12-01  12.00       NaN</span>
+<span class="go">3   B 1990-01-01   1.00     12.00</span>
+<span class="go">5   B 1990-02-01   2.00      1.00</span>
+<span class="go">7   B 1990-03-01   3.00      2.00</span>
+<span class="go">9   B 1990-04-01   4.00      3.00</span>
+<span class="go">11  B 1990-05-01    NaN      4.00</span>
+<span class="go">13  B 1990-06-01   6.00       NaN</span>
+
+</pre></div>
+</div>
+<p>Some valid frequencies are</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;B&quot;: Business Day</span>
+<span class="c1"># &quot;D&quot;: Calendar day</span>
+<span class="c1"># &quot;W&quot;: Weekly</span>
+<span class="c1"># &quot;M&quot;: Month end</span>
+<span class="c1"># &quot;BME&quot;: Business month end</span>
+<span class="c1"># &quot;MS&quot;: Month start</span>
+<span class="c1"># &quot;BMS&quot;: Business month start</span>
+<span class="c1"># &quot;Q&quot;: Quarter end</span>
+<span class="c1"># &quot;BQ&quot;: Business quarter end</span>
+<span class="c1"># &quot;QS&quot;: Quarter start</span>
+<span class="c1"># &quot;BQS&quot;: Business quarter start</span>
+<span class="c1"># &quot;A&quot; or &quot;Y&quot;: Year end</span>
+<span class="c1"># &quot;BA&quot; or &quot;BY&quot;: Business year end</span>
+<span class="c1"># &quot;AS&quot; or &quot;YS&quot;: Year start</span>
+<span class="c1"># &quot;BAS&quot; or &quot;BYS&quot;: Business year start</span>
+<span class="c1"># &quot;H&quot;: Hourly</span>
+<span class="c1"># &quot;T&quot; or &quot;min&quot;: Minutely</span>
+<span class="c1"># &quot;S&quot;: Secondly</span>
+<span class="c1"># &quot;L&quot; or &quot;ms&quot;: Milliseconds</span>
+<span class="c1"># &quot;U&quot;: Microseconds</span>
+<span class="c1"># &quot;N&quot;: Nanoseconds</span>
+</pre></div>
+</div>
+<p>as seen here: <a class="reference external" href="https://business-science.github.io/pytimetk/guides/03_pandas_frequency.html">https://business-science.github.io/pytimetk/guides/03_pandas_frequency.html</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.leave_one_out_sums">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">leave_one_out_sums</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summed_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.leave_one_out_sums" title="Link to this definition">#</a></dt>
+<dd><p>Compute leave-one-out sums,</p>
+<p><span class="math notranslate nohighlight">\(x_i = \sum_{\ell'\neq\ell} w_{i, \ell'}\)</span></p>
+<p>This is helpful for constructing the shift-share instruments
+in Borusyak, Hull, Jaravel (2022).</p>
+<h2 class="rubric" id="id15">Examples</h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;A&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;B&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;C&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;D&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;LOO_Sum_C_groupby_B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="gp">... </span>               <span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LOO_Sum_C_groupby_B</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;B&#39;</span><span class="p">])[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_series_equal</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;LOO_Sum_C_groupby_B&#39;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;B&#39;</span><span class="p">])[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">check_names</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">leave_one_out_sums</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">],</span> <span class="n">summed_col</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_series_equal</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;LOO_Sum_C_groupby_B&#39;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">s</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">check_names</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.get_most_recent_quarter_end">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">get_most_recent_quarter_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.get_most_recent_quarter_end" title="Link to this definition">#</a></dt>
+<dd><p>Take a datetime and find the most recent quarter end date</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2019-10-21&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_most_recent_quarter_end</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="go">datetime.datetime(2019, 9, 30, 0, 0)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.get_next_quarter_start">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">get_next_quarter_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.get_next_quarter_start" title="Link to this definition">#</a></dt>
+<dd><p>Take a datetime and find the start date of the next quarter</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2019-10-21&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_next_quarter_start</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="go">datetime.datetime(2020, 1, 1, 0, 0)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.get_end_of_current_month">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">get_end_of_current_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.get_end_of_current_month" title="Link to this definition">#</a></dt>
+<dd><p>Take a datetime and find the last date of the current month
+and also reset time to zero.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2019-10-21&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_end_of_current_month</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="go">Timestamp(&#39;2019-10-31 00:00:00&#39;)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2023-03-31 12:00:00&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_end_of_current_month</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="go">Timestamp(&#39;2023-03-31 00:00:00&#39;)</span>
+
+</pre></div>
+</div>
+<p>From <a class="reference external" href="https://stackoverflow.com/a/13565185">https://stackoverflow.com/a/13565185</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.get_end_of_current_quarter">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">get_end_of_current_quarter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.get_end_of_current_quarter" title="Link to this definition">#</a></dt>
+<dd><p>Take a datetime and find the last date of the current quarter
+and also reset time to zero.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2019-10-21&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_end_of_current_quarter</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="go">datetime.datetime(2019, 12, 31, 0, 0)</span>
+
+<span class="go"># TODO: Note that he behavior below may be unwanted. Might consider</span>
+<span class="go"># fixing in the future</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2023-03-31 12:00:00&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_end_of_current_quarter</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="go">datetime.datetime(2023, 3, 31, 0, 0)</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.add_vertical_lines_to_plot">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">add_vertical_lines_to_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Q'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend_to_nearest_quarter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.add_vertical_lines_to_plot" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools.plot_weighted_median_with_distribution_bars">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">plot_weighted_median_with_distribution_bars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'date'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile_bars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.25,</span> <span class="pre">0.75]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rolling_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rolling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rolling_min_periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rescale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_quarter_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools.plot_weighted_median_with_distribution_bars" title="Link to this definition">#</a></dt>
+<dd><p>Plot the weighted median of a variable over time. Optionally, plot the 25th and 75th percentiles</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Examples
+--------
+
+```
+ax = plot_weighted_median_with_distribution_bars(
+        data=df,
+        variable_name=&#39;rate_SD_spread&#39;,
+        date_col=&#39;date&#39;,
+        weight_col=&#39;Volume&#39;,
+        percentile_bars=True,
+        percentiles=[0.25, 0.75],
+        rolling_window=5,
+        rescale_factor=100,
+        ax=None,
+        add_quarter_lines=True,
+        ylabel=None,
+        xlabel=None,
+        label=&#39;Median Spread&#39;
+        )
+plt.title(&#39;Volume-weighted median rate spread (bps)
+</pre></div>
+</div>
+<p>Shaded region shows 25/75 percentiles’)
+other_bbg[‘2019-10-21’:].plot(ax=ax)
+plt.legend()</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fig, ax = plt.subplots()
+ax = plot_weighted_median_with_distribution_bars(
+        data=df,
+        variable_name=&#39;rate_SD_spread&#39;,
+        date_col=&#39;date&#39;,
+        weight_col=&#39;Volume&#39;,
+        percentile_bars=True,
+        percentiles=[0.25, 0.75],
+        rolling_window=5,
+        rescale_factor=100,
+        ax=ax,
+        add_quarter_lines=True,
+        ylabel=None,
+        xlabel=None,
+        label=None
+        )
+plt.title(&#39;Volume-weighted median rate spread (bps)
+</pre></div>
+</div>
+<p>Shaded region shows 25/75 percentiles’)
+other_bbg[‘2019-10-21’:].plot(ax=ax)
+plt.legend()
+```</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Notes
+-----
+rolling_window=1 means that there is no rolling aggregation applied.
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="misc_tools._demo">
+<span class="sig-prename descclassname"><span class="pre">misc_tools.</span></span><span class="sig-name descname"><span class="pre">_demo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#misc_tools._demo" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">API Reference</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.merge_stats"><code class="docutils literal notranslate"><span class="pre">merge_stats()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.dataframe_set_difference"><code class="docutils literal notranslate"><span class="pre">dataframe_set_difference()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.freq_counts"><code class="docutils literal notranslate"><span class="pre">freq_counts()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.move_column_inplace"><code class="docutils literal notranslate"><span class="pre">move_column_inplace()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.move_columns_to_front"><code class="docutils literal notranslate"><span class="pre">move_columns_to_front()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.weighted_average"><code class="docutils literal notranslate"><span class="pre">weighted_average()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.groupby_weighted_average"><code class="docutils literal notranslate"><span class="pre">groupby_weighted_average()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.groupby_weighted_std"><code class="docutils literal notranslate"><span class="pre">groupby_weighted_std()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.weighted_quantile"><code class="docutils literal notranslate"><span class="pre">weighted_quantile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.groupby_weighted_quantile"><code class="docutils literal notranslate"><span class="pre">groupby_weighted_quantile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.load_date_mapping"><code class="docutils literal notranslate"><span class="pre">load_date_mapping()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools._alphabet"><code class="docutils literal notranslate"><span class="pre">_alphabet</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.calc_check_digit"><code class="docutils literal notranslate"><span class="pre">calc_check_digit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.convert_cusips_from_8_to_9_digit"><code class="docutils literal notranslate"><span class="pre">convert_cusips_from_8_to_9_digit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools._with_lagged_column_no_resample"><code class="docutils literal notranslate"><span class="pre">_with_lagged_column_no_resample()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.with_lagged_columns"><code class="docutils literal notranslate"><span class="pre">with_lagged_columns()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.leave_one_out_sums"><code class="docutils literal notranslate"><span class="pre">leave_one_out_sums()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.get_most_recent_quarter_end"><code class="docutils literal notranslate"><span class="pre">get_most_recent_quarter_end()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.get_next_quarter_start"><code class="docutils literal notranslate"><span class="pre">get_next_quarter_start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.get_end_of_current_month"><code class="docutils literal notranslate"><span class="pre">get_end_of_current_month()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.get_end_of_current_quarter"><code class="docutils literal notranslate"><span class="pre">get_end_of_current_quarter()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.add_vertical_lines_to_plot"><code class="docutils literal notranslate"><span class="pre">add_vertical_lines_to_plot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools.plot_weighted_median_with_distribution_bars"><code class="docutils literal notranslate"><span class="pre">plot_weighted_median_with_distribution_bars()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#misc_tools._demo"><code class="docutils literal notranslate"><span class="pre">_demo()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremiah Bejarano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jeremiah Bejarano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,778 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1.1 Setting up your computing environment &#8212; FINM August Review: Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_setting_up_environment';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.2 Ways to Interact with Python" href="01_methods_for_using_python.html" />
+    <link rel="prev" title="1. Agenda" href="discussion_01.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="FINM August Review: Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="FINM August Review: Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    FINM August Review: Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 1</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="discussion_01.html">1. Agenda</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1.1 Setting up your computing environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_methods_for_using_python.html">1.2 Ways to Interact with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_vscode_cursor.html">1.3 VS Code and Cursor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_environment_faq.html">1.4 Common Errors When Setting Up VS Code and Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HW1.html">Homework 1: Introduction to VS Code and Git</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="discussion_02.html">2. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="syncing_files_with_git_and_github.html">2.1 Syncing Files with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WRDS_intro_and_web_queries.html">2.2 Introduction to WRDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_02_01-Introducing-Pandas-Objects.html">2.3 Introducing Pandas Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_02_02-Data-Indexing-and-Selection.html">2.4 Data Indexing and Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_02_03-Operations-in-Pandas.html">2.5 Operating on Data in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_02_04-Missing-Values.html">2.6 Handling Missing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_02_CRSP_market_index.html">2.7 CRSP Market Returns Indices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="discussion_03.html">3. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_03_overview_of_pydata_stack.html">2.2 Overview of the PyData Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_03_comparing_plotting_libraries.html">2.3 Comparing Plotting Libraries and Declarative Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_03_Using_Interact.html">2.4 Using Interact (Optional)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_03_python_by_example.html">2.5 Python Basics: An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_HW2-numpy-scipy.html">Homework 2: Numpy, Scipy, and Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_03_factor_analysis_demo.html">3.5 Factor Analysis on Financial and Economic Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HW3.html">Homework 3: Introduction to WRDS and CRSP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discussion 4️</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="discussion_04.html">4. Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_CRSP_data.html">4.1 Using CRSP Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_notebook_build/_04_wrds_python_package.html">4.2 Connecting to the WRDS Platform With Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="myst_markdown_demos.html">MyST Markdown Demos 💡</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="apidocs/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="apidocs/misc_tools/misc_tools.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">misc_tools</span></code></a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/finm-python-crash-course/issues/new?title=Issue%20on%20page%20%2F01_setting_up_environment.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01_setting_up_environment.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1.1 Setting up your computing environment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-software">Required Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-anaconda">What is Anaconda?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-visual-studio-code">What is Visual Studio Code?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-cursor-and-why-are-we-using-it">What is Cursor and Why Are We Using It?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-cursor-is-essential-for-modern-development">Why Cursor is Essential for Modern Development</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-git-and-github">What is Git and GitHub?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-required-packages-for-this-course">Installing the Required Packages for this Course</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrds-how-do-i-sign-up">WRDS: How do I sign up?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="setting-up-your-computing-environment">
+<h1>1.1 Setting up your computing environment<a class="headerlink" href="#setting-up-your-computing-environment" title="Link to this heading">#</a></h1>
+<section id="required-software">
+<h2>Required Software<a class="headerlink" href="#required-software" title="Link to this heading">#</a></h2>
+<p>As noted on the first page, this review session requires the following software:</p>
+<ul class="simple">
+<li><p><strong>Python 3.11 or greater, Anaconda Distribution</strong></p>
+<ul>
+<li><p>For this class, please download the <a class="reference external" href="https://www.anaconda.com/products/distribution">Anaconda distribution of Python</a>. Be sure to download current version, with Python version 3.9. or greater. When you install Anaconda, be sure to install the full Anaconda distribution.
+The MiniConda version is nice, but I only recommend it for advanced users. Nice instructions for installing and using Anaconda can be found (here.)[<a class="reference external" href="https://datascience.quantecon.org/introduction/local_install.html">https://datascience.quantecon.org/introduction/local_install.html</a>]</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I highly recommend checking the box to add Anaconda to your PATH. This will make it easier to use Anaconda from the command line.
+This is an option you can choose when you install Anaconda. (See the image below.) However, you can also add Anaconda to your PATH after installation. See <a class="reference internal" href="#common-issues"><span class="xref myst">Common Issues</span></a> below.</p>
+</div>
+<a class="bg-primary reference internal image-reference" href="_images/anaconda_add_to_path.png"><img alt="Add Anaconda to PATH" class="bg-primary align-center" src="_images/anaconda_add_to_path.png" style="width: 66%;" />
+</a>
+<ul class="simple">
+<li><p><strong>The Cursor AI Code Editor</strong></p>
+<ul>
+<li><p>A good text editor is important for software development. Some of your classes will use a fully-fledged Integrated Development Environment (IDE) like PyCharm. For this review, I suggest that you use Cursor. You can download it here: <a class="reference external" href="https://www.cursor.com/">https://www.cursor.com/</a></p></li>
+<li><p>Cursor has many of the same extensions available as VS Code. To learn about extensions, see <a class="reference external" href="https://code.visualstudio.com/docs/editor/extension-marketplace">here.</a> I recommend installing at least these two extensions: the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter">Jupyter</a> and <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python</a> extensions.</p></li>
+<li><p><strong>Important for Students</strong>: Cursor offers a <strong>free one-year Pro subscription for verified students</strong>. To claim your free year, visit <a class="reference external" href="https://www.cursor.com/students">https://www.cursor.com/students</a> and follow the verification process using your university email (.edu address).</p></li>
+</ul>
+</li>
+<li><p><strong>Git</strong></p>
+<ul>
+<li><p>Although there are many different Git clients and Git GUI’s that you could use,
+I prefer that you install GitHub Desktop. You will need to install both
+Git (link here: <a class="reference external" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a>)
+and GitHub Desktop (link here: <a class="github reference external" href="https://github.com/apps/desktop">apps/desktop</a>).</p></li>
+<li><p>Some classes will use GitHub. GitHub is a website that allows you to store, interact with, and share your Git repositories online. <a class="reference external" href="https://github.com/">Please register an account with GitHub</a> if you don’t already have one.</p></li>
+<li><p>Some classes will use GitHub. GitHub is a website that allows you to store, interact with, and share your Git repositories online. <a class="reference external" href="https://github.com/">Please register an account with GitHub</a> if you don’t already have one.</p></li>
+</ul>
+</li>
+<li><p><strong>GitHub</strong></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It’s also important that you have a quality laptop. I recommend a laptop with at least 16GB of RAM and at least 500 GB of storage (at a minimum).
+So much of your schooling and of your job will revolve around your laptop.
+It’s important to invest in a good one. If you have any questions about your laptop, please ask in the discussion section on Canvas.</p>
+</div>
+</section>
+<section id="what-is-anaconda">
+<h2>What is Anaconda?<a class="headerlink" href="#what-is-anaconda" title="Link to this heading">#</a></h2>
+<p>Anaconda is a free and open-source distribution of Python and R programming languages for scientific computing, that aims to simplify package management and deployment. Package versions are managed by the package management system <code class="docutils literal notranslate"><span class="pre">conda</span></code>. Anaconda is widely used in the scientific community and data science, as it simplifies the installation of packages and their dependencies.</p>
+<ul class="simple">
+<li><p>What is the different between Python and Anaconda?</p>
+<ul>
+<li><p>Python is a general purpose programming language. It’s not just used for data science, etc. It is also used in web development, as example. For example, Python is used in the back end of the website Reddit was used to create parts of YouTube back in the day.</p></li>
+<li><p>Anaconda, on the other hand, is a software <em>distribution</em>. It is a collection of Python packages that are targeted towards data science and scientific computing.
+There are other distributions of Python that are also targeted towards scientific computing, but Anaconda is one of the most popular ones.</p></li>
+<li><p>Anaconda is a set of about a hundred packages that are useful for data science and scientific computing, including conda, numpy, scipy, ipython notebook, and so on.</p></li>
+</ul>
+</li>
+<li><p>What’s the difference between Anaconda and <code class="docutils literal notranslate"><span class="pre">conda</span></code>?</p>
+<ul>
+<li><p>Anaconda is a software distribution, while <code class="docutils literal notranslate"><span class="pre">conda</span></code> is the package manager that comes with the Anaconda distribution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span></code> is a package manager that installs packages from the Anaconda repository as well as from other repositories. A package manager is useful for installing new packages,
+keeping track of the packages you have installed, and updating packages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span></code> also makes it easy to manage software environments. This is useful when you have different projects that require different versions of packages.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Let’s pause here and make sure that everyone has Anaconda installed. Let’s test the following. Please raise your hand if any of these things is not working:</p>
+<ul class="simple">
+<li><p>Open a terminal and type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code>. You should see the version of <code class="docutils literal notranslate"><span class="pre">conda</span></code> that you have installed. Depending on how you installed Anaconda, you may
+have to open the Anaconda Prompt on Windows.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span></code> to make sure that you can activate the base environment. Later on we’ll create our own environment for use in our projects.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> to make sure that you can open a Jupyter notebook. This will open a new tab in your web browser with the Jupyter notebook interface.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> to try out Jupyter Lab. This is a newer interface that is similar to Jupyter notebook but has more features.</p></li>
+</ul>
+</div>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><em>Running <code class="docutils literal notranslate"><span class="pre">conda</span></code> in the terminal gives an error message</em>: There are two common problems. The first is that <code class="docutils literal notranslate"><span class="pre">conda</span></code> is not in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>. The second is that you’re using Powershell.</p>
+<ul>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">conda</span></code> is not in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>, you can add it by following the directions <a class="reference external" href="https://stackoverflow.com/a/44597801/1411791">here</a>.</p></li>
+<li><p>If you’re using Powershell, you have two options. Switch to Command Prompt or initialize Powershell. I recommend using Command Prompt. You can set it as the default terminal in VS Code with the directions found <a class="reference external" href="https://stackoverflow.com/a/61300365/1411791">here</a>. This also links to some directions on how to initialize Powershell for use with Anaconda.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="what-is-visual-studio-code">
+<h2>What is Visual Studio Code?<a class="headerlink" href="#what-is-visual-studio-code" title="Link to this heading">#</a></h2>
+<p>Visual Studio Code is a lightweight code editor that is great for Python development. It has a lot of features that make it a great editor for data science work.</p>
+<ul class="simple">
+<li><p><strong>IntelliSense</strong>: IntelliSense is a feature that helps you write code faster. It provides code completions based on variable types, function definitions, and imported modules.</p></li>
+<li><p><strong>Debugging</strong>: Visual Studio Code has a built-in debugger that makes it easy to debug your Python code.</p></li>
+<li><p><strong>Git integration</strong>: Visual Studio Code has built-in Git integration that makes it easy to work with Git repositories.</p></li>
+<li><p><strong>Extensions</strong>: Visual Studio Code has a rich ecosystem of extensions that add additional functionality to the editor. There are extensions for Jupyter notebooks, Python, and many other languages and tools.</p></li>
+<li><p>What’s the difference between Visual Studio and Visual Studio Code?</p>
+<ul>
+<li><p>Visual Studio is a full-fledged Integrated Development Environment (IDE) that is used primarily for developing in C# and .NET. It is a very powerful IDE that has a lot of features.</p></li>
+<li><p>Visual Studio Code (VS Code), on the other hand, is a lightweight code editor. Visual Studio Code has become a very popular editor for Python development and will be better suited for data science work than Visual Studio (the IDE).</p></li>
+</ul>
+</li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KMxo3T_MTvY?si=DIfqvwpEwJfQk2Dn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</section>
+<section id="what-is-cursor-and-why-are-we-using-it">
+<h2>What is Cursor and Why Are We Using It?<a class="headerlink" href="#what-is-cursor-and-why-are-we-using-it" title="Link to this heading">#</a></h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LR04bU_yV5k?si=_FkL8X4dvxEHdfnI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p>I’ve explained Visual Studio Code above as a foundation for understanding Cursor. <strong>Cursor is a fork of VS Code</strong>, meaning it’s built on the same foundation but with significant AI-powered enhancements. The two editors are extremely similar in their core functionality, with nearly identical:</p>
+<ul class="simple">
+<li><p>User interface and layout</p></li>
+<li><p>Extension compatibility (most VS Code extensions work in Cursor)</p></li>
+<li><p>Keyboard shortcuts and commands</p></li>
+<li><p>Git integration and debugging capabilities</p></li>
+</ul>
+<p>The key difference is that Cursor includes built-in AI capabilities that go far beyond what’s available in VS Code with GitHub Copilot. While VS Code users can install GitHub Copilot as an extension for AI assistance, Cursor provides:</p>
+<ul class="simple">
+<li><p><strong>Multiple AI Models</strong>: Access to GPT-4, Claude 3.5, and other cutting-edge language models</p></li>
+<li><p><strong>Context-Aware Code Generation</strong>: AI that understands your entire codebase, not just the current file</p></li>
+<li><p><strong>Natural Language to Code</strong>: Write descriptions of what you want, and Cursor generates the code</p></li>
+<li><p><strong>AI-Powered Debugging</strong>: Get intelligent help fixing errors and understanding complex code</p></li>
+<li><p><strong>Smart Refactoring</strong>: AI assists in improving code structure and efficiency</p></li>
+</ul>
+<p><a class="reference external" href="https://www.bloomberg.com/news/articles/2025-04-07/cursor-an-ai-coding-assistant-draws-a-million-users-without-even-trying"><img alt="Cursor Bloomberg Article" src="_images/cursor_bloomberg_article.png" /></a></p>
+<section id="why-cursor-is-essential-for-modern-development">
+<h3>Why Cursor is Essential for Modern Development<a class="headerlink" href="#why-cursor-is-essential-for-modern-development" title="Link to this heading">#</a></h3>
+<p>In today’s rapidly evolving tech landscape, <strong>learning to work with AI coding assistants is no longer optional, it’s essential</strong>. Cursor represents the leading edge of AI-assisted development, and mastering it now will give you a significant advantage in both your studies and future career. Here’s why:</p>
+<ol class="arabic simple">
+<li><p><strong>Industry Adoption</strong>: Major tech companies and startups are rapidly adopting AI coding tools. Being proficient with these tools is becoming a expected skill.</p></li>
+<li><p><strong>Productivity Multiplier</strong>: Students report completing assignments 40-60% faster with Cursor, allowing more time for understanding concepts rather than wrestling with syntax.</p></li>
+<li><p><strong>Learning Accelerator</strong>: Cursor can explain complex code, suggest improvements, and help you learn new programming patterns and best practices in real-time.</p></li>
+<li><p><strong>Competitive Advantage</strong>: As AI tools become standard in the industry, those who master them early will have a significant edge in internships and job applications.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Let’s pause here and make sure that everyone has Cursor installed. We’ll run a few test files and configure Cursor with some helpful defaults. Please raise your hand if any of these things is not working:</p>
+<ul class="simple">
+<li><p>Open Cursor and create a new Python file. You can do this by clicking on the New File button in the top left corner of the window and then saving the file with a <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension.</p></li>
+<li><p>Make sure the proper extensions are installed: Python and Jupyter. Also, you might consider the following additional extensions: Black Formatter, Data Wrangler, Excel Viewer, Markdown Preview Github styling, Rainbow CSV, Rewrap, Code Spell Checker, and GitLens.</p></li>
+<li><p>Set the default terminal in Windows to Command Prompt. Use the “Select Default Profile” option in the Cursor terminal to do this. You may also want to memorize the keyboard shortcuts for Cursor. You can start with the command <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">`</span> </code>.</p></li>
+<li><p>Open the terminal in Cursor and type <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> to make sure that Python is installed and that Cursor can find it.</p></li>
+<li><p>Try running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span></code> in the terminal.</p></li>
+<li><p>Create a Python file <code class="docutils literal notranslate"><span class="pre">.py</span></code> and try using Cursor’s AI features. Press <code class="docutils literal notranslate"><span class="pre">Ctrl+K</span></code> (or <code class="docutils literal notranslate"><span class="pre">Cmd+K</span></code> on Mac) to generate code from a natural language prompt.</p></li>
+<li><p>Test the AI chat feature by pressing <code class="docutils literal notranslate"><span class="pre">Ctrl+L</span></code> (or <code class="docutils literal notranslate"><span class="pre">Cmd+L</span></code> on Mac) to ask questions about your code.</p></li>
+<li><p>Claim your free student subscription at <a class="reference external" href="https://www.cursor.com/students">https://www.cursor.com/students</a> if you haven’t already.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="what-is-git-and-github">
+<h2>What is Git and GitHub?<a class="headerlink" href="#what-is-git-and-github" title="Link to this heading">#</a></h2>
+<p>Git is a distributed version control system that is used to track changes in source code during software development. It is designed to handle everything from small to very large projects with speed and efficiency. GitHub is a website that allows you to store, interact with, and share your Git repositories online. GitHub is a great tool for collaborating with others on software projects and for sharing your code with the world.</p>
+<p>Please watch the following video to learn more about version control with Git:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M-O8ZNW9icQ?si=4nDDihfcrD4YwjJH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p>Now, let’s take a look at GitHub.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4lkrx2U9f6I?si=nG5NzBGowiyGhgPN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p>You can find another nice video about GitHub <a class="reference external" href="https://www.youtube.com/watch?v=pBy1zgt0XPc">here.</a>
+The code for this course is available on GitHub. You can find the repository <a class="reference external" href="https://github.com/jmbejara/finm-python-crash-course">here</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Let’s pause here and make sure that everyone has Git installed and is able to download the code for the course.</p>
+<ul class="simple">
+<li><p>First, let’s make sure that everyone has an account on GitHub. If you don’t have an account, please create one now.</p></li>
+<li><p>Open a new Window in VS Code and choose the option to clone a repository. Clone the repository for this course: <a class="github reference external" href="https://github.com/jmbejara/finm-python-crash-course">jmbejara/finm-python-crash-course</a> .</p></li>
+<li><p>Be sure to choose a good place for your Git repositories. Try not to put them in a folder that is synced with a cloud service like Dropbox or Google Drive. Git is what we’ll be using to sync files, not Dropbox or Googe Drive. Putting a Git repo in a Dropbox folder is like putting a Google Drive folder inside of Dropbox. It’s redundant.</p></li>
+<li><p>Open the Git tab in VS Code and see what happens when you make a change to a file in the repository. Notice how you can see the changes in the Git tab. You can stage the changes and commit them to the repository. For now, we won’t worry about pushing the changes to GitHub. We’ll do that in a later discussion.</p></li>
+<li><p>Discuss: What is the difference between Git and GitHub?</p></li>
+</ul>
+</div>
+</section>
+<section id="installing-the-required-packages-for-this-course">
+<h2>Installing the Required Packages for this Course<a class="headerlink" href="#installing-the-required-packages-for-this-course" title="Link to this heading">#</a></h2>
+<p>Now that we have cloned the repository for this course, let’s install the
+required packages. For the code that we use today, you should be fine with the
+packages that come with the Anaconda distribution. However, we will be using
+additional packages in future discussions.</p>
+<p>You’ll need to make sure that you navigate to the directory where you cloned the
+repository before running the required commands. You can do this by running the
+following command in the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/finm-python-crash-course
+</pre></div>
+</div>
+<p>Now, you can install the required packages by running the following command in the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>finm<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12
+conda<span class="w"> </span>activate<span class="w"> </span>finm<span class="w"> </span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>Test that the packages are installed by running the following command in a Python interpreter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">decouple</span>
+</pre></div>
+</div>
+</section>
+<section id="wrds-how-do-i-sign-up">
+<h2>WRDS: How do I sign up?<a class="headerlink" href="#wrds-how-do-i-sign-up" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://wrds-www.wharton.upenn.edu/"><img alt="WRDS Logo" src="_images/wrds_logo.png" /></a></p>
+<p>This course requires that you create a WRDS account. WRDS is a comprehensive data research platform that provides access to a wide range of financial, economic, and marketing data.
+Follow the instructions below to create an account.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you have not requested an account already, please do so ASAP. You will need this for the next session.</p>
+</div>
+<p><strong>New to WRDS?</strong></p>
+<p>Use the following link to access the WRDS Registration form at <a class="reference external" href="https://wrds-www.wharton.upenn.edu/register/?user_type=class-student">https://wrds-www.wharton.upenn.edu/register/?user_type=class-student</a></p>
+<ul class="simple">
+<li><p>Follow the directions on the Registration form to enter your identifying information.</p>
+<ul>
+<li><p>For the Subscriber, select your school’s name from the drop-down list.</p></li>
+<li><p>Your User type, Class - Students with Code, has been selected by default.</p></li>
+<li><p>You will need to enter the course code. This can be found on Canvas here: TODO</p></li>
+</ul>
+</li>
+<li><p>Click the Register for WRDS button.</p>
+<ul>
+<li><p>WRDS accounts require two-factor authentication. We recommend you use a smartphone for the verification process. First, install the Duo Mobile app on your phone. This free app can be downloaded through your device’s app store. Follow the directions at How to Log into WRDS to register your smartphone and use Duo two-factor authentication to set up your WRDS account.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Already Have a WRDS Account?</strong></p>
+<p>After you have logged into WRDS, use the following steps to enroll in our class account. You will need the Class Code above to enroll.</p>
+<ul class="simple">
+<li><p>In the top right corner of the screen, select Your Account &gt; Your Account Info.</p></li>
+<li><p>Scroll down until you see the Your Classes table and click the Enroll in a Class button.</p></li>
+<li><p>Enter the Class Code and click Submit. You can find the code here: TODO</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you have any difficulty setting up your account please contact WRDS Support at: <a class="reference external" href="https://wrds-www.wharton.upenn.edu/contact-support/">https://wrds-www.wharton.upenn.edu/contact-support/</a>. When opening your support ticket you must use the email associated with your existing WRDS account, or the email you intend to use to set up your new WRDS account.</p>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="discussion_01.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1. Agenda</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01_methods_for_using_python.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">1.2 Ways to Interact with Python</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-software">Required Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-anaconda">What is Anaconda?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-visual-studio-code">What is Visual Studio Code?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-cursor-and-why-are-we-using-it">What is Cursor and Why Are We Using It?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-cursor-is-essential-for-modern-development">Why Cursor is Essential for Modern Development</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-git-and-github">What is Git and GitHub?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-required-packages-for-this-course">Installing the Required Packages for this Course</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrds-how-do-i-sign-up">WRDS: How do I sign up?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremiah Bejarano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jeremiah Bejarano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
