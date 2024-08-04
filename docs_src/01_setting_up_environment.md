@@ -4,18 +4,36 @@
 
 As noted on the first page, this review session requires the following software:
 
- - Python 3.11 or greater, Anaconda Distribution
+ - **Python 3.11 or greater, Anaconda Distribution**
    - For this class, please download the [Anaconda distribution of Python](https://www.anaconda.com/products/distribution). Be sure to download current version, with Python version 3.9. or greater. When you install Anaconda, be sure to install the full Anaconda distribution. 
    The MiniConda version is nice, but I only recommend it for advanced users. Nice instructions for installing and using Anaconda can be found (here.)[https://datascience.quantecon.org/introduction/local_install.html]
- - The Visual Studio Code (VS Code) text editor
+
+```{note}
+I highly recommend checking the box to add Anaconda to your PATH. This will make it easier to use Anaconda from the command line.
+This is an option you can choose when you install Anaconda. (See the image below.) However, you can also add Anaconda to your PATH after installation. See [Common Issues](#common-issues) below.
+
+```
+
+```{image} https://i.sstatic.net/11aGz.png
+:alt: Add Anaconda to PATH
+:class: bg-primary
+:width: 66%
+:align: center
+```
+
+
+
+ - **The Visual Studio Code (VS Code) text editor**
    - A good text editor is important for software development. Some of your classes will use a fully-fledged Integrated Development Environment (IDE) like PyCharm. For this review, I suggest Visual Studio Code. You can download it here: https://code.visualstudio.com/
    - There are several VS Code extensions that I recommend installing. To learn about extensions, see [here.](https://code.visualstudio.com/docs/editor/extension-marketplace) I recommend installing at least these two extensions: the [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) and [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) VS Code extensions.
- - Git
+ - **Git**
    - Although there are many different Git clients and Git GUI's that you could use,
    I prefer that you install GitHub Desktop. You will need to install both 
    Git (link here: https://git-scm.com/downloads) 
    and GitHub Desktop (link here: https://github.com/apps/desktop).
    - Some classes will use GitHub. GitHub is a website that allows you to store, interact with, and share your Git repositories online. [Please register an account with GitHub](https://github.com/) if you don't already have one.
+
+ - **GitHub**
 
 ```{note}
 It's also important that you have a quality laptop. I recommend a laptop with at least 16GB of RAM and at least 500 GB of storage (at a minimum). 
@@ -50,6 +68,13 @@ Let's pause here and make sure that everyone has Anaconda installed. Let's test 
 - Type `jupyter notebook` to make sure that you can open a Jupyter notebook. This will open a new tab in your web browser with the Jupyter notebook interface.
 - Type `jupyter lab` to try out Jupyter Lab. This is a newer interface that is similar to Jupyter notebook but has more features.
 ```
+
+### Common Issues
+
+- *Running `conda` in the terminal gives an error message*: There are two common problems. The first is that `conda` is not in your `PATH`. The second is that you're using Powershell.
+  - If `conda` is not in your `PATH`, you can add it by following the directions [here](https://stackoverflow.com/a/44597801/1411791).
+  - If you're using Powershell, you have two options. Switch to Command Prompt or initialize Powershell. I recommend using Command Prompt. You can set it as the default terminal in VS Code with the directions found [here](https://stackoverflow.com/a/61300365/1411791). This also links to some directions on how to initialize Powershell for use with Anaconda.
+
 
 
 ## What is Visual Studio Code?
@@ -110,18 +135,28 @@ Let's pause here and make sure that everyone has Git installed and is able to do
 
 ## Installing the Required Packages for this Course
 
-Now that we have cloned the repository for this course, let's install the required packages. 
-For the code that we use today, you should be fine with the packages that come with the Anaconda distribution. However, we will be using additional packages in future discussions. You can install these packages by running the following command in the terminal:
+Now that we have cloned the repository for this course, let's install the
+required packages. For the code that we use today, you should be fine with the
+packages that come with the Anaconda distribution. However, we will be using
+additional packages in future discussions. 
 
-```bash 
-pip install -r requirements.txt
-```
 
-You'll need to make sure that you navigate to the directory where you cloned the repository before running this command. You can do this by running the following command in the terminal:
+You'll need to make sure that you navigate to the directory where you cloned the
+repository before running the required commands. You can do this by running the
+following command in the terminal:
 
 ```bash
 cd path/to/finm-python-crash-course
 ```
+
+Now, you can install the required packages by running the following command in the terminal:
+
+```bash
+conda create -n finm python=3.12
+conda activate finm 
+pip install -r requirements.txt
+```
+
 
 Test that the packages are installed by running the following command in a Python interpreter:
   
