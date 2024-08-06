@@ -11,9 +11,6 @@ This class will be most useful to you if it is interactive. Please ask questions
 Furthermore, we will plan pauses in the middle of lectures to give time to help students one-on-one with their setup. Please plan to follow along with all of the steps as we go along, so we can troubleshoot the issues as they arise.
 ```
 
-```{attention} Pardon my dust! These notes will change frequently as I update it with new content before the course begins. 
-```
-
 
 ## Course Info
 
