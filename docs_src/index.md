@@ -97,6 +97,7 @@ _notebook_build/_03_03-Operations-in-Pandas.ipynb
 _notebook_build/_03_04-Missing-Values.ipynb
 _notebook_build/_03_factor_analysis_demo.ipynb
 WRDS_intro_and_web_queries.md
+HW3.md
 ```
 
 ```{toctree}

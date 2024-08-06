@@ -337,6 +337,7 @@ sphinx_file_dep = [
     "./docs_src/discussion_02.md",
     "./docs_src/syncing_files_with_git_and_github.md",
     "./docs_src/discussion_03.md",
+    "./docs_src/HW3.md",
     "./docs_src/discussion_04.md",
     *[f"./src/{notebook}" for notebook in notebook_tasks.keys()],
 ]
