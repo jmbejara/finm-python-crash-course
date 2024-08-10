@@ -101,6 +101,7 @@ HW3.md
 :maxdepth: 1
 :caption: Discussion 4️
 discussion_04.md
+using_CRSP_data.md
 _notebook_build/_04_wrds_python_package.ipynb
 _notebook_build/_04_CRSP_market_index.ipynb
 ```

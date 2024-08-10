@@ -14,7 +14,10 @@ discuss the various ways of interacting with Python: Google Collab, Jupyter
 Notebooks through the standard Jupyter server, Jupyter Notebooks in VS Code,
 using IPython in the command line, and running Python scripts directly from the
 command line (`.py` files).
-- **Individual Help with Setup.** Save 30-45 minutes at the end to help students individually with their setup.
+- **Individual Help with Setup.** Save 30-45 minutes at the end to help students individually with their setup. It's probably helpful to save even up to an hour
+during this first lecture to help students with their setups. I hope to save some time at the end of each lecture to help students with their setups.
+This is an important purpose of this August review. It is most useful if it is interactive and if students can get one-on-one help before
+the school year starts.
 
 ## Homework 
 
