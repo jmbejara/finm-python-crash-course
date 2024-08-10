@@ -9,9 +9,9 @@ GitHub repo.
 
 Let's now review the major Git concepts, as outlined here: https://code.visualstudio.com/docs/sourcecontrol/overview
 
-## GitHub Desktop
+## GitKraken
 
-Now, let's orient ourselves with GitHub Desktop. It will often be easier to view changes in GitHub Desktop than in VS Code, but that's a preference. (Also, in the future, you might take a look at GitKraken, my favorite Git GUI (which has a pro plan that is free for students).)
+Now, let's orient ourselves with GitKraken. It will often be easier to view changes in GitKraken than in VS Code, but that's a preference. 
 
 ## Pulling Changes from GitHub
 

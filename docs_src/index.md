@@ -35,9 +35,10 @@ Each lecture after this will use the following software. Please make sure to ins
    - There are several VS Code extensions that I recommend installing. To learn about extensions, see [here.](https://code.visualstudio.com/docs/editor/extension-marketplace) I recommend installing at least these two extensions: the [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) and [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) VS Code extensions.
  - Git
    - Although there are many different Git clients and Git GUI's that you could use,
-   I prefer that you install GitHub Desktop. You will need to install both 
-   Git (link here: https://git-scm.com/downloads) 
-   and GitHub Desktop (link here: https://github.com/apps/desktop).
+   I prefer that you install GitKraken. You will need to install both 
+   Git (link here: https://git-scm.com/downloads) and GitKraken (link here: https://www.gitkraken.com/).
+   You can also try GitHub Desktop if you like (link here: https://github.com/apps/desktop), but please at least install GitKraken.
+   - GitKraken is free for students. You can get a free license by signing up with your student email address. More information about this here: https://www.gitkraken.com/github-student-developer-pack
    - Some classes will use GitHub. GitHub is a website that allows you to store, interact with, and share your Git repositories online. [Please register an account with GitHub](https://github.com/) if you don't already have one.
 
 *NOTE:* It's also important that you have a quality laptop. I recommend a laptop with at least 16GB of RAM and at least 500 GB of storage (at a minimum). 

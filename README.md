@@ -35,6 +35,8 @@ Each lecture after this will use the following software. Please make sure to ins
    and GitHub Desktop (link here: https://github.com/apps/desktop).
    - Some classes will use GitHub. GitHub is a website that allows you to store, interact with, and share your Git repositories online. [Please register an account with GitHub](https://github.com/) if you don't already have one.
 
+   - Some classes will use GitHub. GitHub is a website that allows you to store, interact with, and share your Git repositories online. [Please register an account with GitHub](https://github.com/) if you don't already have one.
+
 *NOTE:* It's also important that you have a quality laptop. I recommend a laptop with at least 16GB of RAM and at least 500 GB of storage (at a minimum). 
 So much of your schooling and of your job will revolve around your laptop. 
 It's important to invest in a good one. If you have any questions about your laptop, please ask in the discussion section on Canvas.

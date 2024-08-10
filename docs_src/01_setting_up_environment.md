@@ -33,6 +33,8 @@ This is an option you can choose when you install Anaconda. (See the image below
    and GitHub Desktop (link here: https://github.com/apps/desktop).
    - Some classes will use GitHub. GitHub is a website that allows you to store, interact with, and share your Git repositories online. [Please register an account with GitHub](https://github.com/) if you don't already have one.
 
+   - Some classes will use GitHub. GitHub is a website that allows you to store, interact with, and share your Git repositories online. [Please register an account with GitHub](https://github.com/) if you don't already have one.
+
  - **GitHub**
 
 ```{note}
