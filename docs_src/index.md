@@ -15,10 +15,10 @@ Furthermore, we will plan pauses in the middle of lectures to give time to help 
 ## Course Info
 
 - **Class:** 
- - Discussion 1: Tuesday, July 30: 6-9pm CT on Zoom
- - Discussion 2: Friday, August 2: 6-9pm CT on Zoom
- - Discussion 3: Tuesday, August 6: 6-9pm CT on Zoom
- - Discussion 4: Friday, August 9: 6-9pm CT on Zoom
+ - Discussion 1: Tuesday, July 31: 6-9pm CT on Zoom
+ - Discussion 2: Friday, August 1: 6-9pm CT on Zoom
+ - Discussion 3: Tuesday, August 14: 6-9pm CT on Zoom
+ - Discussion 4: Friday, August 15: 6-9pm CT on Zoom
 - **Lecturer:** Jeremy Bejarano, jeremiah.bejarano@gmail.com
 - **Notes:** https://jeremybejarano.com/finm-python-crash-course/
 - **Canvas:** https://canvas.uchicago.edu/courses/57668 will be used for grades. 

@@ -24,7 +24,7 @@ This is an option you can choose when you install Anaconda. (See the image below
 
 
  - **The Cursor AI Code Editor**
-   - A good text editor is important for software development. Some of your classes will use a fully-fledged Integrated Development Environment (IDE) like PyCharm. For this review, I require that you use Cursor. You can download it here: https://www.cursor.com/
+   - A good text editor is important for software development. Some of your classes will use a fully-fledged Integrated Development Environment (IDE) like PyCharm. For this review, I suggest that you use Cursor. You can download it here: https://www.cursor.com/
    - Cursor has many of the same extensions available as VS Code. To learn about extensions, see [here.](https://code.visualstudio.com/docs/editor/extension-marketplace) I recommend installing at least these two extensions: the [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) and [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) extensions.
    - **Important for Students**: Cursor offers a **free one-year Pro subscription for verified students**. To claim your free year, visit https://www.cursor.com/students and follow the verification process using your university email (.edu address).
 
