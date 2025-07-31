@@ -14,7 +14,7 @@ This is an option you can choose when you install Anaconda. (See the image below
 
 ```
 
-```{image} https://i.sstatic.net/11aGz.png
+```{image} ./assets/anaconda_add_to_path.png
 :alt: Add Anaconda to PATH
 :class: bg-primary
 :width: 66%
@@ -23,9 +23,11 @@ This is an option you can choose when you install Anaconda. (See the image below
 
 
 
- - **The Visual Studio Code (VS Code) text editor**
-   - A good text editor is important for software development. Some of your classes will use a fully-fledged Integrated Development Environment (IDE) like PyCharm. For this review, I suggest Visual Studio Code. You can download it here: https://code.visualstudio.com/
-   - There are several VS Code extensions that I recommend installing. To learn about extensions, see [here.](https://code.visualstudio.com/docs/editor/extension-marketplace) I recommend installing at least these two extensions: the [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) and [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) VS Code extensions.
+ - **The Cursor AI Code Editor**
+   - A good text editor is important for software development. Some of your classes will use a fully-fledged Integrated Development Environment (IDE) like PyCharm. For this review, I require that you use Cursor. You can download it here: https://www.cursor.com/
+   - Cursor has many of the same extensions available as VS Code. To learn about extensions, see [here.](https://code.visualstudio.com/docs/editor/extension-marketplace) I recommend installing at least these two extensions: the [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) and [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) extensions.
+   - **Important for Students**: Cursor offers a **free one-year Pro subscription for verified students**. To claim your free year, visit https://www.cursor.com/students and follow the verification process using your university email (.edu address).
+
  - **Git**
    - Although there are many different Git clients and Git GUI's that you could use,
    I prefer that you install GitHub Desktop. You will need to install both 
@@ -96,16 +98,55 @@ Visual Studio Code is a lightweight code editor that is great for Python develop
 <iframe width="560" height="315" src="https://www.youtube.com/embed/KMxo3T_MTvY?si=DIfqvwpEwJfQk2Dn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-```{note} 
-Let's pause here and make sure that everyone has VS Code installed. We'll run a few test files and configure VS Code with some helpful defaults. Please raise your hand if any of these things is not working:
+## What is Cursor and Why Are We Using It?
 
-- Open VS Code and create a new Python file. You can do this by clicking on the New File button in the top left corner of the window and then saving the file with a `.py` extension.
-- Make sure the proper extensions are installed: Python and Jupyter. Also, you might consider the following additional extensions: GitHub Copilot, Black Formatter, Data Wrangler, Excel Viewer, Markdown Preview Github styling, Rainbow CSV, Rewrap, Code Spell Checker, and GitLens.
-- Set the default terminal in Windows to Command Prompt. Use the "Select Default Profile" option in the VS Code terminal to do this. You may also want to memorize the keyboard shortcuts for VS Code. You can start with the command ``ctrl + ` ``.
-- Open the terminal in VS Code and type `python --version` to make sure that Python is installed and that VS Code can find it.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LR04bU_yV5k?si=_FkL8X4dvxEHdfnI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+I've explained Visual Studio Code above as a foundation for understanding Cursor. **Cursor is a fork of VS Code**, meaning it's built on the same foundation but with significant AI-powered enhancements. The two editors are extremely similar in their core functionality, with nearly identical:
+- User interface and layout
+- Extension compatibility (most VS Code extensions work in Cursor)
+- Keyboard shortcuts and commands
+- Git integration and debugging capabilities
+
+The key difference is that Cursor includes built-in AI capabilities that go far beyond what's available in VS Code with GitHub Copilot. While VS Code users can install GitHub Copilot as an extension for AI assistance, Cursor provides:
+
+- **Multiple AI Models**: Access to GPT-4, Claude 3.5, and other cutting-edge language models
+- **Context-Aware Code Generation**: AI that understands your entire codebase, not just the current file
+- **Natural Language to Code**: Write descriptions of what you want, and Cursor generates the code
+- **AI-Powered Debugging**: Get intelligent help fixing errors and understanding complex code
+- **Smart Refactoring**: AI assists in improving code structure and efficiency
+
+
+[![Cursor Bloomberg Article](./assets/cursor_bloomberg_article.png)](https://www.bloomberg.com/news/articles/2025-04-07/cursor-an-ai-coding-assistant-draws-a-million-users-without-even-trying)
+
+
+
+### Why Cursor is Essential for Modern Development
+
+In today's rapidly evolving tech landscape, **learning to work with AI coding assistants is no longer optional, it's essential**. Cursor represents the leading edge of AI-assisted development, and mastering it now will give you a significant advantage in both your studies and future career. Here's why:
+
+1. **Industry Adoption**: Major tech companies and startups are rapidly adopting AI coding tools. Being proficient with these tools is becoming a expected skill.
+
+2. **Productivity Multiplier**: Students report completing assignments 40-60% faster with Cursor, allowing more time for understanding concepts rather than wrestling with syntax.
+
+3. **Learning Accelerator**: Cursor can explain complex code, suggest improvements, and help you learn new programming patterns and best practices in real-time.
+
+4. **Competitive Advantage**: As AI tools become standard in the industry, those who master them early will have a significant edge in internships and job applications.
+
+
+
+```{note} 
+Let's pause here and make sure that everyone has Cursor installed. We'll run a few test files and configure Cursor with some helpful defaults. Please raise your hand if any of these things is not working:
+
+- Open Cursor and create a new Python file. You can do this by clicking on the New File button in the top left corner of the window and then saving the file with a `.py` extension.
+- Make sure the proper extensions are installed: Python and Jupyter. Also, you might consider the following additional extensions: Black Formatter, Data Wrangler, Excel Viewer, Markdown Preview Github styling, Rainbow CSV, Rewrap, Code Spell Checker, and GitLens.
+- Set the default terminal in Windows to Command Prompt. Use the "Select Default Profile" option in the Cursor terminal to do this. You may also want to memorize the keyboard shortcuts for Cursor. You can start with the command ``ctrl + ` ``.
+- Open the terminal in Cursor and type `python --version` to make sure that Python is installed and that Cursor can find it.
 - Try running `conda activate` in the terminal.
-- Create a Python file `.py` and try opening the Python Interactive window. You can do this by right-clicking in the Python file and selecting "Run Python File in Terminal". Also, you should learn the keyboard shortcut for opening the command palette. You can do this by pressing `ctrl + shift + p`.
-- Adjust the VS Code setting so that `ctrl + enter` will run Python code in the Interactive Window instead of the terminal by default.
+- Create a Python file `.py` and try using Cursor's AI features. Press `Ctrl+K` (or `Cmd+K` on Mac) to generate code from a natural language prompt.
+- Test the AI chat feature by pressing `Ctrl+L` (or `Cmd+L` on Mac) to ask questions about your code.
+- Claim your free student subscription at https://www.cursor.com/students if you haven't already.
 ```
 
 

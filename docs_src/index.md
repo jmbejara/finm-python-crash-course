@@ -70,6 +70,7 @@ A lot of my lecture material will use content from the following helpful books:
 discussion_01.md
 01_setting_up_environment.md
 01_methods_for_using_python.md
+01_vscode_cursor.md
 HW1.md
 ```
 
