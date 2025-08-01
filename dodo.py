@@ -198,15 +198,15 @@ def task_pull_CRSP():
 
 
 notebook_tasks = {
-    "02_overview_of_pydata_stack.ipynb": {
+    "03_overview_of_pydata_stack.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "02_python_by_example.ipynb": {
+    "03_python_by_example.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "02_Using_Interact.ipynb": {
+    "03_Using_Interact.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -214,7 +214,7 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
-    "02_comparing_plotting_libraries.ipynb": {
+    "03_comparing_plotting_libraries.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -222,23 +222,23 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
-    "03_01-Introducing-Pandas-Objects.ipynb": {
+    "02_01-Introducing-Pandas-Objects.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "03_02-Data-Indexing-and-Selection.ipynb": {
+    "02_02-Data-Indexing-and-Selection.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "03_03-Operations-in-Pandas.ipynb": {
+    "02_03-Operations-in-Pandas.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "03_04-Missing-Values.ipynb": {
+    "02_04-Missing-Values.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "03_factor_analysis_demo.ipynb": {
+    "02_factor_analysis_demo.ipynb": {
         "file_dep": [],
         "targets": [],
     },

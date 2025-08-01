@@ -80,23 +80,23 @@ HW1.md
 :caption: Discussion 2
 discussion_02.md
 syncing_files_with_git_and_github.md
-_notebook_build/_02_overview_of_pydata_stack.ipynb
-_notebook_build/_02_comparing_plotting_libraries.ipynb
-_notebook_build/_02_Using_Interact.ipynb
-_notebook_build/_02_python_by_example.ipynb
-_notebook_build/_HW2-numpy-scipy.ipynb
+WRDS_intro_and_web_queries.md
+_notebook_build/_02_01-Introducing-Pandas-Objects.ipynb
+_notebook_build/_02_02-Data-Indexing-and-Selection.ipynb
+_notebook_build/_02_03-Operations-in-Pandas.ipynb
+_notebook_build/_02_04-Missing-Values.ipynb
+_notebook_build/_02_factor_analysis_demo.ipynb
 ```
 
 ```{toctree}
 :maxdepth: 1
 :caption: Discussion 3
 discussion_03.md
-_notebook_build/_03_01-Introducing-Pandas-Objects.ipynb
-_notebook_build/_03_02-Data-Indexing-and-Selection.ipynb
-_notebook_build/_03_03-Operations-in-Pandas.ipynb
-_notebook_build/_03_04-Missing-Values.ipynb
-_notebook_build/_03_factor_analysis_demo.ipynb
-WRDS_intro_and_web_queries.md
+_notebook_build/_03_overview_of_pydata_stack.ipynb
+_notebook_build/_03_comparing_plotting_libraries.ipynb
+_notebook_build/_03_Using_Interact.ipynb
+_notebook_build/_03_python_by_example.ipynb
+_notebook_build/_HW2-numpy-scipy.ipynb
 HW3.md
 ```
 
