@@ -340,6 +340,7 @@ sphinx_file_dep = [
     "./docs_src/HW3.md",
     "./docs_src/discussion_04.md",
     "./docs_src/01_vscode_cursor.md",
+    "./docs_src/01_environment_faq.md",
     *[f"./src/{notebook}" for notebook in notebook_tasks.keys()],
 ]
 

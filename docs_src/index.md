@@ -71,6 +71,7 @@ discussion_01.md
 01_setting_up_environment.md
 01_methods_for_using_python.md
 01_vscode_cursor.md
+01_environment_faq.md
 HW1.md
 ```
 

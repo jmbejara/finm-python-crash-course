@@ -14,6 +14,8 @@ discuss the various ways of interacting with Python: Google Collab, Jupyter
 Notebooks through the standard Jupyter server, Jupyter Notebooks in VS Code,
 using IPython in the command line, and running Python scripts directly from the
 command line (`.py` files).
+- [**VS Code vs. Cursor**](./01_vscode_cursor.md): A comparison of Cursor and VS Code. 
+- [**Environment FAQ**](./01_environment_faq.md): This is a list of common questions and answers about the environment.
 - **Individual Help with Setup.** Save the last half of the discussion to help students individually with their setup.
 This is an important purpose of this August review. It is most useful if it is interactive and if students can get one-on-one help before
 the school year starts.
