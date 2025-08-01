@@ -198,30 +198,6 @@ def task_pull_CRSP():
 
 
 notebook_tasks = {
-    "03_overview_of_pydata_stack.ipynb": {
-        "file_dep": [],
-        "targets": [],
-    },
-    "03_python_by_example.ipynb": {
-        "file_dep": [],
-        "targets": [],
-    },
-    "03_Using_Interact.ipynb": {
-        "file_dep": [],
-        "targets": [],
-    },
-    "HW2-numpy-scipy.ipynb": {
-        "file_dep": [],
-        "targets": [],
-    },
-    "03_comparing_plotting_libraries.ipynb": {
-        "file_dep": [],
-        "targets": [],
-    },
-    "HW2--with-solutions.ipynb": {
-        "file_dep": [],
-        "targets": [],
-    },
     "02_01-Introducing-Pandas-Objects.ipynb": {
         "file_dep": [],
         "targets": [],
@@ -239,6 +215,30 @@ notebook_tasks = {
         "targets": [],
     },
     "02_factor_analysis_demo.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "03_overview_of_pydata_stack.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "03_python_by_example.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "03_Using_Interact.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "03_comparing_plotting_libraries.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "HW2-numpy-scipy.ipynb": {
+        "file_dep": [],
+        "targets": [],
+    },
+    "HW2--with-solutions.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -289,12 +289,27 @@ def task_run_notebooks():
     """Preps the notebooks for presentation format.
     Execute notebooks if the script version of it has been changed.
     """
+    
+    # Notebooks that contain interactive widgets and should not be executed
+    skip_execution = ["03_Using_Interact.ipynb"]
 
     for notebook in notebook_tasks.keys():
         notebook_name = notebook.split(".")[0]
-        yield {
-            "name": notebook,
-            "actions": [
+        
+        # Different actions for interactive vs non-interactive notebooks
+        if notebook in skip_execution:
+            actions = [
+                """python -c "import sys; from datetime import datetime; print(f'Start """ + notebook + """ (no execution): {datetime.now()}', file=sys.stderr)" """,
+                # Skip execution, just convert to HTML without running cells
+                f"jupyter nbconvert --to html --output-dir={OUTPUT_DIR} ./src/{notebook}",
+                copy_notebook_to_folder(
+                    notebook_name, Path("./src"), "./docs_src/_notebook_build/"
+                ),
+                # Don't clear output for interactive notebooks
+                """python -c "import sys; from datetime import datetime; print(f'End """ + notebook + """ (no execution): {datetime.now()}', file=sys.stderr)" """,
+            ]
+        else:
+            actions = [
                 """python -c "import sys; from datetime import datetime; print(f'Start """ + notebook + """: {datetime.now()}', file=sys.stderr)" """,
                 jupyter_execute_notebook(notebook_name),
                 jupyter_to_html(notebook_name),
@@ -304,7 +319,11 @@ def task_run_notebooks():
                 jupyter_clear_output(notebook_name),
                 # jupyter_to_python(notebook_name, build_dir),
                 """python -c "import sys; from datetime import datetime; print(f'End """ + notebook + """: {datetime.now()}', file=sys.stderr)" """,
-            ],
+            ]
+            
+        yield {
+            "name": notebook,
+            "actions": actions,
             "file_dep": [
                 OUTPUT_DIR / f"_{notebook_name}.py",
                 *notebook_tasks[notebook]["file_dep"],
