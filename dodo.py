@@ -214,7 +214,7 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
-    "02_factor_analysis_demo.ipynb": {
+    "03_factor_analysis_demo.ipynb": {
         "file_dep": [],
         "targets": [],
     },
@@ -242,7 +242,7 @@ notebook_tasks = {
         "file_dep": [],
         "targets": [],
     },
-    "04_CRSP_market_index.ipynb": {
+    "02_CRSP_market_index.ipynb": {
         "file_dep": [
             "src/calc_CRSP_indices.py",
             "src/load_CRSP_stock.py",
@@ -330,6 +330,7 @@ def task_run_notebooks():
             ],
             "targets": [
                 OUTPUT_DIR / f"{notebook_name}.html",
+                Path("./docs_src/_notebook_build") / f"_{notebook_name}.ipynb",
                 *notebook_tasks[notebook]["targets"],
             ],
             "clean": True,

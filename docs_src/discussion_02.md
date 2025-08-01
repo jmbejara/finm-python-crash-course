@@ -3,7 +3,10 @@
 ## Agenda
 
 - [**Sync Changes from GitHub and a Brief Overview of Git Concepts**](./syncing_files_with_git_and_github.md): We'll go over how to sync changes from GitHub and a brief overview of Git concepts.
-- **Install Necessary Python Packages**. If you haven't done so already, make sure to run the following command in your terminal to install the necessary packages for this course: `pip install -r requirements.txt`
+- **Install Necessary Python Packages**. 
+    - Create a new conda environment: `conda create -n finm python=3.13`. If you need to, you can delete the environment with `conda remove -n finm --all`.
+    - Activate the environment: `conda activate finm`.
+    - Install the necessary packages: `pip install -r requirements.txt`
 - [**Introduction to WRDS**](./WRDS_intro_and_web_queries.md): We will discuss the Center for Research in Security Prices (CRSP) database, which is a renowned financial research database, primarily recognized for its comprehensive historical data on securities traded in the United States. We will also discuss how to use the Wharton Research Data Services (WRDS) web query system.
 - While going through the following notebooks, be sure to demo the features of using the Python and Jupyter 
 extensions within VS Code.
