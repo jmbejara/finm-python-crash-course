@@ -112,7 +112,7 @@ def apply_delisting_returns(df):
     df["dlret"] = np.select(
         [
             df["dlstcd"].isin([500, 520, 580, 584] + list(range(551, 575))) & df["dlret"].isna(),
-            df["dlret"].isna() & df["dlstcd"].notna() & df["dlstcd"] >= 200,
+            df["dlret"].isna() & df["dlstcd"].notna() & (df["dlstcd"] >= 200),
         ],
         [-0.3, -1],
         default=df["dlret"]
@@ -123,7 +123,7 @@ def apply_delisting_returns(df):
         [
             df["dlstcd"].isin([500, 520, 580, 584] + list(range(551, 575)))
             & df["dlretx"].isna(),
-            df["dlretx"].isna() & df["dlstcd"].notna() & df["dlstcd"] >= 200,
+            df["dlretx"].isna() & df["dlstcd"].notna() & (df["dlstcd"] >= 200),
         ],
         [-0.3, -1],
         default=df["dlretx"]
