@@ -113,10 +113,9 @@ def apply_delisting_returns(df):
         [
             df["dlstcd"].isin([500, 520, 580, 584] + list(range(551, 575))) & df["dlret"].isna(),
             df["dlret"].isna() & df["dlstcd"].notna() & df["dlstcd"] >= 200,
-            True,
         ],
-        [-0.3, -1, df["dlret"]],
-        default=df["dlret"],
+        [-0.3, -1],
+        default=df["dlret"]
     )
 
     # Same as above
@@ -125,10 +124,9 @@ def apply_delisting_returns(df):
             df["dlstcd"].isin([500, 520, 580, 584] + list(range(551, 575)))
             & df["dlretx"].isna(),
             df["dlretx"].isna() & df["dlstcd"].notna() & df["dlstcd"] >= 200,
-            True,
         ],
-        [-0.3, -1, df["dlretx"]],
-        default=df["dlretx"],
+        [-0.3, -1],
+        default=df["dlretx"]
     )
     
     # ## Note: Maybe the following occurs because the ret column

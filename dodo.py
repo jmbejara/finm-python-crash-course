@@ -112,7 +112,7 @@ def task_pull_CRSP():
 
     return {
         "actions": [
-            "ipython ./src/load_CRSP_stock.py",
+            "python ./src/load_CRSP_stock.py",
         ],
         "targets": targets,
         "file_dep": file_dep,
